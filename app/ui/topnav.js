@@ -5,7 +5,7 @@ import logo from "@/public/logo.png";
 import avatar from "@/public/avatar.jpeg";
 import DDMenu, { DPMenu } from "./ddmenu";
 import clsx from "clsx";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
@@ -14,9 +14,8 @@ export default function TopNav() {
     h1: { title: "动画", link: "#" },
     h2s: [
       { title: "排行榜", link: "#" },
-      { title: "每日放送", link: "#" },
-      { title: "排行榜", link: "#" },
-      { title: "排行榜", link: "#" },
+      { title: "每日放送", link: "/calendar" },
+      { title: "番剧索引", link: "#" },
       { title: "排行榜", link: "#" },
     ],
   };
@@ -63,16 +62,16 @@ export default function TopNav() {
             className="w-10 border flex flex-col items-center justify-center relative"
           >
             <div className={clsx(
-              "w-1/2 h-[2px] bg-black mb-1 transition",
-              {"mb-0 absolute rotate-45 ": show}
+              "w-1/2 h-[2px] bg-black transition",
+              {"absolute rotate-45": show}
+            )}></div>
+            <div className={clsx(
+              "w-1/2 h-[2px] bg-black my-1 transition",
+              { "hidden": show}
             )}></div>
             <div className={clsx(
               "w-1/2 h-[2px] bg-black transition",
-              { "opacity-0": show}
-            )}></div>
-            <div className={clsx(
-              "w-1/2 h-[2px] bg-black mt-1 transition",
-              {"mt-0 absolute -rotate-45 ": show}
+              {"absolute -rotate-45": show}
             )}></div>
           </button>
         </div>
