@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from './anime.module.css'
 
 // 单个番剧卡片
 export default function AniCard({ title, src }) {

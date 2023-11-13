@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import styles from "@/app/ui/anime/calendar.module.css"
+import styles from "@/app/ui/anime/anime.module.css"
 import AniCard from "./card";
 
 
