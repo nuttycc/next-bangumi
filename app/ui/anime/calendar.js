@@ -11,7 +11,6 @@ export default function AniCalender({ data }) {
 
   const [today, setToday] = useState(date.getDay() === 0 ? 6 : date.getDay() - 1)
 
-
   const calendar = data.map((obj) => {
     const dayCards = obj.items.map((item) => {
       return (
@@ -53,15 +52,20 @@ export default function AniCalender({ data }) {
   })
   return (
     <>
+      {/* 移动端 */}
       <div className="md:hidden">
         <div className="flex">
           {weekdays}
         </div>
         {calendar[today]}
       </div>
+
+      {/* 桌面端 */}
       <div className="hidden md:block px-16 py-8">
-        <div>每日放送
-          <span className="l-2 text-sm text-red-700">{date.toLocaleDateString()} 星期{week[date.getDay()]}
+        <div>
+          每日放送
+          <span className="l-2 text-sm text-red-700">
+            {date.toLocaleDateString()} 星期{week[date.getDay()]}
           </span>
         </div>
         {calendar}

@@ -71,7 +71,7 @@ export function DPMenu({ data }) {
 
   const h2list = h2s.map((h2) => {
     return (
-      <a key={h2.title} href={h2.link} className="hover:text-[#E5808E]">
+      <a key={h2.title} href={h2.link} className="hover:text-[#E5808E] leading-6">
         {h2.title}
       </a>
     );
@@ -80,9 +80,9 @@ export function DPMenu({ data }) {
   return (
     <div className="w-full px-2 ">
       {/* 标题 */}
-      <div
+      <button
         className={clsx("flex items-center ", {
-          "font-bold": show,
+          "text-rose-600": show,
           "text-black": !show,
         })}
         onClick={() => setShow(!show)}
@@ -97,12 +97,12 @@ export function DPMenu({ data }) {
         >
           <path d="M12,16c-0.3,0-0.5-0.1-0.7-0.3l-6-6c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-6,6C12.5,15.9,12.3,16,12,16z"></path>
         </svg>
-      </div>
+      </button>
 
       {/* 菜单项 */}
       <div
         className={clsx(
-          "bg-gray-200 rounded-sm flex flex-col w-max p-1 pr-10 py-2 ",
+          "bg-gray-200 rounded-sm flex flex-col w-max p-1 pr-10 py-2 text-sm",
           { hidden: !show, block: show },
         )}
       >

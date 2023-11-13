@@ -35,7 +35,10 @@ export default function TopNav() {
             className="mask absolute opacity-0 w-screen h-screen z-[-1]"
             onClick={(e) => handleClick(e)}
           ></div>
-          <Image src={logo} alt="logo" width={70} height={10} />
+          {/* Logo */}
+          <a href="/">
+            <Image src={logo} alt="logo" width={70} height={10} />
+          </a>
           <span className="grow"></span>
           <span className="border relative">
             <input
@@ -75,7 +78,7 @@ export default function TopNav() {
             )}></div>
           </button>
         </div>
-        <div className={clsx("pl-2 pt-4 pb-2 bg-gray-200 absolute right-0", { hidden: !show })}>
+        <div className={clsx("w-[50vw] pl-2 pt-4 pb-2 bg-gray-200 absolute right-0", { hidden: !show })}>
           <DPMenu data={aniMenu} />
           <DPMenu data={aniMenu} />
         </div>
