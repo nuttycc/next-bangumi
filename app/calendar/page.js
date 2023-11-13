@@ -1,25 +1,10 @@
 'use client'
 
-import Image from "next/image";
 import { useState } from "react";
 import clsx from "clsx";
 import styles from "@/app/ui/anime/calendar.module.css"
+import AniCard from "../ui/anime/card";
 
-// 单个番剧卡片
-function AniCard({ title, src }) {
-  return (
-    <div className="border md:w-[100px]" title={title}>
-      <Image
-        className="hidden md:block w-[100px] h-[120px]"
-        src={src}
-        alt={title}
-        width={100}
-        height={120}
-      />
-      <div className={styles["card-title"]}>{title}</div>
-    </div>
-  );
-}
 
 export default function AniCalender() {
   const date = new Date()
@@ -100,6 +85,5 @@ export default function AniCalender() {
         {calendarCards}
       </div>
     </>
-
   );
 }
