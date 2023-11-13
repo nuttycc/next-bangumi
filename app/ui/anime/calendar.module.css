@@ -1,0 +1,59 @@
+/* "border flex flex-col md:w-[80vw] md:flex-row overflow-x-auto" */
+
+/* w-[95vw] md:text-sm md:w-auto overflow-hidden text-ellipsis whitespace-nowrap" */
+
+.card-title {
+  width: 95vw;
+}
+
+.dayCards {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.day-title {
+  display: none;
+}
+
+.dayCards::-webkit-scrollbar {
+  height: 0.5rem;
+  background-color: whitesmoke;
+}
+
+.dayCards::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
+
+.dayCards::-webkit-scrollbar-thumb:hover {
+  filter: opacity(0.5);
+  background-color: black;
+}
+
+@media (min-width: 768px) {
+  .card-title {
+      width: auto;
+      font-size: small;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+    }
+    .dayCards {
+      display: flex;
+      flex-direction: row;
+      width: 80vw;
+      overflow-x: scroll;
+    }
+    .day-title {
+      display: block;
+      background: #A5C8D0;
+      text-align: center;
+      cursor: default;
+      writing-mode: vertical-lr;
+    }
+    .isToday {
+      background-color: #E781E5;
+    }
+
+}

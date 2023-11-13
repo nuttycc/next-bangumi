@@ -29,7 +29,7 @@ export default function TopNav() {
   return (
     <>
       {/* 移动端 */}
-      <div className="md:hidden">
+      <div className="md:hidden relative mb-4">
         <div className="top flex border w-full">
           <div
             className="mask absolute opacity-0 w-screen h-screen z-[-1]"
@@ -75,7 +75,7 @@ export default function TopNav() {
             )}></div>
           </button>
         </div>
-        <div className={clsx("pl-2 pt-4 pb-2 bg-gray-200", { hidden: !show })}>
+        <div className={clsx("pl-2 pt-4 pb-2 bg-gray-200 absolute right-0", { hidden: !show })}>
           <DPMenu data={aniMenu} />
           <DPMenu data={aniMenu} />
         </div>

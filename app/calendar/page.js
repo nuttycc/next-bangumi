@@ -1,34 +1,31 @@
 'use client'
 
+import Image from "next/image";
 import { useState } from "react";
+import clsx from "clsx";
+import styles from "@/app/ui/anime/calendar.module.css"
 
-function nameCard({ title }) {
-  return (
-    <div>
-      <div className="full-title" styles="display:block;">
-        {title}
-      </div>
-    </div>
-  );
-}
-
+// 单个番剧卡片
 function AniCard({ title, src }) {
   return (
-    <div className="card-box" title={title}>
-      <img
-        className="card-img"
+    <div className="border md:w-[100px]" title={title}>
+      <Image
+        className="hidden md:block w-[100px] h-[120px]"
         src={src}
         alt={title}
-        width="120"
-        height="150"
+        width={100}
+        height={120}
       />
-      <span className="card-title">{title}</span>
+      <div className={styles["card-title"]}>{title}</div>
     </div>
   );
 }
 
-export function AniCalender() {
-  const [calendarList, setCalendarList] = useState([]);
+export default function AniCalender() {
+  const date = new Date()
+
+  const [calendarCards, setCalendarCards] = useState([]);
+  const [today, setToday] = useState(date.getDay() === 0 ? 6 : date.getDay() - 1)
 
   const myHeaders = new Headers({
     Host: "api.bgm.tv",
@@ -44,8 +41,8 @@ export function AniCalender() {
   fetch("https://api.bgm.tv/calendar", requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      const calendar = data.map((obj, id) => {
-        const itemsList = obj.items.map((item) => {
+      const calendar = data.map((obj) => {
+        const dayCards = obj.items.map((item) => {
           return (
             <div key={item.id}>
               <AniCard
@@ -56,24 +53,53 @@ export function AniCalender() {
           );
         });
 
+        // 单日番剧
         return (
-          <div className="weekday-box">
-            <div className="weekday-title">{obj.weekday.cn}</div>
-            <div key={id} className="weekday-cards">
-              {itemsList}
+          <div key={obj.weekday.id} className="flex mb-1">
+            <div className={clsx(
+              styles["day-title"],
+              today === obj.weekday.id - 1 && styles["isToday"] 
+            )}>{obj.weekday.cn}</div>
+            <div className={styles.dayCards}>
+              {dayCards}
             </div>
-            {/* <div className="weekday-tail">&gt;</div> */}
           </div>
         );
       });
 
-      setCalendarList(calendar);
+      setCalendarCards(calendar);
     })
     .catch((err) => console.error(err));
 
+
+  const week = ['日', '一', '二', '三', '四', '五', '六',]
+    const weekdays = week.map((x, i) => {
+      return (
+        <button key={x} className={clsx(
+          "border px-1", {"bg-sky-500": today === i}
+          )}
+         onClick={() => setToday(i)}
+        >
+          {x}
+        </button>
+      )
+    })
   return (
-    <div>
-      {calendarList}
-    </div>
+    <>
+      <div className="md:hidden">
+        <div className="flex">
+          {weekdays}
+        </div>
+        {calendarCards[today]}
+      </div>
+      <div className="hidden md:block px-16 py-8">
+        <div>每日放送
+          <span className="l-2 text-sm text-red-700">{date.toLocaleDateString()} 星期{week[date.getDay()]}
+          </span>
+        </div>
+        {calendarCards}
+      </div>
+    </>
+
   );
 }
