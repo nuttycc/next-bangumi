@@ -6,40 +6,36 @@ import avatar from "@/public/avatar.jpeg";
 import DDMenu, { DPMenu } from "./ddmenu";
 import clsx from "clsx";
 import { useState } from "react";
+import ChangeTheme from "./theme";
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
-  let a = null;
-  const aniMenu = {
-    h1: { title: "动画", link: "#" },
-    h2s: [
-      { title: "排行榜", link: "#" },
-      { title: "每日放送", link: "/calendar" },
-      { title: "番剧索引", link: "#" },
-      { title: "排行榜", link: "#" },
-    ],
-  };
 
-  function handleClick(e) {
-    if (show) {
-      setShow(false);
-    }
-  }
+  const aniMenu = [
+    { title: "排行榜", link: "#" },
+    { title: "每日放送", link: "/subject/calendar" },
+    { title: "番剧索引", link: "#" },
+  ];
 
   return (
     <>
       {/* 移动端 */}
       <div className="md:hidden relative mb-4">
-        <div className="top flex border w-full">
+        <div className="top flex border">
           <div
             className="mask absolute opacity-0 w-screen h-screen z-[-1]"
-            onClick={(e) => handleClick(e)}
+            onClick={(e) => setShow(false)}
           ></div>
+
           {/* Logo */}
           <a href="/">
             <Image src={logo} alt="logo" width={70} height={10} />
           </a>
+
+          {/* 占位 */}
           <span className="grow"></span>
+
+          {/* 搜索框 */}
           <span className="border relative">
             <input
               type="search"
@@ -60,46 +56,53 @@ export default function TopNav() {
               />
             </svg>
           </span>
+
+          {/* 菜单按钮 */}
           <button
             onClick={() => setShow(!show)}
             className="w-10 border flex flex-col items-center justify-center relative"
           >
-            <div className={clsx(
-              "w-1/2 h-[2px] bg-black transition",
-              {"absolute rotate-45": show}
-            )}></div>
-            <div className={clsx(
-              "w-1/2 h-[2px] bg-black my-1 transition",
-              { "hidden": show}
-            )}></div>
-            <div className={clsx(
-              "w-1/2 h-[2px] bg-black transition",
-              {"absolute -rotate-45": show}
-            )}></div>
+            <div
+              className={clsx(
+                "w-1/2 h-[2px] bg-black transition dark:bg-gray-300",
+                { "absolute rotate-45": show },
+              )}
+            ></div>
+            <div
+              className={clsx(
+                "w-1/2 h-[2px] bg-black my-1 transition dark:bg-gray-300",
+                { hidden: show },
+              )}
+            ></div>
+            <div
+              className={clsx(
+                "w-1/2 h-[2px] bg-black transition dark:bg-gray-300",
+                { "absolute -rotate-45": show },
+              )}
+            ></div>
           </button>
         </div>
-        <div className={clsx("w-[50vw] pl-2 pt-4 pb-2 bg-gray-200 absolute right-0", { hidden: !show })}>
-          <DPMenu data={aniMenu} />
-          <DPMenu data={aniMenu} />
+        
+        {/* 菜单项目 */}
+        <div
+          className={clsx("pl-[10rem] pt-4 pb-2 bg-gray-100 dark:bg-gray-700", {
+            hidden: !show,
+          })}
+        >
+          <DPMenu h1={"动画"} h2s={aniMenu} />
+          <DPMenu h1={"一级标题"} h2s={aniMenu} />
+          <ChangeTheme />
         </div>
       </div>
 
-      {/* 电脑端 */}
-      <div className="nav-box hidden md:flex items-center border">
-        <a className="logo" href="/">
-          {/* logo */}
-          <Image
-            // src="/logo.png"
-            src={logo}
-            alt="logo"
-            // width={250}
-            // height={200}
-          />
-        </a>
+      {/* 桌面端 */}
+      <nav className="hidden md:flex items-center border">
+        <a href="/"><Image src={logo} alt="logo"/></a>
 
-        <div className="menu grow ">
-          {/* 菜单栏: 动画(排行榜， 每日放送) */}
-          <DDMenu data={aniMenu} />
+        {/* 菜单栏: 动画(排行榜， 每日放送) */}
+        <div className="menu flex grow ">
+          <DDMenu h1={"动画"} h2s={aniMenu} />
+          <ChangeTheme />
         </div>
 
         <input
@@ -114,7 +117,7 @@ export default function TopNav() {
           {/* 用户头像 */}
           <Image src={avatar} alt="user avatar" />
         </a>
-      </div>
+      </nav>
     </>
   );
 }

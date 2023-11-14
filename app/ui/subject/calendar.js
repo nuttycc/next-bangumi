@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import styles from "@/app/ui/anime/anime.module.css"
+import styles from "./subject.module.css"
 import AniCard from "./card";
 
 
@@ -18,6 +18,7 @@ export default function AniCalender({ data }) {
           <AniCard
             title={item["name_cn"] || item["name"]}
             src={item.images.common}
+            id={item.id}
           />
         </div>
       );
@@ -38,7 +39,7 @@ export default function AniCalender({ data }) {
   });
 
 
-  const week = ['日', '一', '二', '三', '四', '五', '六',]
+  const week = ['一', '二', '三', '四', '五', '六', '日']
   const weekdays = week.map((x, i) => {
     return (
       <button key={x} className={clsx(

@@ -3,21 +3,10 @@
 import clsx from "clsx";
 import { useRef, useState } from "react";
 
-// test
-const test_h1 = { title: "一级标题", link: "#" };
-const test_h2s = [
-  {
-    title: "二级标题",
-    link: "https://tailwindcss.com/docs/customizing-colors",
-  },
-  { title: "二级标题", link: "#" },
-  { title: "二级标题", link: "#" },
-];
 
-// 下拉式菜单：菜单项悬浮，不破坏正常文档流
-export default function DDMenu({ data }) {
+//桌面端，下拉式，菜单项悬浮
+export default function DDMenu({ h1, h2s }) {
   const [show, setShow] = useState(false);
-  const { h1, h2s } = data;
 
   const h2list = h2s.map((h2) => {
     return (
@@ -29,7 +18,7 @@ export default function DDMenu({ data }) {
 
   return (
     <div
-      className="text-sm w-max px-2 "
+      className="w-max px-2 "
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
@@ -40,7 +29,7 @@ export default function DDMenu({ data }) {
           { "text-[#28BAA6]": show },
         )}
       >
-        {h1.title}
+        {h1}
         <svg
           className="w-[14px] h-[14px] fill-current "
           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +43,7 @@ export default function DDMenu({ data }) {
       {/* 菜单项 */}
       <div
         className={clsx(
-          "absolute bg-gray-200 leading-6 rounded-sm text-[0.95em] flex flex-col w-max p-1 pr-10 py-2 border",
+          "absolute bg-gray-200 dark:bg-gray-600 leading-6 rounded-sm text-[0.95em] flex flex-col w-max p-1 pr-10 py-2 border",
           { hidden: !show, block: show },
         )}
       >
@@ -64,10 +53,9 @@ export default function DDMenu({ data }) {
   );
 }
 
-// 下推式：破坏流
-export function DPMenu({ data }) {
+// 移动端，下推式
+export function DPMenu({ h1, h2s }) {
   const [show, setShow] = useState(false);
-  const { h1, h2s } = data;
 
   const h2list = h2s.map((h2) => {
     return (
@@ -78,16 +66,16 @@ export function DPMenu({ data }) {
   });
 
   return (
-    <div className="w-full px-2 ">
+    <div className="w-[5rem]">
       {/* 标题 */}
       <button
         className={clsx("flex items-center ", {
-          "text-rose-600": show,
-          "text-black": !show,
+          "": show,
+          "": !show,
         })}
         onClick={() => setShow(!show)}
       >
-        <span>{h1.title}</span>
+        <span>{h1}</span>
         <svg
           className="w-[14px] h-[14px] fill-current "
           xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +90,7 @@ export function DPMenu({ data }) {
       {/* 菜单项 */}
       <div
         className={clsx(
-          "bg-gray-200 rounded-sm flex flex-col w-max p-1 pr-10 py-2 text-sm",
+          "bg-gray-200 dark:bg-gray-600 rounded-sm flex flex-col w-max p-1 pr-10 py-2",
           { hidden: !show, block: show },
         )}
       >
