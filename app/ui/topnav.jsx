@@ -91,7 +91,7 @@ export default function TopNav() {
         >
           <DPMenu h1={"动画"} h2s={aniMenu} />
           <DPMenu h1={"一级标题"} h2s={aniMenu} />
-          {/* <ChangeTheme /> */}
+          <ChangeTheme />
         </div>
       </div>
 
@@ -104,9 +104,12 @@ export default function TopNav() {
         {/* 菜单栏: 动画(排行榜， 每日放送) */}
         <div className="menu flex grow ">
           <DDMenu h1={"动画"} h2s={aniMenu} />
-          <ChangeTheme />
         </div>
+        
+        {/* 主题 */}
+        <ChangeTheme />
 
+        {/* 搜索框 */}
         <input
           type="search"
           placeholder="search"
