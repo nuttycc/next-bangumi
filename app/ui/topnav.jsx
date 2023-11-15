@@ -29,7 +29,7 @@ export default function TopNav() {
 
           {/* Logo */}
           <a href="/">
-            <Image src={logo} alt="logo" width={70} height={10} />
+            <Image src={logo} alt="logo" priority />
           </a>
 
           {/* 占位 */}
@@ -97,7 +97,7 @@ export default function TopNav() {
 
       {/* 桌面端 */}
       <nav className="hidden md:flex items-center border">
-        <a href="/">
+        <a href="/" className="">
           <Image src={logo} alt="logo" />
         </a>
 

@@ -8,15 +8,24 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const code =
-    "try {if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches))\
-     {document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark'}\
-     else {document.documentElement.classList.remove('dark'); document.documentElement.style.colorScheme='light'}} catch (_) {}";
+  const code = `
+    try {
+      console.log('check theme.')
+      if (
+        (typeof localStorage !== 'undefined' && localStorage.theme === 'dark') ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (_) {}
+  `;
 
   return (
-    <html lang="en" className="root">
+    <html lang="zh-CN" className="">
       <body className="dark:bg-black dark:text-white">
-        <div dangerouslySetInnerHTML={{ __html: `<script>${code}</script>` }} />
+        <script dangerouslySetInnerHTML={{ __html: code }} />
         <TopNav />
         {children}
       </body>

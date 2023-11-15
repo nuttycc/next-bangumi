@@ -1,27 +1,10 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import clsx from "clsx"
 
 export default function ChangeTheme() {
   const [show, setShow] = useState(false)
- 
-
-  function handleClick(x) {
-    if(localStorage.getItem('theme') === x) {
-      return
-    }
-    if(x === 'system') {
-      localStorage.removeItem('theme')
-    } else {
-      localStorage.setItem('theme', x)
-    }
-    if (x === 'dark' || (x === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }
 
   function handleSelect(e) {
     console.log(e.target.id)
@@ -40,14 +23,17 @@ export default function ChangeTheme() {
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = 'dark';
+
     } else {
       document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
     }
   }
 
   return (
     <div>
-      <div className="relative">
+      <div className="relative" >
         <button type="button" onClick={() => setShow(!show)}>
           <span className="dark:hidden">
             <svg
