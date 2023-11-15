@@ -7,8 +7,8 @@ import AniCard from "./card";
 
 
 export default function AniCalender({ data }) {
-  const date = new Date()
 
+  const date = new Date()
   const [today, setToday] = useState(date.getDay() === 0 ? 6 : date.getDay() - 1)
 
   const calendar = data.map((obj) => {
@@ -24,7 +24,7 @@ export default function AniCalender({ data }) {
       );
     });
 
-    // 单日番剧
+    // 日番剧
     return (
       <div key={obj.weekday.id} className="flex mb-1">
         <div className={clsx(

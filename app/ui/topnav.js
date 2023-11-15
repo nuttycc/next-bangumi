@@ -91,18 +91,18 @@ export default function TopNav() {
         >
           <DPMenu h1={"动画"} h2s={aniMenu} />
           <DPMenu h1={"一级标题"} h2s={aniMenu} />
-          <ChangeTheme />
+          {/* <ChangeTheme /> */}
         </div>
       </div>
 
       {/* 桌面端 */}
       <nav className="hidden md:flex items-center border">
-        <a href="/"><Image src={logo} alt="logo"/></a>
+        <a href="/" ><Image src={logo} alt="logo"/></a>
 
         {/* 菜单栏: 动画(排行榜， 每日放送) */}
         <div className="menu flex grow ">
           <DDMenu h1={"动画"} h2s={aniMenu} />
-          <ChangeTheme />
+          {/* <ChangeTheme /> */}
         </div>
 
         <input

@@ -1,31 +1,35 @@
 'use client'
 
-import { useState } from "react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import clsx from "clsx"
 
 export default function ChangeTheme() {
   const [theme, setTheme] = useState('system')
   const [show, setShow] = useState(false)
 
+  // 使用 useEffect 会使界面进行突兀的改变
   useEffect(() => {
-    if (!theme || theme === 'system') {
+    const localTheme = localStorage.getItem('theme')
+    if (localTheme === 'dark' ||(!localTheme && window.matchMedia('((prefers-color-scheme: dark))'))) {
+      document.documentElement.classList.add('dark')
+    }
+  }, [])
+
+  function handleClick(x) {
+    if(localStorage.getItem('theme') === x) {
+      return
+    }
+    if(x === 'system') {
       localStorage.removeItem('theme')
     } else {
-      localStorage.setItem('theme', theme)
+      localStorage.setItem('theme', x)
     }
-
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (x === 'dark' || (x === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
-      
     }
-  }, [theme])
-
-  useEffect(() => {
-
-  })
+  }
 
   return (
     <div>
@@ -34,9 +38,9 @@ export default function ChangeTheme() {
         "absolute flex flex-col items-start",
         {"hidden": !show, "block": show}
       )}>
-        <button onClick={() => setTheme('light')}>亮色</button>
-        <button onClick={() => setTheme('dark')}>暗色</button>
-        <button onClick={() => setTheme('system')}>跟随系统</button>
+        <button onClick={() => handleClick('light')}>亮色</button>
+        <button onClick={() => handleClick('dark')}>暗色</button>
+        <button onClick={() => handleClick('system')}>跟随系统</button>
       </div>
     </div>
   )

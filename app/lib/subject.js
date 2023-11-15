@@ -2,14 +2,16 @@
 import API_ENDPOINT from "./api"
 
 export async function getCalendar() {
-
-  console.log("🚀 -- file: subject.js:6 -- getCalendar -- apiHost:", API_ENDPOINT)
-
-  const res = await fetch('https://api.bgm.tv/calendar')
-  if (!res.ok) {
-    throw new Error('Faild to fetch Calendar')
+  try {
+    const res = await fetch('https://api.bgm.tv/calendar')
+    if (!res.ok) {
+      throw new Error('Faild to fetch Calendar', res.status)
+    }
+    return res.json()
+  } catch(error) {
+    console.log("🚀 getCalendar error:", error)
   }
-  return res.json()
+
 }
 
 export async function getSubject(id) {
