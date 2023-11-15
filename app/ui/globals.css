@@ -17,9 +17,7 @@
 } */
 
 body {
-  padding: 0.5rem 0.75rem;
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 

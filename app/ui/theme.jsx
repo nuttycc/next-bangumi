@@ -1,21 +1,22 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import clsx from "clsx"
 
 export default function ChangeTheme() {
-  const [theme, setTheme] = useState('system')
   const [show, setShow] = useState(false)
+  const [theme, setTheme] = useState('')
 
-  // 使用 useEffect 会使界面进行突兀的改变
-  useEffect(() => {
-    const localTheme = localStorage.getItem('theme')
-    if (localTheme === 'dark' ||(!localTheme && window.matchMedia('((prefers-color-scheme: dark))'))) {
-      document.documentElement.classList.add('dark')
-    }
-  }, [])
+  // 界面发生突兀的改变
+  // useLayoutEffect(() => {
+  //   const localTheme = localStorage.getItem('theme')
+  //   if (localTheme === 'dark' || (!localTheme && window.matchMedia('((prefers-color-scheme: dark))'))) {
+  //     document.documentElement.classList.add('dark')
+  //   }
+  // }, [])
 
   function handleClick(x) {
+    cur = x
     if(localStorage.getItem('theme') === x) {
       return
     }
@@ -33,7 +34,7 @@ export default function ChangeTheme() {
 
   return (
     <div>
-      <button className="border border-sky-500 px-1" onClick={() => setShow(!show)}>{theme}</button>
+      <button className="border border-sky-500 px-1" onClick={() => setShow(!show)}>ooo</button>
       <div className={clsx(
         "absolute flex flex-col items-start",
         {"hidden": !show, "block": show}

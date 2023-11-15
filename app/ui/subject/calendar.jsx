@@ -1,16 +1,18 @@
-'use client'
+// 'use client'
 
-import { useState } from "react";
+// import { useState } from "react";
 import clsx from "clsx";
 import styles from "./subject.module.css"
 import AniCard from "./card";
+import { getCalendar } from "@/app/lib/subject";
 
 
-export default function AniCalender({ data }) {
-
+export default async function AniCalender() {
+  const today = 1
   const date = new Date()
-  const [today, setToday] = useState(date.getDay() === 0 ? 6 : date.getDay() - 1)
+  // const [today, setToday] = useState(date.getDay() === 0 ? 6 : date.getDay() - 1)
 
+  const data = await getCalendar()
   const calendar = data.map((obj) => {
     const dayCards = obj.items.map((item) => {
       return (
@@ -45,7 +47,7 @@ export default function AniCalender({ data }) {
       <button key={x} className={clsx(
         "border px-1", { "bg-sky-500": today === i }
       )}
-        onClick={() => setToday(i)}
+        // onClick={() => {}} //todo
       >
         {x}
       </button>

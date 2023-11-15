@@ -1,8 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useRef, useState } from "react";
-
+import { useState } from "react";
 
 //桌面端，下拉式，菜单项悬浮
 export default function DDMenu({ h1, h2s }) {

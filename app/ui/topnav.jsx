@@ -5,7 +5,7 @@ import logo from "@/public/logo.png";
 import avatar from "@/public/avatar.jpeg";
 import DDMenu, { DPMenu } from "./ddmenu";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChangeTheme from "./theme";
 
 export default function TopNav() {
@@ -20,8 +20,8 @@ export default function TopNav() {
   return (
     <>
       {/* 移动端 */}
-      <div className="md:hidden relative mb-4">
-        <div className="top flex border">
+      <div className="md:hidden relative">
+        <div className="top flex border ">
           <div
             className="mask absolute opacity-0 w-screen h-screen z-[-1]"
             onClick={(e) => setShow(false)}
@@ -57,7 +57,7 @@ export default function TopNav() {
             </svg>
           </span>
 
-          {/* 菜单按钮 */}
+          {/* 三杠按钮 */}
           <button
             onClick={() => setShow(!show)}
             className="w-10 border flex flex-col items-center justify-center relative"
@@ -82,10 +82,10 @@ export default function TopNav() {
             ></div>
           </button>
         </div>
-        
+
         {/* 菜单项目 */}
         <div
-          className={clsx("pl-[10rem] pt-4 pb-2 bg-gray-100 dark:bg-gray-700", {
+          className={clsx("pt-4 pb-2 bg-gray-100 dark:bg-gray-700", {
             hidden: !show,
           })}
         >
@@ -97,12 +97,14 @@ export default function TopNav() {
 
       {/* 桌面端 */}
       <nav className="hidden md:flex items-center border">
-        <a href="/" ><Image src={logo} alt="logo"/></a>
+        <a href="/">
+          <Image src={logo} alt="logo" />
+        </a>
 
         {/* 菜单栏: 动画(排行榜， 每日放送) */}
         <div className="menu flex grow ">
           <DDMenu h1={"动画"} h2s={aniMenu} />
-          {/* <ChangeTheme /> */}
+          <ChangeTheme />
         </div>
 
         <input
@@ -110,11 +112,11 @@ export default function TopNav() {
           placeholder="search"
           className="border text-sm mr-10 py-1 px-2 rounded-sm"
         />
+
         <a
           href="#"
-          className="user border rounded-full w-9 hover:outline outline-2 outline-red-400"
+          className="border rounded-full w-9 hover:outline outline-2 outline-red-400"
         >
-          {/* 用户头像 */}
           <Image src={avatar} alt="user avatar" />
         </a>
       </nav>

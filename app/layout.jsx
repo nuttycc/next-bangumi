@@ -1,6 +1,6 @@
-
 import "./ui/globals.css";
 import TopNav from "./ui/topnav";
+
 
 export const metadata = {
   title: "Next Bangumi",
@@ -8,9 +8,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const code =
+    "try {if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {document.documentElement.classList.add('dark')} else {document.documentElement.classList.remove('dark')}} catch (_) {}";
+
   return (
     <html lang="en">
       <body className="dark:bg-black dark:text-white">
+        <div dangerouslySetInnerHTML={{ __html: `<script>${code}</script>` }} />
         <TopNav />
         {children}
       </body>
