@@ -9,10 +9,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const code =
-    "try {if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {document.documentElement.classList.add('dark')} else {document.documentElement.classList.remove('dark')}} catch (_) {}";
+    "try {if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches))\
+     {document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark'}\
+     else {document.documentElement.classList.remove('dark'); document.documentElement.style.colorScheme='light'}} catch (_) {}";
 
   return (
-    <html lang="en">
+    <html lang="en" className="root">
       <body className="dark:bg-black dark:text-white">
         <div dangerouslySetInnerHTML={{ __html: `<script>${code}</script>` }} />
         <TopNav />
