@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="zh-CN" className="">
       <body className="dark:bg-black dark:text-white">
-        <script dangerouslySetInnerHTML={{ __html: code }} />
+        {/* <script dangerouslySetInnerHTML={{ __html: code }} /> */}
         <TopNav />
         {children}
       </body>

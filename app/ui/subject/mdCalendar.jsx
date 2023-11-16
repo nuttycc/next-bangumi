@@ -1,17 +1,13 @@
-// "use client";
 
-// import { useState } from "react";
 import clsx from "clsx";
 import styles from "./subject.module.css";
 import AniCard from "./card";
-// import { getCalendar } from "@/app/lib/subject";
+
 
 export default function AniCalenderOnMd({ data }) {
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1
-  // const [today, setToday] = useState(
-  //   date.getDay() === 0 ? 6 : date.getDay() - 1,
-  // );
+
 
   const calendar = data.map((obj) => {
     const dayCards = obj.items.map((item) => {
@@ -44,26 +40,10 @@ export default function AniCalenderOnMd({ data }) {
 
   // 移动端顶部周菜单
   const week = ["一", "二", "三", "四", "五", "六", "日"];
-  // const weekdays = week.map((x, i) => {
-  //   return (
-  //     <button
-  //       key={x}
-  //       className={clsx("border mx-1", styles["isToday"] && i === today)}
-  //       onClick={(i) => setToday(i)}
-  //     >
-  //       {x}
-  //     </button>
-  //   );
-  // });
+
 
   return (
     <>
-      {/* 移动端 */}
-      {/* <div className="md:hidden">
-        <div className="flex">{weekdays}</div>
-        {calendar[today]}
-      </div> */}
-
       {/* 桌面端 */}
       <div className="hidden md:block px-16 py-8">
         <div>

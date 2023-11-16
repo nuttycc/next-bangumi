@@ -21,6 +21,7 @@
 } */
 
 body {
+  min-height: 100vh;
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
 }

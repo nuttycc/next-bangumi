@@ -24,7 +24,7 @@ export default async function AniCard({ title, src, id }) {
 
   return (
     <>
-      <a href={`/subject/${id}`} className="">
+      <a href={`/subject/${id}`}>
         <figure className="w-[100px] border border-rose-500">
           <div className="block relative  md:w-[100px] md:h-[150px]" title={title}>
             <Image

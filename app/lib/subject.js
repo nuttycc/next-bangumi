@@ -59,29 +59,18 @@ export async function getRelated(id) {
   return res.json()
 }
 
-
-export async function searchSubjectsBy() {
+export async function searchSubjectsBy(limit, offset=0, {keyword = '', sort = 'rank', filter}) {
   const headers = new Headers({
     "Accept": "application/json",
     "Content-Type": "application/json",
   })
+  const {type=[2], tag=[], air_date=[], rating=[], rank=[], nsfw=false} = filter
   const body = JSON.stringify({
-    "keyword": "",
-    "sort": "rank",
-    "filter": {
-      "type": [
-        2
-      ],
-      "tag": [],
-      "air_date": [],
-      "rating": [],
-      "rank": [
-        ">0",
-        "<=999"
-      ],
-      "nsfw": true
-    }
+    "keyword": keyword,
+    "sort": sort,
+    "filter": {type, tag, air_date, rating, rank, nsfw}
   });
+  console.log("🚀🚀 ~ searchSubjectsBy ~ body: ", body)
 
   const requestOptions = {
     method: 'POST',
@@ -89,7 +78,10 @@ export async function searchSubjectsBy() {
     body: body,
   }
 
-  const res = await fetch('', requestOptions)
+  const res = await fetch(
+    `https://api.bgm.tv/v0/search/subjects?limit=${limit}&offset=${offset}`,
+    requestOptions,
+  );
   if (!res.ok) {
     throw new Error('Faild to fetch by id.')
   }

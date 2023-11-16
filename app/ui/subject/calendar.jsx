@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import styles from "./subject.module.css"
-// import AniCard from "./card";
-// import { getCalendar } from "@/app/lib/subject";
 
 
 export default function AniCalender({ data }) {
@@ -21,28 +18,6 @@ export default function AniCalender({ data }) {
         </a>
       </div>
     );
-
-  // const calendar = data.map((obj) => {
-  //   const dayCards = obj.items.map((item) => {
-  //     return (
-  //       <div key={item.id}>
-  //         <p className="border-b">{item["name_cn"] || item["name"]}</p>
-  //       </div>
-  //     );
-  //   });
-
-    // 日番剧
-    // return (
-    //   <div key={obj.weekday.id} className="flex mb-1">
-    //     <div className={clsx(
-    //       styles["day-title"],
-    //       today === obj.weekday.id - 1 && styles["isToday"]
-    //     )}>{obj.weekday.cn}</div>
-    //     <div className={styles.dayCards}>
-    //       {dayCards}
-    //     </div>
-    //   </div>
-    // );
   });
 
 
