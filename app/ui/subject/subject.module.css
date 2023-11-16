@@ -31,6 +31,10 @@
   background-color: black;
 }
 
+.isToday {
+  background-color: #E781E5;
+}
+
 @media (min-width: 768px) {
   .card-title {
       width: auto;
@@ -48,13 +52,12 @@
     }
     .day-title {
       display: block;
-      background: #A5C8D0;
+      background: #eab308;
       text-align: center;
       cursor: default;
       writing-mode: vertical-lr;
     }
     .isToday {
-      background-color: #E781E5;
+      background-color: #be185d;
     }
-
 }

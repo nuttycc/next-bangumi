@@ -19,6 +19,7 @@ const getImage = async (src) => {
 };
 // 单个番剧卡片
 export default async function AniCard({ title, src, id }) {
+  if(!src) return
   const { base64, img} = await getImage(src)
 
   return (
