@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from "react"
-import clsx from "clsx"
+import { useState } from "react";
+import clsx from "clsx";
 
 export default function ChangeTheme() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   function handleSelect(e) {
-    console.log(e.target.id)
-    const x = e.target.id
+    console.log(e.target.id);
+    const x = e.target.id;
     if (localStorage.getItem("theme") === x) {
       return;
     }
@@ -23,8 +23,7 @@ export default function ChangeTheme() {
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
-      document.documentElement.style.colorScheme = 'dark';
-
+      document.documentElement.style.colorScheme = "dark";
     } else {
       document.documentElement.classList.remove("dark");
       document.documentElement.style.colorScheme = "light";
@@ -33,7 +32,7 @@ export default function ChangeTheme() {
 
   return (
     <div>
-      <div className="relative" >
+      <div className="relative">
         <button type="button" onClick={() => setShow(!show)}>
           <span className="dark:hidden">
             <svg
@@ -42,7 +41,7 @@ export default function ChangeTheme() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="w-6 h-6"
+              className="h-6 w-6"
             >
               <path
                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
@@ -55,7 +54,7 @@ export default function ChangeTheme() {
             </svg>
           </span>
           <span className="hidden dark:inline">
-            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+            <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -77,22 +76,19 @@ export default function ChangeTheme() {
         </button>
         <ul
           className={clsx(
-            "absolute z-50 top-full right-0 bg-white rounded-lg ring-1 ring-slate-900/10 shadow-lg overflow-hidden w-36 py-1 text-sm text-slate-700 font-semibold dark:bg-slate-800 dark:ring-0 dark:highlight-white/5 dark:text-slate-300 mt-4",
-            {'hidden': !show, 'block': show}
+            "dark:highlight-white/5 absolute right-0 top-full z-50 mt-4 w-36 overflow-hidden rounded-lg bg-white py-1 text-sm font-semibold text-slate-700 shadow-lg ring-1 ring-slate-900/10 dark:bg-slate-800 dark:text-slate-300 dark:ring-0",
+            { hidden: !show, block: show },
           )}
           onClick={(e) => handleSelect(e)}
         >
-          <li
-            className="py-1 px-2 flex items-center cursor-pointer"
-            id="light"
-          >
+          <li className="flex cursor-pointer items-center px-2 py-1" id="light">
             <svg
               viewBox="0 0 24 24"
               fill="none"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="w-6 h-6 mr-2"
+              className="mr-2 h-6 w-6"
             >
               <path
                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
@@ -105,11 +101,8 @@ export default function ChangeTheme() {
             </svg>
             Light
           </li>
-          <li
-            className="py-1 px-2 flex items-center cursor-pointer"
-            id="dark"
-          >
-            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 mr-2">
+          <li className="flex cursor-pointer items-center px-2 py-1" id="dark">
+            <svg viewBox="0 0 24 24" fill="none" className="mr-2 h-6 w-6">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -130,15 +123,15 @@ export default function ChangeTheme() {
             Dark
           </li>
           <li
-            className="py-1 px-2 flex items-center cursor-pointer text-sky-500"
+            className="flex cursor-pointer items-center px-2 py-1 text-sky-500"
             id="system"
           >
-            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 mr-2">
+            <svg viewBox="0 0 24 24" fill="none" className="mr-2 h-6 w-6">
               <path
                 d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"
                 strokeWidth="2"
                 strokeLinejoin="round"
-                className="stroke-sky-500 fill-sky-400/20"
+                className="fill-sky-400/20 stroke-sky-500"
               ></path>
               <path
                 d="M14 15c0 3 2 5 2 5H8s2-2 2-5"

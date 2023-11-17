@@ -1,11 +1,10 @@
 import AniCalender from "@/app/ui/subject/calendar";
 
-
 export default function Loading() {
-  return(
+  return (
     <>
       <p>Loading...</p>
       {/* <AniCalender data={[]} /> */}
     </>
-  )
+  );
 }

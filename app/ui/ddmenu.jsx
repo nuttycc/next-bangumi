@@ -24,13 +24,13 @@ export default function DDMenu({ h1, h2s }) {
       {/* 标题 */}
       <span
         className={clsx(
-          "hover:text-[#28BAA6] flex items-center cursor-pointer",
+          "flex cursor-pointer items-center hover:text-[#28BAA6]",
           { "text-[#28BAA6]": show },
         )}
       >
         {h1}
         <svg
-          className="w-[14px] h-[14px] fill-current "
+          className="h-[14px] w-[14px] fill-current "
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
           focusable="false"
@@ -42,7 +42,7 @@ export default function DDMenu({ h1, h2s }) {
       {/* 菜单项 */}
       <div
         className={clsx(
-          "absolute bg-gray-200 dark:bg-gray-600 leading-6 rounded-sm text-[0.95em] flex flex-col w-max p-1 pr-10 py-2 border",
+          "absolute z-10 flex w-max flex-col rounded-sm border bg-gray-200 p-1 py-2 pr-10 text-[0.95em] leading-6 dark:bg-gray-600",
           { hidden: !show, block: show },
         )}
       >
@@ -58,7 +58,11 @@ export function DPMenu({ h1, h2s }) {
 
   const h2list = h2s.map((h2) => {
     return (
-      <a key={h2.title} href={h2.link} className="hover:text-[#E5808E] leading-6">
+      <a
+        key={h2.title}
+        href={h2.link}
+        className="leading-6 hover:text-[#E5808E]"
+      >
         {h2.title}
       </a>
     );
@@ -76,7 +80,7 @@ export function DPMenu({ h1, h2s }) {
       >
         <span>{h1}</span>
         <svg
-          className="w-[14px] h-[14px] fill-current "
+          className="h-[14px] w-[14px] fill-current "
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
           focusable="false"
@@ -89,7 +93,7 @@ export function DPMenu({ h1, h2s }) {
       {/* 菜单项 */}
       <div
         className={clsx(
-          "bg-gray-200 dark:bg-gray-600 rounded-sm flex flex-col w-max p-1 pr-10 py-2",
+          "flex w-max flex-col rounded-sm bg-gray-200 p-1 py-2 pr-10 dark:bg-gray-600",
           { hidden: !show, block: show },
         )}
       >

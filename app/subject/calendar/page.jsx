@@ -1,17 +1,16 @@
-
 import { Suspense } from "react";
 import { getCalendar } from "../../lib/subject";
 import AniCalender from "../../ui/subject/calendar";
-import AniCalenderOnMd from "@/app/ui/subject/mdCalendar";
+import AniCalenderOnMd from "@/app/ui/subject/CalendarM";
 
 export default async function Page() {
-  const data = await getCalendar()
+  const data = await getCalendar();
 
   return (
     <>
       <AniCalender data={data} />
       <AniCalenderOnMd data={data} />
-        {/* <AniCalender /> */}
+      {/* <AniCalender /> */}
     </>
-  )
+  );
 }

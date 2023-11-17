@@ -4,7 +4,7 @@
 
 .card-title {
   width: 95vw;
-  background-color: #0B1120;
+  background-color: #0b1120;
 }
 
 .dayCards {
@@ -32,32 +32,32 @@
 }
 
 .isToday {
-  background-color: #E781E5;
+  background-color: #e781e5;
 }
 
 @media (min-width: 768px) {
   .card-title {
-      width: auto;
-      padding: 0 2px;
-      font-size: small;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .dayCards {
-      display: flex;
-      flex-direction: row;
-      width: 80vw;
-      overflow-x: scroll;
-    }
-    .day-title {
-      display: block;
-      background: #eab308;
-      text-align: center;
-      cursor: default;
-      writing-mode: vertical-lr;
-    }
-    .isToday {
-      background-color: #be185d;
-    }
+    width: auto;
+    padding: 0 2px;
+    font-size: small;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .dayCards {
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    overflow-x: scroll;
+  }
+  .day-title {
+    display: block;
+    background: bisque;
+    text-align: center;
+    cursor: default;
+    writing-mode: vertical-lr;
+  }
+  .isToday {
+    background-color: #be185d;
+  }
 }

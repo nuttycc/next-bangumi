@@ -14,8 +14,8 @@ export default async function Page({ params }) {
   const id = params.id;
   const subject = await getSubject(id);
   const characters = await getCharacters(id);
-  const acdetails = await getAllCharacterDetails(characters)
-  
+  const acdetails = await getAllCharacterDetails(characters);
+
   const infobox = subject.infobox.slice(0, 10).map((x) => {
     if (typeof x.value === "object") {
       return null;
@@ -36,21 +36,20 @@ export default async function Page({ params }) {
   });
 
   const charactersList = characters.slice(0, 20).map((x, i) => {
-    let name_cn
-    if (acdetails[i].status !== 'fulfilled') {
-      name_cn = x.name
+    let name_cn;
+    if (acdetails[i].status !== "fulfilled") {
+      name_cn = x.name;
     } else {
-    name_cn =
-      acdetails[i].value.infobox[0].key === "简体中文名"
-        ? acdetails[i].value.infobox[0].value
-        : acdetails[i].value.name;
-
+      name_cn =
+        acdetails[i].value.infobox[0].key === "简体中文名"
+          ? acdetails[i].value.infobox[0].value
+          : acdetails[i].value.name;
     }
 
     // const name_cn = 'xxxx'
     return (
       <div key={x.id} className="flex">
-        <div className="relative w-[50px] h-[50px]">
+        <div className="relative h-[50px] w-[50px]">
           <Image
             src={x.images.grid}
             alt={name_cn}
@@ -62,7 +61,7 @@ export default async function Page({ params }) {
         <div className="text-sm">
           <div>名: {name_cn}</div>
           <div>地位: {x.relation}</div>
-          <div>ID: { x.id }</div>
+          <div>ID: {x.id}</div>
           {/* <div>CV:{x.actors.name}</div> */}
         </div>
       </div>
@@ -71,10 +70,10 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row text-sm dark:bg-gray-950">
+      <div className="flex flex-col text-sm dark:bg-gray-950 md:flex-row">
         {/* 左侧番剧信息：图片，名，放送时间，制作组 */}
         <div className="border border-red-500">
-          <div className="relative w-auto h-[33vh]">
+          <div className="relative h-[33vh] w-auto">
             <Image
               src={subject.images.small}
               alt="image"
@@ -92,7 +91,7 @@ export default async function Page({ params }) {
           <div className="border border-green-500">简介:{subject.summary}</div>
           <div className="">
             <div>标签:</div>
-            <div className="border flex flex-wrap gap-2 text-sm">{tags}</div>
+            <div className="flex flex-wrap gap-2 border text-sm">{tags}</div>
           </div>
           <div>
             <div>
@@ -101,7 +100,7 @@ export default async function Page({ params }) {
                 共 {characters.length} 个，仅展示部分，
                 <a
                   href={`./${id}/characters`}
-                  className="font-black border-b border-sky-500"
+                  className="border-b border-sky-500 font-black"
                 >
                   点我查看全部
                 </a>

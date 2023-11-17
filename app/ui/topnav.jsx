@@ -5,7 +5,7 @@ import logo from "@/public/logo.png";
 import avatar from "@/public/avatar.jpeg";
 import DDMenu, { DPMenu } from "./ddmenu";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ChangeTheme from "./theme";
 
 export default function TopNav() {
@@ -23,7 +23,7 @@ export default function TopNav() {
       <div className="md:hidden ">
         <div className="flex border ">
           <div
-            className="mask absolute opacity-0 bg-gray-400 w-screen h-screen z-[-1]"
+            className="mask absolute z-[-1] h-screen w-screen bg-gray-400 opacity-0"
             onClick={(e) => setShow(false)}
           ></div>
 
@@ -36,12 +36,12 @@ export default function TopNav() {
           <span className="grow"></span>
 
           {/* 搜索框 */}
-          <div className="border flex justify-center items-center">
+          <div className="flex items-center justify-center border">
             <input
               type="search"
               placeholder="搜索"
               size={6}
-              className="border rounded-md border-black"
+              className="rounded-md border border-black"
             />
             <svg
               className=""
@@ -60,23 +60,23 @@ export default function TopNav() {
           {/* 三杠按钮 */}
           <button
             onClick={() => setShow(!show)}
-            className="w-10 border flex flex-col items-center justify-center relative"
+            className="relative flex w-10 flex-col items-center justify-center border"
           >
             <div
               className={clsx(
-                "w-1/2 h-[2px] bg-black transition dark:bg-gray-300",
+                "h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
                 { "absolute rotate-45": show },
               )}
             ></div>
             <div
               className={clsx(
-                "w-1/2 h-[2px] bg-black my-1 transition dark:bg-gray-300",
+                "my-1 h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
                 { hidden: show },
               )}
             ></div>
             <div
               className={clsx(
-                "w-1/2 h-[2px] bg-black transition dark:bg-gray-300",
+                "h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
                 { "absolute -rotate-45": show },
               )}
             ></div>
@@ -85,7 +85,7 @@ export default function TopNav() {
 
         {/* 菜单项目 */}
         <div
-          className={clsx("pt-4 pb-2 bg-gray-100 dark:bg-gray-700", {
+          className={clsx("bg-gray-100 pb-2 pt-4 dark:bg-gray-700", {
             hidden: !show,
           })}
         >
@@ -96,8 +96,8 @@ export default function TopNav() {
       </div>
 
       {/* 桌面端 */}
-      <nav className="hidden md:flex items-center border">
-        <a href="/" className="">
+      <nav className="hidden items-center md:flex px-40 py-2 ">
+        <a href="/" className="mr-4">
           <Image src={logo} alt="logo" />
         </a>
 
@@ -105,7 +105,7 @@ export default function TopNav() {
         <div className="menu flex grow ">
           <DDMenu h1={"动画"} h2s={aniMenu} />
         </div>
-        
+
         {/* 主题 */}
         <ChangeTheme />
 
@@ -113,12 +113,12 @@ export default function TopNav() {
         <input
           type="search"
           placeholder="search"
-          className="border text-sm py-1 px-2 rounded-sm"
+          className="rounded-sm border px-2 py-1 text-sm"
         />
 
         <a
           href="#"
-          className="border rounded-full w-9 hover:outline outline-2 outline-red-400"
+          className="w-9 rounded-full border outline-2 outline-red-400 hover:outline"
         >
           <Image src={avatar} alt="user avatar" />
         </a>
