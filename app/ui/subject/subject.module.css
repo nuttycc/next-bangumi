@@ -1,63 +1,14 @@
-/* "border flex flex-col md:w-[80vw] md:flex-row overflow-x-auto" */
 
-/* w-[95vw] md:text-sm md:w-auto overflow-hidden text-ellipsis whitespace-nowrap" */
-
-.card-title {
-  width: 95vw;
-  background-color: #0b1120;
-}
-
-.dayCards {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid gray;
-}
-
-.day-title {
-  display: none;
-}
-
-.dayCards::-webkit-scrollbar {
+.CardList::-webkit-scrollbar {
   height: 0.5rem;
-  background-color: whitesmoke;
+  background-color: #A6A6A6;
 }
 
-.dayCards::-webkit-scrollbar-thumb {
-  background-color: gray;
+.CardList::-webkit-scrollbar-thumb {
+  background-color: #3E3E40;
 }
 
-.dayCards::-webkit-scrollbar-thumb:hover {
+.CardList::-webkit-scrollbar-thumb:hover {
   filter: opacity(0.5);
-  background-color: black;
-}
-
-.isToday {
-  background-color: #e781e5;
-}
-
-@media (min-width: 768px) {
-  .card-title {
-    width: auto;
-    padding: 0 2px;
-    font-size: small;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .dayCards {
-    display: flex;
-    flex-direction: row;
-    width: 80vw;
-    overflow-x: scroll;
-  }
-  .day-title {
-    display: block;
-    background: bisque;
-    text-align: center;
-    cursor: default;
-    writing-mode: vertical-lr;
-  }
-  .isToday {
-    background-color: #be185d;
-  }
+  background-color: #737373;
 }

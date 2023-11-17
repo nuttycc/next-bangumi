@@ -20,13 +20,8 @@ export default function TopNav() {
   return (
     <>
       {/* 移动端 */}
-      <div className="md:hidden ">
+      <div className="md:hidden">
         <div className="flex border ">
-          <div
-            className="mask absolute z-[-1] h-screen w-screen bg-gray-400 opacity-0"
-            onClick={(e) => setShow(false)}
-          ></div>
-
           {/* Logo */}
           <a href="/">
             <Image src={logo} alt="logo" priority />
@@ -85,7 +80,7 @@ export default function TopNav() {
 
         {/* 菜单项目 */}
         <div
-          className={clsx("bg-gray-100 pb-2 pt-4 dark:bg-gray-700", {
+          className={clsx("right-0 flex flex-col items-end py-2 pb-4 gap-1 bg-gray-100  dark:bg-gray-700", {
             hidden: !show,
           })}
         >
@@ -96,18 +91,16 @@ export default function TopNav() {
       </div>
 
       {/* 桌面端 */}
-      <nav className="hidden items-center md:flex px-40 py-2 ">
-        <a href="/" className="mr-4">
+      <nav className="hidden items-center gap-2 px-40 py-2 md:flex">
+        <a href="/" className="mr-4 block">
           <Image src={logo} alt="logo" />
         </a>
 
-        {/* 菜单栏: 动画(排行榜， 每日放送) */}
-        <div className="menu flex grow ">
-          <DDMenu h1={"动画"} h2s={aniMenu} />
-        </div>
+        <DDMenu h1={"动画"} h2s={aniMenu} />
 
-        {/* 主题 */}
-        <ChangeTheme />
+        <span className="grow"></span>
+
+        <ChangeTheme className="" />
 
         {/* 搜索框 */}
         <input

@@ -27,7 +27,7 @@ export default async function Rank({ searchParams }) {
       .slice(0, 5)
       .map((x) => {
         return (
-          <div key={x.name} className="bg-rose-200 px-1 dark:bg-gray-800">
+          <div key={x.name} className="bg-rose-200 px-1 dark:bg-[#023047]">
             {x.name}
           </div>
         );
@@ -36,27 +36,27 @@ export default async function Rank({ searchParams }) {
     return (
       <div key={x.id} className="flex">
         {/* 图片 */}
-        <div className="relative m-1 mr-2 h-[110px] w-[80px] rounded-sm border shadow-[2px_2px_6px_1px_rgba(159,148,132,0.7)]  dark:border-gray-300">
+        <div className="relative m-1 mr-2 h-[110px] w-[80px] rounded-sm border shadow-[2px_2px_6px_0px_rgba(159,148,132,0.7)]  dark:border-gray-400">
           <Image src={x.image} alt="" fill sizes="80px" className="p-1" />
         </div>
 
         {/* 信息 */}
         <div>
           <div className="mb-1">
-            <em className="mr-2 bg-red-600 px-1 text-[0.65rem] text-white  ">
+            <em className="mr-2 bg-red-600 px-1 text-[0.66rem] text-white  ">
               <span className="mr-1">总排名</span>
-              <em className="text-[0.7rem]">{x.rank}</em>
+              <em className="text-[0.7rem] font-semibold">{x.rank}</em>
             </em>
             <a
               href={`/subject/${x.id}`}
-              className="hover:border-b text-[0.88rem] hover:border-b-indigo-700"
+              className="hover:border-b text-[0.88rem] font-semibold hover:border-b-indigo-700"
             >
               {x.name_cn || x.name}
             </a>
           </div>
           <hr></hr>
 
-          <div className="text-[0.8rem] leading-6">
+          <div className="text-[0.82rem]">
             <div className="">{x.date}</div>
             <div className="">
               <div className="inline-block h-[10px] w-[50px] bg-transparent bg-[url('/rate_star_2x.png')] bg-[length:10px_19.5px] bg-[0%_100%] bg-repeat-x">
@@ -68,7 +68,7 @@ export default async function Rank({ searchParams }) {
               </div>
               <small className="mx-1">{x.score}</small>
             </div>
-            <div className="text-[0.65rem] flex gap-1">{tagsList}</div>
+            <div className="text-[0.7rem] mt-1 flex gap-1">{tagsList}</div>
           </div>
         </div>
       </div>
@@ -86,16 +86,15 @@ export default async function Rank({ searchParams }) {
     });
 
   return (
-    <div className="p-1">
+    <div className="">
       {/* 标题 */}
-      <div className="text-lg antialiased">动画索引</div>
-      <div className="border border-gray-400">
-        <div></div>
-        {/* 条件 */}
+      <div className="text-lg font-semibold antialiased">动画索引</div>
+      <hr className="mb-2 opacity-30 grayscale"></hr>
+      <div className="border-gray-400">
         <Filter />
       </div>
+      <hr className="mb-2"></hr>
 
-      {/* 内容 */}
       <div className="border border-blue-500">{RankList}</div>
 
       {/* 翻页 */}
