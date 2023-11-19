@@ -16,7 +16,7 @@ export async function getSubject(id) {
   const url = `${API_ENDPOINT}/subjects/${id}`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Faild to fetch by id.");
+    throw new Error("Faild to fetch.", res.status);
   }
   return res.json();
 }
@@ -25,7 +25,7 @@ export async function getImage(id, type) {
   const url = `${API_ENDPOINT}/subjects/${id}/image?type=${type}`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Faild to fetch by id.");
+    throw new Error("Faild to fetch.", res.status);
   }
   return res.json();
 }
@@ -34,7 +34,7 @@ export async function getPersons(id) {
   const url = `${API_ENDPOINT}/subjects/${id}/persons`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Faild to fetch by id.");
+    throw new Error("Faild to fetch.", res.status);
   }
   return res.json();
 }
@@ -43,7 +43,7 @@ export async function getCharacters(id) {
   const url = `${API_ENDPOINT}/subjects/${id}/characters`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Faild to fetch by id.");
+    throw new Error("Faild to fetch.", res.status);
   }
   return res.json();
 }
@@ -52,7 +52,7 @@ export async function getRelated(id) {
   const url = `${API_ENDPOINT}/subjects/${id}/subjects`;
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Faild to fetch by id.");
+    throw new Error("Faild to fetch.", res.status);
   }
   return res.json();
 }
@@ -92,7 +92,7 @@ export async function searchSubjectsBy(
     requestOptions,
   );
   if (!res.ok) {
-    throw new Error("Faild to fetch by id.");
+    throw new Error("Faild to fetch.", res.status);
   }
   return res.json();
 }
