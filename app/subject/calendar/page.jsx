@@ -1,6 +1,6 @@
 import { getCalendar } from "../../lib/subject";
 import AniCalender from "../../ui/subject/calendar";
-import AniCalenderOnMd from "../../ui/subject/calendarM";
+import AniCalenderOnDesk from "../../ui/subject/calendarDesk";
 
 export default async function Page() {
   const data = await getCalendar();
@@ -8,7 +8,7 @@ export default async function Page() {
   return (
     <>
       <AniCalender data={data} />
-      <AniCalenderOnMd data={data} />
+      <AniCalenderOnDesk data={data} />
     </>
   );
 }

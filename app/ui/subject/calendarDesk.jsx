@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./subject.module.css";
 import AniCard from "./card";
 
-export default function AniCalenderOnMd({ data }) {
+export default function AniCalenderOnDesk({ data }) {
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 
