@@ -75,8 +75,9 @@ export async function searchSubjectsBy(
   { keyword = "", sort = "rank", filter },
 ) {
   const headers = new Headers({
-    Accept: "application/json",
+    "Accept": "application/json",
     "Content-Type": "application/json",
+    "User-Agent": "nuttycc/next-bangumi/1.0"
   });
 
   const {
