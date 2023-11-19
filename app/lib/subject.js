@@ -31,13 +31,25 @@ export async function getImage(id, type) {
 }
 
 export async function getPersons(id) {
-  const url = `${API_ENDPOINT}/subjects/${id}/persons`;
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`Faild to fetch: ${res.status}, ${res.statusText}`);
+  try {
+    const url = `${API_ENDPOINT}/subjects/${id}/persons`;
+    const res = await fetch(url);
+
+    // Check if the response status is in the range 200-299, indicating success
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data. Status: ${res.status}`);
+    }
+
+    // Parse the JSON response
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    // Handle errors that may occur during the fetch or JSON parsing
+    console.error("Error in getPersons:", error.message);
+    throw error; // rethrow the error to propagate it further if needed
   }
-  return res.json();
 }
+
 
 export async function getCharacters(id) {
   const url = `${API_ENDPOINT}/subjects/${id}/characters`;
@@ -66,6 +78,7 @@ export async function searchSubjectsBy(
     Accept: "application/json",
     "Content-Type": "application/json",
   });
+
   const {
     type = [2],
     tag = [],
@@ -74,6 +87,7 @@ export async function searchSubjectsBy(
     rank = [],
     nsfw = false,
   } = filter;
+
   const body = JSON.stringify({
     keyword: keyword,
     sort: sort,
@@ -86,12 +100,24 @@ export async function searchSubjectsBy(
     body: body,
   };
 
-  const res = await fetch(
-    `https://api.bgm.tv/v0/search/subjects?limit=${limit}&offset=${offset}`,
-    requestOptions,
-  );
-  if (!res.ok) {
-    throw new Error(`Faild to fetch: ${res.status}, ${res.statusText}`);
+  try {
+    const res = await fetch(
+      `https://api.bgm.tv/v0/search/subjects?limit=${limit}&offset=${offset}`,
+      requestOptions,
+    );
+
+    if (!res.ok) {
+      const errorMessage = await res.text(); // Get detailed error message from response body
+      throw new Error(
+        `Failed to fetch: ${res.status}, ${res.statusText}. ${errorMessage}`,
+      );
+    }
+
+    return res.json();
+  } catch (error) {
+    // Handle network errors or other exceptions
+    console.error("Error during fetch:", error.message);
+    throw new Error("An unexpected error occurred during the fetch operation.");
   }
-  return res.json();
 }
+

@@ -18,7 +18,6 @@ export async function getEpisodes(
     API_ENDPOINT +
     `/episodes?subject_id=${subject_id}&limit=${limit}&offset=${offset}&type=${type}`;
   const res = await fetch(url);
-  console.log("🚀🚀 ~ getEpisodes ~ res: ");
   if (!res) {
     throw new Error("Faild to fetch Episodes.");
   }
