@@ -1,24 +1,26 @@
 import { searchSubjectsBy } from "@/app/lib/subject";
 import Filter from "@/app/ui/subject/filter";
 import Image from "next/image";
+import clsx from "clsx";
+import Pagination from "@/app/ui/subject/pagination";
 
 export default async function Rank({ searchParams }) {
   let pageValue = searchParams.page || 1;
   const air_date = [`>=${searchParams.from}-01`, `<${searchParams.to}-30`];
-
+  const rank = Math.floor((Number(pageValue) / 101)) * 1000 + 1
   const filter = {
     type: [2],
     tag: [],
     air_date: air_date,
     rating: [],
-    rank: [">0"],
+    rank: [`>=${rank}`],
     nsfw: false,
   };
 
   const offset = 10 * (pageValue - 1);
 
   const r = await searchSubjectsBy(10, offset, { filter });
-
+  const lastPage = Math.floor(r.total / 10)
   const RankList = r.data.map((x) => {
     const tagsList = x.tags
       .sort((b, a) => {
@@ -75,12 +77,19 @@ export default async function Rank({ searchParams }) {
     );
   });
 
-  const PageList = Array(5)
+  const PageList = Array(10)
     .fill(0)
     .map((x, i) => {
+      const p = i +1 + Math.floor(pageValue / 10) *10
       return (
-        <a href={`./rank?&page=${i}`} key={i}>
-          {i}
+        <a
+          href={`./rank?&page=${p}`}
+          key={i}
+          className={clsx("inline-block my-2 px-1 text-center border hover:bg-rose-400", {
+            "bg-rose-500" : p === Number(pageValue)
+          })}
+        >
+          {p}
         </a>
       );
     });
@@ -98,7 +107,52 @@ export default async function Rank({ searchParams }) {
       <div className="border border-blue-500">{RankList}</div>
 
       {/* 翻页 */}
-      <div className="flex gap-1 border border-purple-600">{PageList}</div>
+      <div className="flex flex-wrap items-center gap-1">
+        <a
+          href={`./rank?&page=${Number(pageValue) - 1}`}
+          className={clsx("border px-1 text-center hover:bg-rose-400", {})}
+        >
+          &lt;
+        </a>
+        <a
+          href={`./rank?&page=1`}
+          className={clsx("border px-2 text-center hover:bg-rose-400", {
+            hidden: pageValue < 10,
+          })}
+        >
+          1
+        </a>
+        <a
+          href={`./rank?&page=${Math.floor(Number(pageValue) / 2)}`}
+          className={clsx("w-6 border text-center hover:bg-rose-400", {
+            hidden: pageValue < 10,
+          })}
+        >
+          ...
+        </a>
+        {PageList}
+        <a
+          href={`./rank?&page=${Math.floor((Number(pageValue) + 336) / 2)}`}
+          className={clsx("w-6 border text-center hover:bg-rose-400", {})}
+        >
+          ...
+        </a>
+        <a
+          href={`./rank?&page=${lastPage}`}
+          className={clsx("border text-center hover:bg-rose-400", {
+            "bg-rose-500": Number(pageValue) === 336,
+          })}
+        >
+          336
+        </a>
+        <a
+          href={`./rank?&page=${Number(pageValue) + 1}`}
+          className={clsx("border px-1 text-center hover:bg-rose-400", {})}
+        >
+          &gt;
+        </a>
+        <Pagination />
+      </div>
     </div>
   );
 }

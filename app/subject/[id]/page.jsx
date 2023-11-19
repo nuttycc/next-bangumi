@@ -2,20 +2,22 @@ import Image from "next/image";
 import { getSubject, getCharacters } from "@/app/lib/subject";
 import { getDetails } from "@/app/lib/character";
 
-async function getAllCharacterDetails(characters) {
-  const detailsPromises = characters.map(async (character) => {
-    const details = await getDetails(character.id);
-    return details;
-  });
-  return Promise.allSettled(detailsPromises); // 等待所有的详情都被获取
-}
-
 export default async function Page({ params }) {
   const id = params.id;
-  const subject = await getSubject(id);
-  const characters = await getCharacters(id);
+  const [subject, characters] = await Promise.all([
+    getSubject(id),
+    getCharacters(id),
+  ]);
+
   const acdetails = await getAllCharacterDetails(characters);
 
+  async function getAllCharacterDetails(characters) {
+    const detailsPromises = characters.map(async (character) => {
+      const details = await getDetails(character.id);
+      return details;
+    });
+    return Promise.allSettled(detailsPromises);
+  }
   const infobox = subject.infobox.slice(0, 10).map((x) => {
     if (typeof x.value === "object") {
       return null;
