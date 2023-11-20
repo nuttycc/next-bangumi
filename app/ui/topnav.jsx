@@ -111,9 +111,9 @@ export default function TopNav() {
 
         <a
           href="#"
-          className="w-9 rounded-full border outline-2 outline-red-400 hover:outline"
+          className="w-9 hover:contrast-50"
         >
-          <Image src={avatar} alt="user avatar" />
+          <Image src={avatar} alt="user avatar" className="border  rounded-full" />
         </a>
       </nav>
     </>

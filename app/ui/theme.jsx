@@ -12,6 +12,20 @@ export default function ChangeTheme() {
     setTheme(localTheme)
   }, [])
 
+  useEffect(() => {
+    if (show) {
+      document.documentElement.addEventListener("click", handleClick)
+    }
+
+    return () => {
+      document.documentElement.removeEventListener("click", handleClick);
+    };
+  }, [show])
+
+  function handleClick() {
+    setShow(false);
+  }
+  
   function handleSelect(e) {
     const x = e.target.id;
     if (localStorage.getItem("theme") === x) {
@@ -39,15 +53,6 @@ export default function ChangeTheme() {
 
   return (
     <>
-      <div
-        className={clsx(
-          "mask fixed left-0 top-0 h-screen w-screen bg-gray-400 opacity-0 ",
-          !show && "hidden",
-          show && "hidden md:block",
-        )}
-        onClick={() => setShow(false)}
-      ></div>
-
       <div className="relative top-[4px]">
         <button
           type="button"
@@ -97,7 +102,7 @@ export default function ChangeTheme() {
         </button>
         <ul
           className={clsx(
-            "w-[8rem] overflow-hidden py-1 text-sm font-semibold md:absolute md:right-0 md:top-full md:z-50 md:mt-4 md:w-36 md:rounded-lg md:bg-white md:text-slate-700  md:dark:bg-slate-800 md:dark:text-slate-300 ",
+            "w-[8rem] py-1 text-sm font-semibold md:absolute -right-2 md:z-50 md:w-36 md:rounded-lg md:bg-white md:text-slate-700  md:dark:bg-slate-800 md:dark:text-slate-300 ",
             { hidden: !show, block: show },
           )}
           onClick={(e) => handleSelect(e)}

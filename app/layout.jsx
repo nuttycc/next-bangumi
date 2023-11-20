@@ -27,12 +27,12 @@ export default function RootLayout({ children }) {
   `;
 
   return (
-    <html lang="zh-CN" className={inter.className}>
+    <html lang="zh-CN" className="">
       <body className="dark:bg-black dark:text-white">
         <script dangerouslySetInnerHTML={{ __html: code }} />
         <TopNav />
         <hr className="mb-2 opacity-30 grayscale-[50%]"></hr>
-        <div className="md:px-60 mb-20">{children}</div>
+        <div className="mb-20 md:px-60">{children}</div>
       </body>
     </html>
   );
