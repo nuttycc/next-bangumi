@@ -7,20 +7,22 @@ export default async function Persons({ params }) {
 
   const pList = r.map((x, i) => {
     return (
-      <div key={i} className="mb-1 flex">
-          <a href={x.images.medium}>
-            <Image
-              src={x.images.small || "/info_only.png"}
-              alt="image"
-              width={100/2}
-              height={150/2}
-            />
-          </a>
+      <a href={`/person/${x.id}`} key={x.id} className="mb-1 flex">
+        <a href={x.images.medium} className="h-[50px] w-[50px]">
+          <Image
+            src={x.images.small || "/info_only.png"}
+            alt="image"
+            fill
+            className="object-cover"
+          />
+        </a>
         <div className="">
           <div>{x.name_cn || x.name}</div>
-          <div>{x.relation || "*"}</div>
+          <div className="w-max bg-[#284b63] text-gray-300 dark:text-white ">
+            {x.relation || "*"}
+          </div>
         </div>
-      </div>
+      </a>
     );
   });
 

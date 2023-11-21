@@ -1,10 +1,24 @@
 import { getInfoByPath } from "./utils";
 
+
 // {small|grid|large|medium}
-export async function getImage(id, type) {
-  const path = `/characters/${id}/image?type=${type}`;
-  const data = await getInfoByPath(path);
-  return data;
+export async function getCharacterImage(id, type = "grid") {
+  const imageUrl = `https://api.bgm.tv/v0/characters/${id}/image?type=${type}`;
+  const headers = new Headers({
+    "User-Agent":
+      "nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)",
+  });
+  try {
+    const response = await fetch(imageUrl, { headers })
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image, ${response.status}.`)
+    }
+    const blob = await response.blob()
+    const imgUrl = URL.createObjectURL(blob)
+    return imgUrl
+  } catch (error) {
+    throw error
+  }
 }
 
 export async function getDetails(id) {
@@ -19,7 +33,7 @@ export async function getRelatedPersons(id) {
   return data;
 }
 
-export async function getRelatedSubjects() {
+export async function getRelatedSubjects(id) {
   const path = `/characters/${id}/subjects`;
   const data = await getInfoByPath(path);
   return data;
