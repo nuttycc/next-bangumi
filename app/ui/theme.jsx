@@ -5,27 +5,27 @@ import clsx from "clsx";
 
 export default function ChangeTheme() {
   const [show, setShow] = useState(false);
-  const [theme, setTheme] = useState('')
+  const [theme, setTheme] = useState("");
 
   useEffect(() => {
-    const localTheme = localStorage.getItem('theme') || ''
-    setTheme(localTheme)
-  }, [])
+    const localTheme = localStorage.getItem("theme") || "";
+    setTheme(localTheme);
+  }, []);
 
   useEffect(() => {
     if (show) {
-      document.documentElement.addEventListener("click", handleClick)
+      document.documentElement.addEventListener("click", handleClick);
     }
 
     return () => {
       document.documentElement.removeEventListener("click", handleClick);
     };
-  }, [show])
+  }, [show]);
 
   function handleClick() {
     setShow(false);
   }
-  
+
   function handleSelect(e) {
     const x = e.target.id;
     if (localStorage.getItem("theme") === x) {
@@ -56,7 +56,7 @@ export default function ChangeTheme() {
       <div className="relative top-[4px]">
         <button
           type="button"
-          className="flex w-[8rem] md:w-auto md:border-0 justify-between border md:inline"
+          className="flex w-[8rem] justify-between border md:inline md:w-auto md:border-0"
           onClick={() => setShow(!show)}
         >
           <span className="md:hidden">切换主题</span>
@@ -102,7 +102,7 @@ export default function ChangeTheme() {
         </button>
         <ul
           className={clsx(
-            "w-[8rem] py-1 text-sm font-semibold md:absolute -right-2 md:z-50 md:w-36 md:rounded-lg md:bg-white md:text-slate-700  md:dark:bg-slate-800 md:dark:text-slate-300 ",
+            "-right-2 w-[8rem] py-1 text-sm font-semibold md:absolute md:z-50 md:w-36 md:rounded-lg md:bg-white md:text-slate-700  md:dark:bg-slate-800 md:dark:text-slate-300 ",
             { hidden: !show, block: show },
           )}
           onClick={(e) => handleSelect(e)}

@@ -1,7 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 
 //桌面端，下拉式，菜单项悬浮
 export default function DDMenu({ h1, h2s }) {
@@ -9,9 +10,9 @@ export default function DDMenu({ h1, h2s }) {
 
   const h2list = h2s.map((h2) => {
     return (
-      <a key={h2.title} href={h2.link} className=" hover:text-[#E5808E]">
+      <Link key={h2.title} href={h2.link} className=" hover:text-[#E5808E]">
         {h2.title}
-      </a>
+      </Link>
     );
   });
 
@@ -59,13 +60,13 @@ export function DPMenu({ h1, h2s }) {
 
   const h2list = h2s.map((h2) => {
     return (
-      <a
+      <Link
         key={h2.title}
         href={h2.link}
         className="leading-6 hover:text-[#E5808E]"
       >
         {h2.title}
-      </a>
+      </Link>
     );
   });
 
@@ -73,7 +74,7 @@ export function DPMenu({ h1, h2s }) {
     <div>
       {/* 标题 */}
       <button
-        className={clsx("flex items-center justify-between w-[8rem] border", {
+        className={clsx("flex w-[8rem] items-center justify-between border", {
           "": show,
           "": !show,
         })}
@@ -93,10 +94,10 @@ export function DPMenu({ h1, h2s }) {
 
       {/* 菜单项 */}
       <div
-        className={clsx(
-          "flex flex-col py-2 px-2 ",
-          { hidden: !show, block: show },
-        )}
+        className={clsx("flex flex-col px-2 py-2 ", {
+          hidden: !show,
+          block: show,
+        })}
       >
         {h2list}
       </div>

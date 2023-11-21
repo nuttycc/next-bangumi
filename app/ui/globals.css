@@ -12,15 +12,12 @@ body {
   min-height: 100vh;
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
-  font-family:"Segoe UI", Roboto, "Helvetica Neue",Arial, "Noto Sans",sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji"
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont;
+  font-family:
+    PingFangSC-Regular,
+    HelveticaNeue-Light,
+    Helvetica Neue Light,
+    Microsoft YaHei,
+    "sans-serif";
 }
 
 /* 针对 Chrome、Edge 和 Safari */
@@ -29,7 +26,6 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 @layer base {
   h1 {

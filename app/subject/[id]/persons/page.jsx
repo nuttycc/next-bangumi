@@ -8,17 +8,17 @@ export default async function Persons({ params }) {
   const pList = r.map((x, i) => {
     return (
       <div key={i} className="mb-1 flex">
-        <div className="relative h-[75px] w-[75px] rounded-sm border shadow-inner shadow-gray-400">
-          <Image
-            src={x.images.small || "/info_only.png"}
-            alt="image"
-            fill
-            sizes="75px"
-          />
-        </div>
-        <div className="pl-2">
-          <div>名：{x.name_cn || x.name}</div>
-          <div>关系：{x.relation || "*"}</div>
+          <a href={x.images.medium}>
+            <Image
+              src={x.images.small || "/info_only.png"}
+              alt="image"
+              width={100/2}
+              height={150/2}
+            />
+          </a>
+        <div className="">
+          <div>{x.name_cn || x.name}</div>
+          <div>{x.relation || "*"}</div>
         </div>
       </div>
     );
@@ -26,7 +26,7 @@ export default async function Persons({ params }) {
 
   return (
     <>
-      <div className="">{pList}</div>
+      <div className="grid grid-cols-3 gap-2">{pList}</div>
     </>
   );
 }

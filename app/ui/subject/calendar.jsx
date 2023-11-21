@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -9,7 +10,7 @@ export default function AniCalender({ data }) {
     date.getDay() === 0 ? 6 : date.getDay() - 1,
   );
 
-  const CardList = data[today].items.map((item) => {
+  const CardList = data[today]?.items.map((item) => {
     return (
       <li
         key={item.id}
@@ -29,7 +30,9 @@ export default function AniCalender({ data }) {
     return (
       <button
         key={x}
-        className={clsx("border px-1", { "bg-[#3CB03E] dark:invert": i === today })}
+        className={clsx("border px-1", {
+          "bg-[#3CB03E] dark:invert": i === today,
+        })}
         onClick={() => setToday(i)}
       >
         {x}
@@ -40,7 +43,7 @@ export default function AniCalender({ data }) {
   return (
     <>
       {/* 移动端 */}
-      <div className="m-2 border border-sky-600 shadow-[1px_2px_5px_1px_rgba(155,155,155, 0.5)] md:hidden">
+      <div className="shadow-[1px_2px_5px_1px_rgba(155,155,155, 0.5)] m-2 border border-sky-600 md:hidden">
         <div className="flex">{weekdays}</div>
         <ol className="" style={{ counterReset: "listCounter" }}>
           {CardList}

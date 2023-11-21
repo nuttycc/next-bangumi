@@ -43,7 +43,6 @@ export default async function AniCard({ title, src, id }) {
           </div>
         </div>
       </a>
-
     </>
   );
 }

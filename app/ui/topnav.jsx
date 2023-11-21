@@ -7,6 +7,7 @@ import DDMenu, { DPMenu } from "./ddmenu";
 import clsx from "clsx";
 import { useState } from "react";
 import ChangeTheme from "./theme";
+import Link from "next/link";
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
@@ -80,9 +81,12 @@ export default function TopNav() {
 
         {/* 菜单项目 */}
         <div
-          className={clsx("right-0 flex flex-col items-end py-2 pb-4 gap-1 bg-gray-100  dark:bg-gray-700", {
-            hidden: !show,
-          })}
+          className={clsx(
+            "right-0 flex flex-col items-end gap-1 bg-gray-100 py-2 pb-4  dark:bg-gray-700",
+            {
+              hidden: !show,
+            },
+          )}
         >
           <DPMenu h1={"动画"} h2s={aniMenu} />
           <DPMenu h1={"一级标题"} h2s={aniMenu} />
@@ -91,16 +95,28 @@ export default function TopNav() {
       </div>
 
       {/* 桌面端 */}
-      <nav className="hidden items-center gap-2 px-40 py-2 md:flex">
+      <nav className="hidden items-center gap-2 py-2 md:flex md:px-10 xl:px-40">
         <a href="/" className="mr-4 block">
           <Image src={logo} alt="logo" />
         </a>
 
-        <DDMenu h1={"动画"} h2s={aniMenu} />
+        {/* <DDMenu h1={"动画"} h2s={aniMenu} /> */}
+        <ul className="flex gap-4 text-sm dark:text-gray-300">
+          <li>
+            <Link href="/subject/rank" className="hover:text-rose-400">
+              排行榜
+            </Link>
+          </li>
+          <li>
+            <Link href="/subject/calendar" className="hover:text-rose-400">
+              每日放送
+            </Link>
+          </li>
+        </ul>
 
         <span className="grow"></span>
 
-        <ChangeTheme className="" />
+        <ChangeTheme />
 
         {/* 搜索框 */}
         <input
@@ -109,11 +125,12 @@ export default function TopNav() {
           className="rounded-sm border px-2 py-1 text-sm"
         />
 
-        <a
-          href="#"
-          className="w-9 hover:contrast-50"
-        >
-          <Image src={avatar} alt="user avatar" className="border  rounded-full" />
+        <a href="#" className="w-9 hover:contrast-50">
+          <Image
+            src={avatar}
+            alt="user avatar"
+            className="rounded-full  border"
+          />
         </a>
       </nav>
     </>

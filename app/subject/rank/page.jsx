@@ -7,7 +7,7 @@ import Pagination from "@/app/ui/subject/pagination";
 export default async function Rank({ searchParams }) {
   let pageValue = searchParams.page || 1;
   const air_date = [`>=${searchParams.from}-01`, `<${searchParams.to}-30`];
-  const rank = Math.floor((Number(pageValue) / 101)) * 1000 + 1
+  const rank = Math.floor(Number(pageValue) / 101) * 1000 + 1;
   const filter = {
     type: [2],
     tag: [],
@@ -20,7 +20,7 @@ export default async function Rank({ searchParams }) {
   const offset = 10 * (pageValue - 1);
 
   const r = await searchSubjectsBy(10, offset, { filter });
-  const lastPage = Math.floor(r.total / 10)
+  const lastPage = Math.floor(r.total / 10);
   const RankList = r.data.map((x) => {
     const tagsList = x.tags
       .sort((b, a) => {
@@ -51,7 +51,7 @@ export default async function Rank({ searchParams }) {
             </em>
             <a
               href={`/subject/${x.id}`}
-              className="hover:border-b text-[0.88rem] font-semibold hover:border-b-indigo-700"
+              className="text-[0.88rem] font-semibold hover:border-b hover:border-b-indigo-700"
             >
               {x.name_cn || x.name}
             </a>
@@ -65,12 +65,11 @@ export default async function Rank({ searchParams }) {
                 <div
                   style={{ width: 50 * x.score * 0.1 + "px" }}
                   className="h-[10px] bg-transparent bg-[url('/rate_star_2x.png')] bg-[length:10px_19.5px] bg-[0px_0px] bg-repeat-x"
-                >
-                </div>
+                ></div>
               </div>
               <small className="mx-1">{x.score}</small>
             </div>
-            <div className="text-[0.7rem] mt-1 flex gap-1">{tagsList}</div>
+            <div className="mt-1 flex gap-1 text-[0.7rem]">{tagsList}</div>
           </div>
         </div>
       </div>
@@ -80,14 +79,17 @@ export default async function Rank({ searchParams }) {
   const PageList = Array(10)
     .fill(0)
     .map((x, i) => {
-      const p = i +1 + Math.floor(pageValue / 10) *10
+      const p = i + 1 + Math.floor(pageValue / 10) * 10;
       return (
         <a
           href={`./rank?&page=${p}`}
           key={i}
-          className={clsx("inline-block my-2 px-1 text-center border hover:bg-rose-400", {
-            "bg-rose-500" : p === Number(pageValue)
-          })}
+          className={clsx(
+            "my-2 inline-block border px-1 text-center hover:bg-rose-400",
+            {
+              "bg-rose-500": p === Number(pageValue),
+            },
+          )}
         >
           {p}
         </a>

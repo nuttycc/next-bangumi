@@ -2,7 +2,6 @@ import { getEpisodes } from "@/app/lib/episode";
 
 export default async function Episodes({ params }) {
   const r = await getEpisodes(params.id);
-  console.log("🚀🚀 ~ Episodes ~ r: ", r);
 
   const epList = r.data.map((x) => {
     return (

@@ -63,14 +63,14 @@ export default async function Page({ params }) {
     }
 
     return (
-      <div key={x.id} className="flex mb-2">
-        <div className="relative h-auto w-[36px] mr-1">
+      <div key={x.id} className="mb-2 flex">
+        <div className="relative mr-1 h-[50px] w-[36px]">
           <Image
             src={x.images.grid}
             alt={name_cn}
             fill
-            sizes="50px"
-            className="object-cover"
+            sizes="36px"
+            className="object-cover object-top"
           />
         </div>
         <div className="">
@@ -83,36 +83,44 @@ export default async function Page({ params }) {
     );
   });
 
-  const scoreList = Array(10).fill(0).map(((x, i) => {
-    const total = subject.rating.total
-    const count = subject.rating.count
-    const p = Number(count[10-i]) / Number(total) * 6
-    return (
-      <div key={i} className="flex flex-col items-center justify-end">
-        <div
-          className={`w-[0.76rem] bg-gray-400`}
-          style={{ height: `${p}rem` }}
-        ></div>
-        <small className="">{10-i}</small>
-      </div>
-    );
-  }))
+  const scoreList = Array(10)
+    .fill(0)
+    .map((x, i) => {
+      const total = subject.rating.total;
+      const count = subject.rating.count;
+      const p = (Number(count[10 - i]) / Number(total)) * 6 + 0.01;
+      return (
+        <div key={i} className="flex flex-col items-center justify-end">
+          <div
+            className={`w-[0.76rem] bg-gray-400`}
+            style={{ height: `${p}rem` }}
+          ></div>
+          <small className="">{10 - i}</small>
+        </div>
+      );
+    });
 
   return (
     <>
-      <div className="flex flex-col border border-yellow-300 text-sm dark:bg-gray-950 md:flex-row ">
+      <div className="flex flex-col text-sm dark:bg-gray-950 md:flex-row ">
         {/* 左侧番剧信息：图片，名，放送时间，制作组 */}
-        <div className="mr-3 text-[0.82rem]">
-          <div className="relative my-2 h-[33vh]">
+        <div className="mr-3 text-[0.82rem] md:w-[33vw]">
+          <a
+            href={subject.images.common}
+            target="_blank"
+            className="flex justify-center"
+          >
             <Image
               src={subject.images.small}
               alt="image"
-              fill
-              sizes="33vw"
-              className="object-contain"
+              width={210}
+              height={291}
+              priority
+              className="mb-2 border border-black dark:border-gray-400 dark:hover:shadow-[0px_0px_4px_2px_rgba(232,232,242)]"
             />
-          </div>
-          <div className="hidden space-y-1 px-1 md:block">{infobox}</div>
+          </a>
+
+          <div className="hidden space-y-1 md:block">{infobox}</div>
           <div className="md:hidden">{infobox_sm}</div>
         </div>
 

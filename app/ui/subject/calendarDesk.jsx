@@ -19,12 +19,12 @@ export default function AniCalenderOnDesk({ data }) {
       );
     });
 
-    const weekdayId = obj.weekday.id
+    const weekdayId = obj.weekday.id;
     // 每日番剧
     return (
       <div
         key={obj.weekday.id}
-        className="mb-2 flex border border-[#212121]	shadow-[2px_1px_4px_2px_rgb(94,102,103,0.6)]"
+        className="mb-2 flex max-w-max border border-[#212121]	shadow-[2px_1px_4px_2px_rgb(94,102,103,0.6)]"
       >
         <div
           style={{ writingMode: "vertical-rl" }}
@@ -40,7 +40,6 @@ export default function AniCalenderOnDesk({ data }) {
               "bg-[#fb8500]": weekdayId === 7,
               " after:text-[#d90429] after:content-['_★'] ":
                 today === obj.weekday.id - 1,
-              // "bg-[#ec0868] dark:bg-slate-700": today !== obj.weekday.id - 1,
             },
           )}
         >
