@@ -38,7 +38,7 @@ export default async function Rank({ searchParams }) {
     return (
       <div key={x.id} className="flex">
         {/* 图片 */}
-        <div className="relative m-1 mr-2 h-[110px] w-[80px] rounded-sm border shadow-[2px_2px_6px_0px_rgba(159,148,132,0.7)]  dark:border-gray-400">
+        <div className="relative m-1 mr-2 h-[110px] w-[80px] photo-frame">
           <Image src={x.image} alt="" fill sizes="80px" className="p-1" />
         </div>
 

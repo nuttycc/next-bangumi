@@ -21,19 +21,19 @@ export async function getCharacterImage(id, type = "grid") {
   }
 }
 
-export async function getDetails(id) {
+export async function getCharacterDetails(id) {
   const path = `/characters/${id}`;
   const data = await getInfoByPath(path);
   return data;
 }
 
-export async function getRelatedPersons(id) {
+export async function getCharacterRelatedPersons(id) {
   const path = `/characters/${id}/persons`;
   const data = await getInfoByPath(path);
   return data;
 }
 
-export async function getRelatedSubjects(id) {
+export async function getCharacterRelatedSubjects(id) {
   const path = `/characters/${id}/subjects`;
   const data = await getInfoByPath(path);
   return data;

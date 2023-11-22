@@ -5,9 +5,8 @@ export default async function Characters({ params }) {
   const characters = await getCharacters(params.id);
   const charactersList = characters.map((x) => {
     const actorsList = x.actors.map((a) => {
-
       return (
-        <a href={`/character/${a.id}`} key={a.id} className="flex items-center">
+        <a href={`/people/${a.id}`} key={a.id} className="flex items-center">
           <Image src={a.images.small} alt={a.name} width={16} height={16} className="w-[1rem] h-[1rem]"/> 
           {a.name}
         </a>

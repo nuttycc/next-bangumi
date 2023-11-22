@@ -29,8 +29,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 @layer base {
   h1 {
-    @apply text-2xl;
+    @apply text-xl;
   }
+  
 }
 
 @layer components {
@@ -38,7 +39,9 @@ input[type="number"]::-webkit-outer-spin-button {
     @apply rounded-sm border px-1 text-indigo-700 hover:bg-rose-300 dark:border-gray-500 dark:text-indigo-500 dark:hover:bg-pink-400 dark:hover:text-gray-100;
   }
   .photo-frame {
-    @apply border border-black shadow-[0px_0px_2px_1px_rgba(179, 178, 174)] dark: border-gray-400;
+    @apply border rounded-sm border-black shadow-frame shadow-stone-900 dark:shadow-gray-400 dark:border-gray-400;
   }
-
+  .tag-sm {
+    @apply text-xs w-max bg-sky-400 px-1 dark:bg-sky-900 dark:text-gray-100
+  }
 }

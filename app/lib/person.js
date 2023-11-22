@@ -1,10 +1,24 @@
 import { getInfoByPath } from "./utils";
 
-export async function getDetails(id) {
-  const path = `persons/${id}`;
+export async function getPersonDetails(id) {
+  const path = `/persons/${id}`;
   const data = await getInfoByPath(path);
   return data;
 }
+
+export async function getPersonRelatedCharacters(id) {
+  const path = `/persons/${id}/characters`;
+  const data = await getInfoByPath(path);
+  return data;
+}
+
+export async function getPersonRelatedSubjects(id) {
+
+  const path = `/persons/${id}/subjects`;
+  const data = await getInfoByPath(path);
+  return data;
+}
+
 
 // {small|grid|large|medium}
 export async function getPersonImage(id, type = "grid") {
@@ -18,23 +32,10 @@ export async function getPersonImage(id, type = "grid") {
     if (!response.ok) {
       throw new Error(`Failed to fetch image, ${response.status}.`)
     }
-    const blob = await response.blob()
+    const blob = await response.blob(id)
     const imgUrl = URL.createObjectURL(blob)
     return imgUrl
   } catch (error) {
     throw error
   }
-}
-
-export async function getRelatedCharacters() {
-  const path = `persons/${id}/characters`;
-  const data = await getInfoByPath(path);
-  return data;
-}
-
-export async function getRelatedSubjects() {
-
-  const path = `persons/${id}/subjects`;
-  const data = await getInfoByPath(path);
-  return data;
 }

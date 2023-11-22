@@ -22,9 +22,26 @@ export async function getCalendar() {
   }
 }
 
-
 export async function getSubject(id) {
   const path = `/subjects/${id}`;
+  const data = await getInfoByPath(path);
+  return data;
+}
+
+export async function getPersons(id) {
+  const path = `/subjects/${id}/persons`;
+  const data = await getInfoByPath(path);
+  return data;
+}
+
+export async function getCharacters(id) {
+  const path = `/subjects/${id}/characters`;
+  const data = await getInfoByPath(path);
+  return data;
+}
+
+export async function getRelated(id) {
+  const path = `/subjects/${id}/subjects`;
   const data = await getInfoByPath(path);
   return data;
 }
@@ -47,24 +64,6 @@ export async function getSubjectImage(id, type = "grid") {
   } catch (error) {
     throw error
   }
-}
-
-export async function getPersons(id) {
-  const path = `/subjects/${id}/persons`;
-  const data = await getInfoByPath(path);
-  return data;
-}
-
-export async function getCharacters(id) {
-  const path = `/subjects/${id}/characters`;
-  const data = await getInfoByPath(path);
-  return data;
-}
-
-export async function getRelated(id) {
-  const path = `/subjects/${id}/subjects`;
-  const data = await getInfoByPath(path);
-  return data;
 }
 
 export async function searchSubjectsBy(

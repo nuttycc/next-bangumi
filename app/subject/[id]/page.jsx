@@ -62,6 +62,25 @@ export default async function Page({ params }) {
           : acdetails[i].value.name;
     }
 
+    const actorsList = x.actors.map((a) => {
+      return (
+        <a
+          href={`/person/${a.id}`}
+          key={a.id}
+          className="flex items-center w-max hover:text-rose-400"
+        >
+          <Image
+            src={a.images.small}
+            alt={a.name}
+            width={16}
+            height={16}
+            className="h-[1rem] w-[1rem] border border-black dark:border-gray-200"
+          />
+          {a.name}
+        </a>
+      );
+    });
+
     return (
       <div key={x.id} className="mb-2 flex">
         <div className="relative mr-1 h-[50px] w-[36px]">
@@ -70,14 +89,21 @@ export default async function Page({ params }) {
             alt={name_cn}
             fill
             sizes="36px"
-            className="object-cover object-top"
+            className="border-black object-cover object-top border dark:border-gray-200"
           />
         </div>
         <div className="">
-          <div>名: {name_cn}</div>
-          <div>地位: {x.relation}</div>
-          <div>ID: {x.id}</div>
-          {/* <div>CV:{x.actors.name}</div> */}
+          <div className="mb-1">
+            <span className="tag-sm mr-1">{x.relation}</span>
+            <a
+              href={`/character/${x.id}`}
+              className="hover:border-b hover:border-blue-700 text-blue-600 "
+            >
+              {name_cn}
+            </a>
+          </div>
+
+          <div>{actorsList}</div>
         </div>
       </div>
     );
