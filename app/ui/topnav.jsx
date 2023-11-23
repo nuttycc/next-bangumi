@@ -21,26 +21,23 @@ export default function TopNav() {
   return (
     <>
       {/* 移动端 */}
-      <div className="md:hidden">
-        <div className="flex border ">
-          {/* Logo */}
+      <div className="fixed z-50 top-0 h-12 w-[100vw] border-b bg-white px-2 py-2  dark:bg-black md:hidden">
+        <div className="flex">
           <a href="/">
             <Image src={logo} alt="logo" priority />
           </a>
 
-          {/* 占位 */}
           <span className="grow"></span>
 
           {/* 搜索框 */}
-          <div className="flex items-center justify-center border">
+          <div className="flex items-center justify-center px-1">
             <input
               type="search"
-              placeholder="搜索"
+              placeholder=""
               size={6}
               className="rounded-md border border-black"
             />
             <svg
-              className=""
               xmlns="http://www.w3.org/2000/svg"
               width="1.5em"
               height="1.5em"
@@ -56,12 +53,12 @@ export default function TopNav() {
           {/* 三杠按钮 */}
           <button
             onClick={() => setShow(!show)}
-            className="relative flex w-10 flex-col items-center justify-center border"
+            className="relative flex w-10 flex-col items-center justify-center "
           >
             <div
               className={clsx(
                 "h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
-                { "absolute rotate-45": show },
+                { "absolute rotate-[405deg]": show },
               )}
             ></div>
             <div
@@ -73,29 +70,28 @@ export default function TopNav() {
             <div
               className={clsx(
                 "h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
-                { "absolute -rotate-45": show },
+                { "absolute -rotate-[405deg]": show },
               )}
             ></div>
           </button>
         </div>
+      </div>
 
-        {/* 菜单项目 */}
-        <div
-          className={clsx(
-            "right-0 flex flex-col items-end gap-1 bg-gray-100 py-2 pb-4  dark:bg-gray-700",
-            {
-              hidden: !show,
-            },
-          )}
-        >
-          <DPMenu h1={"动画"} h2s={aniMenu} />
-          <DPMenu h1={"一级标题"} h2s={aniMenu} />
-          <ChangeTheme />
-        </div>
+      {/* 菜单项目 */}
+      <div
+        className={clsx(
+          "fixed top-12 z-50 w-screen flex flex-col items-center gap-1 bg-gray-100 py-2 pb-4  dark:bg-gray-700",
+          {
+            hidden: !show,
+          },
+        )}
+      >
+        <DPMenu h1={"动画"} h2s={aniMenu} />
+        <ChangeTheme />
       </div>
 
       {/* 桌面端 */}
-      <nav className="hidden items-center gap-2 py-2 md:flex md:px-10 xl:px-40">
+      <nav className="fixed z-50 top-0 h-10 w-screen bg-white dark:bg-black hidden items-center gap-2 py-2 md:flex md:px-10 xl:px-40">
         <a href="/" className="mr-4 block">
           <Image src={logo} alt="logo" />
         </a>

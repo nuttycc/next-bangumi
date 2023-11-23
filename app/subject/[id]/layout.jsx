@@ -1,4 +1,5 @@
 "use client";
+
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Link from "next/link";
@@ -8,8 +9,8 @@ export default function Layout({ children, params }) {
   const pathname = usePathname();
 
   return (
-    <>
-      <ul className="mb-2 flex space-x-2 border-b">
+    <div>
+      <ul className="fixed z-10 top-10 w-[100vw] h-10 leading-10 bg-white dark:bg-black flex space-x-2 border-b">
         <li>
           <Link
             href={`/subject/${id}`}
@@ -52,7 +53,7 @@ export default function Layout({ children, params }) {
           </Link>
         </li>
       </ul>
-      <div>{children}</div>
-    </>
+      <div className="mt-8">{children}</div>
+    </div>
   );
 }

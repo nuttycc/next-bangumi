@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useState } from "react";
 
-//桌面端，下拉式，菜单项悬浮
+//桌面端，
 export default function DDMenu({ h1, h2s }) {
   const [show, setShow] = useState(false);
 
@@ -60,18 +60,18 @@ export function DPMenu({ h1, h2s }) {
 
   const h2list = h2s.map((h2) => {
     return (
-      <Link
+      <a
         key={h2.title}
         href={h2.link}
         className="leading-6 hover:text-[#E5808E]"
       >
         {h2.title}
-      </Link>
+      </a>
     );
   });
 
   return (
-    <div>
+    <div className="">
       {/* 标题 */}
       <button
         className={clsx("flex w-[8rem] items-center justify-between border", {

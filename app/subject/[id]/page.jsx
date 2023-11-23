@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getSubject, getCharacters } from "@/app/lib/subject";
-import { getDetails } from "@/app/lib/character";
+import { getCharacterDetails as getDetails } from "@/app/lib/character";
 
 export default async function Page({ params }) {
   const id = params.id;
@@ -44,14 +44,14 @@ export default async function Page({ params }) {
     return (
       <div
         key={x.name}
-        className="bg-[#faedcd] px-1 dark:bg-[#1b263b] dark:text-white"
+        className="tag-sm"
       >
         {x.name}
       </div>
     );
   });
 
-  const charactersList = characters.slice(0, 20).map((x, i) => {
+  const charactersList = characters.slice(0, 10).map((x, i) => {
     let name_cn;
     if (acdetails[i].status !== "fulfilled") {
       name_cn = x.name;
@@ -97,7 +97,7 @@ export default async function Page({ params }) {
             <span className="tag-sm mr-1">{x.relation}</span>
             <a
               href={`/character/${x.id}`}
-              className="hover:border-b hover:border-blue-700 text-blue-600 "
+              className="text-link"
             >
               {name_cn}
             </a>
@@ -128,13 +128,13 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <div className="flex flex-col text-sm dark:bg-gray-950 md:flex-row ">
+      <div className="flex flex-col dark:bg-gray-950 md:flex-row ">
         {/* 左侧番剧信息：图片，名，放送时间，制作组 */}
-        <div className="mr-3 text-[0.82rem] md:w-[33vw]">
+        <div className="md:mr-3 md:w-[33vw] md:text-[0.82rem]">
           <a
             href={subject.images.common}
             target="_blank"
-            className="flex justify-center"
+            className="flex flex-col items-center justify-center"
           >
             <Image
               src={subject.images.small}
@@ -142,8 +142,9 @@ export default async function Page({ params }) {
               width={210}
               height={291}
               priority
-              className="mb-2 border border-black dark:border-gray-400 dark:hover:shadow-[0px_0px_4px_2px_rgba(232,232,242)]"
+              className="photo-frame mb-2"
             />
+            <p className="text-sm md:hidden">{subject.name_cn || subject.name}</p>
           </a>
 
           <div className="hidden space-y-1 md:block">{infobox}</div>
@@ -155,15 +156,18 @@ export default async function Page({ params }) {
           <div className="gap-4 md:flex">
             <div>
               <p>名称：{subject.name_cn || subject.name}</p>
-              <div>观看进度管理</div>
-              <div className="">简介:{subject.summary}</div>
+              {/* <div>观看进度管理</div> */}
               <div className="">
-                <div>标签:</div>
+                简介：
+                {subject.summary}
+              </div>
+              <div className="">
+                <div>标签</div>
                 <div className="flex flex-wrap gap-2 text-sm">{tags}</div>
               </div>
             </div>
-            <div className="h-max border border-rose-500 p-1 md:mt-5">
-              <small className="">
+            <div className="mt-2 h-max border border-rose-500 p-1 md:mt-5">
+              <small>
                 <span className="mr-4">得分：{subject.rating.score}</span>
                 <span className=" text-gray-500">
                   {subject.rating.total}votes
@@ -176,11 +180,11 @@ export default async function Page({ params }) {
           <div>
             <div>
               剧中角色
-              <div className="px-2 text-[0.785em]">
+              <div className="mb-1 px-2 text-[0.785em] dark:text-gray-300">
                 共 {characters.length} 个，仅展示部分，
                 <a
                   href={`./${id}/characters`}
-                  className="border-b border-sky-500 font-black"
+                  className="border-b border-sky-500  dark:text-white"
                 >
                   点我查看全部
                 </a>
@@ -190,8 +194,8 @@ export default async function Page({ params }) {
               {charactersList}
             </div>
           </div>
-          <div>关联条目</div>
-          <div>用户操作盒子</div>
+          {/* <div>关联条目</div> */}
+          {/* <div>用户操作盒子</div> */}
         </div>
       </div>
     </>
