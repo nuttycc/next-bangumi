@@ -101,7 +101,6 @@ export default function Filter() {
               htmlFor="any"
               className="ml-1 text-[0.8em] text-gray-600 dark:text-gray-400"
             >
-              (输入)
             </label>
           </div>
         </div>

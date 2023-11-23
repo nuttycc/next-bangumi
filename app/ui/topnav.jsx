@@ -17,6 +17,9 @@ export default function TopNav() {
     { title: "每日放送", link: "/subject/calendar" },
     { title: "番剧索引", link: "#" },
   ];
+  const about = [
+    { title: "项目地址", link: "https://github.com/nuttycc/next-bangumi" },
+  ];
 
   return (
     <>
@@ -87,6 +90,7 @@ export default function TopNav() {
         )}
       >
         <DPMenu h1={"动画"} h2s={aniMenu} />
+        <DPMenu h1={"关于"} h2s={about} />
         <ChangeTheme />
       </div>
 

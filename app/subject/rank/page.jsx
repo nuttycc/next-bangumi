@@ -26,7 +26,7 @@ export default async function Rank({ searchParams }) {
       .sort((b, a) => {
         a.count - b.count;
       })
-      .slice(0, 5)
+      .slice(0, 4)
       .map((x) => {
         return (
           <div key={x.name} className="bg-rose-200 px-1 dark:bg-[#023047]">
@@ -38,12 +38,12 @@ export default async function Rank({ searchParams }) {
     return (
       <div key={x.id} className="flex">
         {/* 图片 */}
-        <div className="relative m-1 mr-2 h-[110px] w-[80px] photo-frame">
-          <Image src={x.image} alt="" fill sizes="80px" className="p-1" />
+        <div className="photo-frame relative m-1 mr-2 h-[110px] w-[80px] md:w-[80px] shrink-0">
+          <Image src={x.image} alt="" fill sizes="80px" className="p-1 object-contain" />
         </div>
 
         {/* 信息 */}
-        <div>
+        <div className="">
           <div className="mb-1">
             <em className="mr-2 bg-red-600 px-1 text-[0.66rem] text-white  ">
               <span className="mr-1">总排名</span>
@@ -51,7 +51,7 @@ export default async function Rank({ searchParams }) {
             </em>
             <a
               href={`/subject/${x.id}`}
-              className="text-[0.88rem] font-semibold hover:border-b hover:border-b-indigo-700"
+              className="text-[0.88rem]  font-semibold hover:border-b hover:border-b-indigo-700"
             >
               {x.name_cn || x.name}
             </a>
@@ -69,7 +69,9 @@ export default async function Rank({ searchParams }) {
               </div>
               <small className="mx-1">{x.score}</small>
             </div>
-            <div className="mt-1 flex gap-1 text-[0.7rem]">{tagsList}</div>
+            <div className="mt-1 flex flex-wrap gap-1 text-[0.7rem]">
+              {tagsList}
+            </div>
           </div>
         </div>
       </div>
@@ -106,7 +108,7 @@ export default async function Rank({ searchParams }) {
       </div>
       <hr className="mb-2"></hr>
 
-      <div className="border border-blue-500">{RankList}</div>
+      <div className="">{RankList}</div>
 
       {/* 翻页 */}
       <div className="flex flex-wrap items-center gap-1">
