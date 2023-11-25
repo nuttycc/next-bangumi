@@ -3,8 +3,9 @@
 import { useState } from "react";
 import clsx from "clsx";
 
+const date = new Date();
+
 export default function AniCalender({ data }) {
-  const date = new Date();
 
   const [today, setToday] = useState(
     date.getDay() === 0 ? 6 : date.getDay() - 1,

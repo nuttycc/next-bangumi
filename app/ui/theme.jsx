@@ -10,9 +10,17 @@ export default function ChangeTheme() {
   useEffect(() => {
     const localTheme = localStorage.getItem("theme") || "";
     setTheme(localTheme);
+    if (localTheme === 'dark' || !localTheme && window.matchMedia("(prefers-color-scheme:dark)").matches) {
+      document.documentElement.classList.add("dark")
+      document.documentElement.style.colorScheme = "dark";
+    }
   }, []);
 
   useEffect(() => {
+    const handleClick = function () {
+      setShow(false);
+    };
+
     if (show) {
       document.documentElement.addEventListener("click", handleClick);
     }
@@ -22,9 +30,7 @@ export default function ChangeTheme() {
     };
   }, [show]);
 
-  function handleClick() {
-    setShow(false);
-  }
+
 
   function handleSelect(e) {
     const x = e.target.id;
