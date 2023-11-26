@@ -29,9 +29,30 @@ export default function RootLayout({ children }) {
   `;
 
   return (
-    <html lang="zh-CN" className={lxgw.className}>
+    <html lang="zh-CN" className={lxgw.className} suppressHydrationWarning>
       <body className="dark:bg-black dark:text-white">
-        <script id='switch-theme' dangerouslySetInnerHTML={{ __html: code }} />
+        <script
+          id="switch-theme"
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (typeof window !== 'undefined') {
+                  console.log('Switch theme.');
+                  if (
+                    (typeof localStorage !== 'undefined' && localStorage.theme === 'dark') ||
+                    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                  ) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                }
+              } catch (error) {
+                console.error('Error switching theme:', error);
+              }
+            `,
+          }}
+        />
         <TopNav />
         <main className="relative top-14 md:mb-20 md:px-10 xl:px-60">
           {children}
