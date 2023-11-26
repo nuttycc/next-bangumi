@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { getCharacters } from "@/app/lib/subject";
+import Image from 'next/image';
+import { getCharacters } from '@/app/lib/subject';
 
 export default async function Characters({ params }) {
   const characters = await getCharacters(params.id);
@@ -7,11 +7,17 @@ export default async function Characters({ params }) {
     const actorsList = x.actors.map((a) => {
       return (
         <a href={`/people/${a.id}`} key={a.id} className="flex items-center">
-          <Image src={a.images.small} alt={a.name} width={16} height={16} className="w-[1rem] h-[1rem] object-cover object-top"/> 
+          <Image
+            src={a.images.small}
+            alt={a.name}
+            width={16}
+            height={16}
+            className="h-[1rem] w-[1rem] object-cover object-top"
+          />
           {a.name}
         </a>
-      )
-    })
+      );
+    });
 
     return (
       <div key={x.id} className="flex">
@@ -26,10 +32,10 @@ export default async function Characters({ params }) {
         </a>
         <div className="space-y-2 ">
           <div className="mb-2 ">
-            <small className="tag-sm">
-              {x.relation}
-            </small>
-            <a href={`/character/${x.id}`} className="text-link">{x.name}</a>
+            <small className="tag-sm">{x.relation}</small>
+            <a href={`/character/${x.id}`} className="text-link">
+              {x.name}
+            </a>
           </div>
           <div>{actorsList}</div>
           <div></div>
@@ -38,5 +44,5 @@ export default async function Characters({ params }) {
     );
   });
 
-  return <div className="md:grid grid-cols-2 gap-2">{charactersList}</div>;
+  return <div className="grid-cols-2 gap-2 md:grid">{charactersList}</div>;
 }

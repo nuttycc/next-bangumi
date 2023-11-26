@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import logo from "@/public/logo.png";
-import avatar from "@/public/avatar.jpeg";
-import DDMenu, { DPMenu } from "./ddmenu";
-import clsx from "clsx";
-import { useState } from "react";
-import ChangeTheme from "./theme";
-import Link from "next/link";
+import Image from 'next/image';
+import logo from '@/public/logo.png';
+import avatar from '@/public/avatar.jpeg';
+import DDMenu, { DPMenu } from './ddmenu';
+import clsx from 'clsx';
+import { useState } from 'react';
+import ChangeTheme from './theme';
+import Link from 'next/link';
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
 
   const aniMenu = [
-    { title: "排行榜", link: "/subject/rank" },
-    { title: "每日放送", link: "/subject/calendar" },
-    { title: "番剧索引", link: "#" },
+    { title: '排行榜', link: '/subject/rank' },
+    { title: '每日放送', link: '/subject/calendar' },
+    { title: '番剧索引', link: '#' },
   ];
   const about = [
-    { title: "项目地址", link: "https://github.com/nuttycc/next-bangumi" },
+    { title: '项目地址', link: 'https://github.com/nuttycc/next-bangumi' },
   ];
 
   return (
     <>
       {/* 移动端 */}
-      <div className="fixed z-50 top-0 h-12 w-[100vw] border-b bg-white px-2 py-2  dark:bg-black md:hidden">
+      <nav className="fixed top-0 z-50 h-12 w-[100vw] border-b bg-white px-2 py-2  dark:bg-black md:hidden">
         <div className="flex">
           <a href="/">
             <Image src={logo} alt="logo" priority />
@@ -60,42 +60,42 @@ export default function TopNav() {
           >
             <div
               className={clsx(
-                "h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
-                { "absolute rotate-[405deg]": show },
+                'h-[2px] w-1/2 bg-black transition dark:bg-gray-300',
+                { 'absolute rotate-[405deg]': show },
               )}
             ></div>
             <div
               className={clsx(
-                "my-1 h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
+                'my-1 h-[2px] w-1/2 bg-black transition dark:bg-gray-300',
                 { hidden: show },
               )}
             ></div>
             <div
               className={clsx(
-                "h-[2px] w-1/2 bg-black transition dark:bg-gray-300",
-                { "absolute -rotate-[405deg]": show },
+                'h-[2px] w-1/2 bg-black transition dark:bg-gray-300',
+                { 'absolute -rotate-[405deg]': show },
               )}
             ></div>
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* 菜单项目 */}
       <div
         className={clsx(
-          "fixed top-12 z-50 w-screen flex flex-col items-center gap-1 bg-gray-100 py-2 pb-4  dark:bg-gray-700",
+          'fixed top-12 z-50 flex w-screen flex-col items-center gap-1 bg-gray-100 py-2 pb-4  dark:bg-gray-700',
           {
             hidden: !show,
           },
         )}
       >
-        <DPMenu h1={"动画"} h2s={aniMenu} />
-        <DPMenu h1={"关于"} h2s={about} />
+        <DPMenu h1={'动画'} h2s={aniMenu} />
+        <DPMenu h1={'关于'} h2s={about} />
         <ChangeTheme />
       </div>
 
       {/* 桌面端 */}
-      <nav className="fixed z-50 top-0 h-10 w-screen bg-white dark:bg-black hidden items-center gap-2 py-2 md:flex md:px-10 xl:px-40">
+      <nav className="fixed top-0 z-50 hidden h-10 w-screen items-center gap-2 bg-white py-2 dark:bg-black md:flex md:px-10 xl:px-40">
         <a href="/" className="mr-4 block">
           <Image src={logo} alt="logo" />
         </a>

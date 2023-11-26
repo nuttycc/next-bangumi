@@ -1,7 +1,7 @@
-"use client";
-import { usePathname } from "next/navigation";
-import clsx from "clsx";
-import Link from "next/link";
+'use client';
+import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
+import Link from 'next/link';
 
 export default function Layout({ children, params }) {
   const id = params.id;
@@ -13,8 +13,8 @@ export default function Layout({ children, params }) {
         <li>
           <Link
             href={`/character/${id}`}
-            className={clsx("px-1 hover:bg-[#ffc2d1] hover:text-black", {
-              "bg-[#ffc2d1] text-black": pathname === `/character/${id}`,
+            className={clsx('px-1 hover:bg-[#ffc2d1] hover:text-black', {
+              'bg-[#ffc2d1] text-black': pathname === `/character/${id}`,
             })}
           >
             概览
@@ -23,8 +23,9 @@ export default function Layout({ children, params }) {
         <li>
           <Link
             href={`/character/${id}/subjects`}
-            className={clsx("px-1 hover:bg-[#ffc2d1] hover:text-black", {
-              "bg-[#ffc2d1] text-black": pathname === `/character/${id}/subjects`,
+            className={clsx('px-1 hover:bg-[#ffc2d1] hover:text-black', {
+              'bg-[#ffc2d1] text-black':
+                pathname === `/character/${id}/subjects`,
             })}
           >
             相关条目
@@ -33,8 +34,8 @@ export default function Layout({ children, params }) {
         <li>
           <Link
             href={`/character/${id}/persons`}
-            className={clsx("px-1 hover:bg-[#ffc2d1] hover:text-black", {
-              "bg-[#ffc2d1] text-black":
+            className={clsx('px-1 hover:bg-[#ffc2d1] hover:text-black', {
+              'bg-[#ffc2d1] text-black':
                 pathname === `/character/${id}/persons`,
             })}
           >

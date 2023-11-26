@@ -1,6 +1,6 @@
-import { getCalendar } from "../../lib/subject";
-import AniCalender from "../../ui/subject/calendar";
-import AniCalenderOnDesk from "../../ui/subject/calendarDesk";
+import { getCalendar } from '../../lib/subject';
+import AniCalender from '../../ui/subject/calendar';
+import AniCalenderOnDesk from '../../ui/subject/calendarDesk';
 
 export default async function Page() {
   const data = await getCalendar();

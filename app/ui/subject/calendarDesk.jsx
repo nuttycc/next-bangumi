@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import styles from "./subject.module.css";
-import AniCard from "./card";
+import clsx from 'clsx';
+import styles from './subject.module.css';
+import AniCard from './card';
 
 export default function AniCalenderOnDesk({ data }) {
   const date = new Date();
@@ -11,7 +11,7 @@ export default function AniCalenderOnDesk({ data }) {
       return (
         <div key={item.id}>
           <AniCard
-            title={item["name_cn"] || item["name"]}
+            title={item['name_cn'] || item['name']}
             src={item.images.common}
             id={item.id}
           />
@@ -27,17 +27,17 @@ export default function AniCalenderOnDesk({ data }) {
         className="mb-2 flex max-w-max border border-[#212121]	shadow-[2px_1px_4px_2px_rgb(94,102,103,0.6)]"
       >
         <div
-          style={{ writingMode: "vertical-rl" }}
+          style={{ writingMode: 'vertical-rl' }}
           className={clsx(
-            "pr-1 text-center text-[0.95rem] dark:border-gray-500",
+            'pr-1 text-center text-[0.95rem] dark:border-gray-500',
             {
-              "bg-[#2699FB] dark:bg-[#023e8a]": weekdayId === 1,
-              "bg-[#ECFFCB] dark:bg-[#23241F]": weekdayId === 2,
-              "bg-[#BCF402] dark:bg-[#7209b7]": weekdayId === 3,
-              "bg-[#FF6A53] dark:bg-[#294D45]": weekdayId === 4,
-              "bg-[#BF7C63]": weekdayId === 5,
-              "bg-[#b5838d]": weekdayId === 6,
-              "bg-[#fb8500]": weekdayId === 7,
+              'bg-[#2699FB] dark:bg-[#023e8a]': weekdayId === 1,
+              'bg-[#ECFFCB] dark:bg-[#23241F]': weekdayId === 2,
+              'bg-[#BCF402] dark:bg-[#7209b7]': weekdayId === 3,
+              'bg-[#FF6A53] dark:bg-[#294D45]': weekdayId === 4,
+              'bg-[#BF7C63]': weekdayId === 5,
+              'bg-[#b5838d]': weekdayId === 6,
+              'bg-[#fb8500]': weekdayId === 7,
               " after:text-[#d90429] after:content-['_★'] ":
                 today === obj.weekday.id - 1,
             },
@@ -53,7 +53,7 @@ export default function AniCalenderOnDesk({ data }) {
       </div>
     );
   });
-  const week = ["一", "二", "三", "四", "五", "六", "日"];
+  const week = ['一', '二', '三', '四', '五', '六', '日'];
 
   return (
     <>

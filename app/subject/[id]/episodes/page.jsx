@@ -1,4 +1,4 @@
-import { getEpisodes } from "@/app/lib/episode";
+import { getEpisodes } from '@/app/lib/episode';
 
 export default async function Episodes({ params }) {
   const r = await getEpisodes(params.id);
@@ -7,9 +7,9 @@ export default async function Episodes({ params }) {
     return (
       <div key={x.id} className="mb-2 border-b pl-1 dark:border-gray-400">
         <div className="flex justify-between">
-          <a  href={`/episode/${x.id}`} className="text-link font-semibold">
+          <a href={`/episode/${x.id}`} className="text-link font-semibold">
             <span>{x.ep}.</span>
-            {x.name_cn || x.name || "待补充"}
+            {x.name_cn || x.name || '待补充'}
           </a>
           <span className="ml-4">
             {/* 评论数 */}
@@ -39,7 +39,7 @@ export default async function Episodes({ params }) {
         </div>
         <div>{x.name}</div>
         <div>上映时间：{x.airdate}</div>
-        <div>时长：{x.duration || "*"}</div>
+        <div>时长：{x.duration || '*'}</div>
         {/* <div>描述：{x.desc || "待补充"}</div> */}
         <div></div>
         <div>{}</div>

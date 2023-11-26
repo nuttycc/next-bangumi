@@ -1,19 +1,23 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import clsx from "clsx";
+import { useEffect, useState } from 'react';
+import clsx from 'clsx';
+
 
 export default function ChangeTheme() {
   const [show, setShow] = useState(false);
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState('');
 
   useEffect(() => {
-    const localTheme = localStorage.getItem("theme") || "";
+    const localTheme = localStorage.getItem('theme') || '';
     setTheme(localTheme);
-    if (localTheme === 'dark' || !localTheme && window.matchMedia("(prefers-color-scheme:dark)").matches) {
-      document.documentElement.classList.add("dark")
-      document.documentElement.style.colorScheme = "dark";
-    }
+    // if (
+    //   localTheme === 'dark' ||
+    //   (!localTheme && window.matchMedia('(prefers-color-scheme:dark)').matches)
+    // ) {
+    //   document.documentElement.classList.add('dark');
+    //   document.documentElement.style.colorScheme = 'dark';
+    // }
   }, []);
 
   useEffect(() => {
@@ -22,38 +26,36 @@ export default function ChangeTheme() {
     };
 
     if (show) {
-      document.documentElement.addEventListener("click", handleClick);
+      document.documentElement.addEventListener('click', handleClick);
     }
 
     return () => {
-      document.documentElement.removeEventListener("click", handleClick);
+      document.documentElement.removeEventListener('click', handleClick);
     };
   }, [show]);
 
-
-
   function handleSelect(e) {
     const x = e.target.id;
-    if (localStorage.getItem("theme") === x) {
+    if (localStorage.getItem('theme') === x) {
       return;
     }
     setTheme(x);
 
-    if (x === "system") {
-      localStorage.removeItem("theme");
+    if (x === 'system') {
+      localStorage.removeItem('theme');
     } else {
-      localStorage.setItem("theme", x);
+      localStorage.setItem('theme', x);
     }
     if (
-      x === "dark" ||
-      (x === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+      x === 'dark' ||
+      (x === 'system' &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.style.colorScheme = "dark";
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
     } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.style.colorScheme = "light";
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
     }
   }
 

@@ -1,11 +1,11 @@
-import { getCalendar } from "./lib/subject";
-import Image from "next/image";
-import Scroll from "./ui/scroll";
+import { getCalendar } from './lib/subject';
+import Image from 'next/image';
+import Scroll from './ui/scroll';
 
-const date = new Date()
-const today = date.getDay() === 0 ? 7 : date.getDay() // 0 1 2 3...
+const date = new Date();
+const today = date.getDay() === 0 ? 7 : date.getDay(); // 0 1 2 3...
 export default async function Page() {
-  const calendar = await getCalendar()
+  const calendar = await getCalendar();
   const todayList = calendar[today - 1].items.map((x) => {
     return (
       <div key={x.id}>
@@ -15,10 +15,12 @@ export default async function Page() {
             alt={x.name}
             fill
             sizes="33vw"
-            className="object-cover object-top border"
+            className="border object-cover object-top"
           />
         </div>
-        <a href={`/subject/${x.id}`} className="block w-[30vw] truncate">{x.name_cn || x.name}</a>
+        <a href={`/subject/${x.id}`} className="block w-[30vw] truncate">
+          {x.name_cn || x.name}
+        </a>
 
         {/* <div>{x.collection.doing}</div> */}
         {/* <div>{x.rating.score}</div> */}
@@ -28,7 +30,7 @@ export default async function Page() {
         <div>{}</div>
       </div>
     );
-  })
+  });
 
   return (
     <div>
@@ -37,7 +39,7 @@ export default async function Page() {
         今日放送
         <div
           className="flex h-max overflow-x-auto scroll-smooth"
-          style={{ scrollbarWidth: "1rem", scrollbarColor: "#ea580c" }}
+          style={{ scrollbarWidth: '1rem', scrollbarColor: '#ea580c' }}
         >
           {todayList}
           <Scroll />

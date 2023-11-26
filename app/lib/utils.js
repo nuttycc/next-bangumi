@@ -1,10 +1,9 @@
-import API_ENDPOINT from "./api";
-
+import API_ENDPOINT from './api';
 
 export async function getInfoByPath(path) {
   const headers = new Headers({
-    "User-Agent":
-      "nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)",
+    'User-Agent':
+      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
   });
   const url = `${API_ENDPOINT}${path}`;
   try {

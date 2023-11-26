@@ -2,40 +2,38 @@ import {
   getCharacterDetails,
   getCharacterRelatedSubjects,
   getCharacterRelatedPersons,
-} from "@/app/lib/character";
+} from '@/app/lib/character';
 
-import Image from "next/image";
+import Image from 'next/image';
 export default async function Character({ params }) {
-  const characterId = params.id
-  const [details, persons, subjects] = await Promise.all(
-    [
-      getCharacterDetails(characterId),
-      getCharacterRelatedPersons(characterId),
-      getCharacterRelatedSubjects(characterId),
-    ],
-  );
+  const characterId = params.id;
+  const [details, persons, subjects] = await Promise.all([
+    getCharacterDetails(characterId),
+    getCharacterRelatedPersons(characterId),
+    getCharacterRelatedSubjects(characterId),
+  ]);
 
   const infobox = details.infobox.map((x) => {
-    let v = x.value
+    let v = x.value;
     if (typeof x.value === 'object') {
       v = x.value.map((y) => {
-        if(!y.value) return "-"
+        if (!y.value) return '-';
         return (
           <div key={y.key}>
             <span>{y.key}：</span>
             <span>{y.value}</span>
           </div>
         );
-      })
+      });
     }
     return (
       <div key={x.key}>
-        <span>{ x.key }：</span>
-        <span>{ v || '待补充' }</span>
+        <span>{x.key}：</span>
+        <span>{v || '待补充'}</span>
       </div>
-    )
-  })
-  const subjectsList = subjects.slice(0,6).map((x) => {
+    );
+  });
+  const subjectsList = subjects.slice(0, 6).map((x) => {
     return (
       <div key={x.id} className="flex gap-2 border p-2 dark:border-gray-400">
         <Image
@@ -46,19 +44,19 @@ export default async function Character({ params }) {
           className="photo-frame"
         />
         <div>
-          <a href={`/subject/${x.id}`} className="block w-max mb-2 border-b">{x.name_cn || x.name} </a>
+          <a href={`/subject/${x.id}`} className="mb-2 block w-max border-b">
+            {x.name_cn || x.name}{' '}
+          </a>
           <div className="text-sm">
             <p>
-              <span className="mr-2 tag-sm">
-                {x.staff}
-              </span>
+              <span className="tag-sm mr-2">{x.staff}</span>
               <span className="text-xs">{x.name}</span>
             </p>
           </div>
         </div>
       </div>
     );
-  })
+  });
   const personsList = persons.map((x) => {
     return (
       <div key={x.subject_id} className="border">
@@ -71,7 +69,7 @@ export default async function Character({ params }) {
         <div>{x.type}</div>
       </div>
     );
-  })
+  });
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div className="w-[300px]">
@@ -146,7 +144,12 @@ export default async function Character({ params }) {
         </div>
 
         <h2 className="text-lg">相关条目</h2>
-        <a href={`/character${characterId}/subjects`} className="text-xs text-blue-800" >查看全部</a>
+        <a
+          href={`/character${characterId}/subjects`}
+          className="text-xs text-blue-800"
+        >
+          查看全部
+        </a>
         <div className="md:grid md:grid-cols-2 md:gap-2">{subjectsList}</div>
         {/* <div>{personsList}</div> */}
       </div>

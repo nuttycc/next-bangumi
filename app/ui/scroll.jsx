@@ -1,12 +1,12 @@
-'use client'
-import { useEffect, useRef, useState } from "react";
+'use client';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Scroll() {
-  const arrow = useRef(null)
+  const arrow = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   useEffect(() => {
-    const container = arrow.current.parentElement
+    const container = arrow.current.parentElement;
 
     const handleScroll = () => {
       // 当滚动到最左边时隐藏左箭头
@@ -14,20 +14,19 @@ export default function Scroll() {
 
       // 当滚动到最右边时隐藏右箭头
       setShowRightArrow(
-        container.scrollLeft <
-          container.scrollWidth - container.clientWidth,
+        container.scrollLeft < container.scrollWidth - container.clientWidth,
       );
     };
 
-    container.addEventListener("scroll", handleScroll);
+    container.addEventListener('scroll', handleScroll);
 
     // 初始设置一次以检查箭头的显示状态
     handleScroll();
 
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      container.removeEventListener('scroll', handleScroll);
     };
-  })
+  });
 
   return (
     <div ref={arrow} className="">

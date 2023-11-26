@@ -2,22 +2,22 @@ import {
   getPersonDetails,
   getPersonRelatedCharacters,
   getPersonRelatedSubjects,
-} from "@/app/lib/person";
-import Image from "next/image";
+} from '@/app/lib/person';
+import Image from 'next/image';
 
 export default async function Person({ params }) {
   const personId = params.id;
   const [details, characters, subjects] = await Promise.all([
     getPersonDetails(personId),
     getPersonRelatedCharacters(personId),
-    getPersonRelatedSubjects(personId)
+    getPersonRelatedSubjects(personId),
   ]);
 
   const infobox = details.infobox.map((x) => {
     let v = x.value;
-    if (typeof x.value === "object") {
+    if (typeof x.value === 'object') {
       v = x.value.map((y) => {
-        if (!y.value) return "-";
+        if (!y.value) return '-';
         return (
           <div key={y.key}>
             <span>{y.key}：</span>
@@ -26,11 +26,11 @@ export default async function Person({ params }) {
         );
       });
     }
-    
+
     return (
       <div key={x.key}>
         <span>{x.key}：</span>
-        <span>{v || "待补充"}</span>
+        <span>{v || '待补充'}</span>
       </div>
     );
   });
@@ -46,7 +46,7 @@ export default async function Person({ params }) {
         />
         <div>
           <a href={`/subject/${x.id}`} className="mb-2 block w-max border-b">
-            {x.name_cn || x.name}{" "}
+            {x.name_cn || x.name}{' '}
           </a>
           <div className="text-sm">
             <p>

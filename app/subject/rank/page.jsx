@@ -1,8 +1,8 @@
-import { searchSubjectsBy } from "@/app/lib/subject";
-import Filter from "@/app/ui/subject/filter";
-import Image from "next/image";
-import clsx from "clsx";
-import Pagination from "@/app/ui/subject/pagination";
+import { searchSubjectsBy } from '@/app/lib/subject';
+import Filter from '@/app/ui/subject/filter';
+import Image from 'next/image';
+import clsx from 'clsx';
+import Pagination from '@/app/ui/subject/pagination';
 
 export default async function Rank({ searchParams }) {
   let pageValue = searchParams.page || 1;
@@ -38,8 +38,14 @@ export default async function Rank({ searchParams }) {
     return (
       <div key={x.id} className="flex">
         {/* 图片 */}
-        <div className="photo-frame relative m-1 mr-2 h-[110px] w-[80px] md:w-[80px] shrink-0">
-          <Image src={x.image} alt="" fill sizes="80px" className="p-1 object-contain" />
+        <div className="photo-frame relative m-1 mr-2 h-[110px] w-[80px] shrink-0 md:w-[80px]">
+          <Image
+            src={x.image}
+            alt=""
+            fill
+            sizes="80px"
+            className="object-contain p-1"
+          />
         </div>
 
         {/* 信息 */}
@@ -63,7 +69,7 @@ export default async function Rank({ searchParams }) {
             <div className="">
               <div className="inline-block h-[10px] w-[50px] bg-transparent bg-[url('/rate_star_2x.png')] bg-[length:10px_19.5px] bg-[0%_100%] bg-repeat-x">
                 <div
-                  style={{ width: 50 * x.score * 0.1 + "px" }}
+                  style={{ width: 50 * x.score * 0.1 + 'px' }}
                   className="h-[10px] bg-transparent bg-[url('/rate_star_2x.png')] bg-[length:10px_19.5px] bg-[0px_0px] bg-repeat-x"
                 ></div>
               </div>
@@ -87,9 +93,9 @@ export default async function Rank({ searchParams }) {
           href={`./rank?&page=${p}`}
           key={i}
           className={clsx(
-            "my-2 inline-block border px-1 text-center hover:bg-rose-400",
+            'my-2 inline-block border px-1 text-center hover:bg-rose-400',
             {
-              "bg-rose-500": p === Number(pageValue),
+              'bg-rose-500': p === Number(pageValue),
             },
           )}
         >
@@ -114,13 +120,13 @@ export default async function Rank({ searchParams }) {
       <div className="flex flex-wrap items-center gap-1">
         <a
           href={`./rank?&page=${Number(pageValue) - 1}`}
-          className={clsx("border px-1 text-center hover:bg-rose-400", {})}
+          className={clsx('border px-1 text-center hover:bg-rose-400', {})}
         >
           &lt;
         </a>
         <a
           href={`./rank?&page=1`}
-          className={clsx("border px-2 text-center hover:bg-rose-400", {
+          className={clsx('border px-2 text-center hover:bg-rose-400', {
             hidden: pageValue < 10,
           })}
         >
@@ -128,7 +134,7 @@ export default async function Rank({ searchParams }) {
         </a>
         <a
           href={`./rank?&page=${Math.floor(Number(pageValue) / 2)}`}
-          className={clsx("w-6 border text-center hover:bg-rose-400", {
+          className={clsx('w-6 border text-center hover:bg-rose-400', {
             hidden: pageValue < 10,
           })}
         >
@@ -137,21 +143,21 @@ export default async function Rank({ searchParams }) {
         {PageList}
         <a
           href={`./rank?&page=${Math.floor((Number(pageValue) + 336) / 2)}`}
-          className={clsx("w-6 border text-center hover:bg-rose-400", {})}
+          className={clsx('w-6 border text-center hover:bg-rose-400', {})}
         >
           ...
         </a>
         <a
           href={`./rank?&page=${lastPage}`}
-          className={clsx("border text-center hover:bg-rose-400", {
-            "bg-rose-500": Number(pageValue) === 336,
+          className={clsx('border text-center hover:bg-rose-400', {
+            'bg-rose-500': Number(pageValue) === 336,
           })}
         >
           336
         </a>
         <a
           href={`./rank?&page=${Number(pageValue) + 1}`}
-          className={clsx("border px-1 text-center hover:bg-rose-400", {})}
+          className={clsx('border px-1 text-center hover:bg-rose-400', {})}
         >
           &gt;
         </a>

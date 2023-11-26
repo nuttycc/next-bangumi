@@ -1,4 +1,4 @@
-import { getInfoByPath } from "./utils";
+import { getInfoByPath } from './utils';
 
 // 0 = 本篇
 // 1 = 特别篇

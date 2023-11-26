@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useSearchParams } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
+import { useSearchParams } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 const date = new Date();
-const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, "-");
+const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, '-');
 
 export default function Filter() {
   const params = useSearchParams();
-  const from = params.get("from");
-  const to = params.get("to");
+  const from = params.get('from');
+  const to = params.get('to');
 
   const YearList = Array(5)
     .fill(0)
@@ -29,10 +29,10 @@ export default function Filter() {
   function handleChange(e) {
     const url = new URL(window.location);
     const params = new URLSearchParams(url.search);
-    if (e.target.id === "from") {
-      params.set("from", e.target.value);
+    if (e.target.id === 'from') {
+      params.set('from', e.target.value);
     } else {
-      params.set("to", e.target.value);
+      params.set('to', e.target.value);
     }
     const newUrl = `${window.location.origin}${
       window.location.pathname
@@ -48,8 +48,8 @@ export default function Filter() {
     }
     const url = new URL(window.location);
     const params = new URLSearchParams(url.search);
-    params.set("from", e.target.value + "-01");
-    params.set("to", e.target.value + "-12");
+    params.set('from', e.target.value + '-01');
+    params.set('to', e.target.value + '-12');
     const newUrl = `${window.location.origin}${
       window.location.pathname
     }?${params.toString()}`;
@@ -100,8 +100,7 @@ export default function Filter() {
             <label
               htmlFor="any"
               className="ml-1 text-[0.8em] text-gray-600 dark:text-gray-400"
-            >
-            </label>
+            ></label>
           </div>
         </div>
 
@@ -111,8 +110,8 @@ export default function Filter() {
           <input
             type="month"
             id="from"
-            defaultValue={from || "1999-01"}
-            min={"1990-01"}
+            defaultValue={from || '1999-01'}
+            min={'1990-01'}
             max={today}
             className="dark:bg-gray-400 dark:text-blue-800"
           />
@@ -121,7 +120,7 @@ export default function Filter() {
             type="month"
             id="to"
             defaultValue={to || today}
-            min={"1990-01"}
+            min={'1990-01'}
             max={today}
             className="dark:bg-gray-400 dark:text-blue-800"
           />

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { getPlaiceholder } from "plaiceholder";
+import Image from 'next/image';
+import { getPlaiceholder } from 'plaiceholder';
 
 const getImage = async (src) => {
   const buffer = await fetch(src).then(async (res) =>

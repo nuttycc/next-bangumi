@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
-import Link from "next/link";
-import { useState } from "react";
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useState } from 'react';
 
 //桌面端，
 export default function DDMenu({ h1, h2s }) {
@@ -26,8 +26,8 @@ export default function DDMenu({ h1, h2s }) {
       {/* 标题 */}
       <span
         className={clsx(
-          "flex cursor-pointer items-center hover:text-[#28BAA6]",
-          { "text-[#28BAA6]": show },
+          'flex cursor-pointer items-center hover:text-[#28BAA6]',
+          { 'text-[#28BAA6]': show },
         )}
       >
         {h1}
@@ -44,7 +44,7 @@ export default function DDMenu({ h1, h2s }) {
       {/* 菜单项 */}
       <div
         className={clsx(
-          "absolute z-10 flex w-max flex-col rounded-sm border bg-gray-200 p-1 py-2 pr-10 text-[0.95em]  leading-6 dark:bg-gray-600",
+          'absolute z-10 flex w-max flex-col rounded-sm border bg-gray-200 p-1 py-2 pr-10 text-[0.95em]  leading-6 dark:bg-gray-600',
           { hidden: !show, block: show },
         )}
       >
@@ -74,9 +74,9 @@ export function DPMenu({ h1, h2s }) {
     <div className="">
       {/* 标题 */}
       <button
-        className={clsx("flex w-[8rem] items-center justify-between border", {
-          "": show,
-          "": !show,
+        className={clsx('flex w-[8rem] items-center justify-between border', {
+          '': show,
+          '': !show,
         })}
         onClick={() => setShow(!show)}
       >
@@ -94,7 +94,7 @@ export function DPMenu({ h1, h2s }) {
 
       {/* 菜单项 */}
       <div
-        className={clsx("flex flex-col px-2 py-2 ", {
+        className={clsx('flex flex-col px-2 py-2 ', {
           hidden: !show,
           block: show,
         })}

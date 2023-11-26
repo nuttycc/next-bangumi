@@ -1,23 +1,22 @@
-import { getInfoByPath } from "./utils";
-
+import { getInfoByPath } from './utils';
 
 // {small|grid|large|medium}
-export async function getCharacterImage(id, type = "grid") {
+export async function getCharacterImage(id, type = 'grid') {
   const imageUrl = `https://api.bgm.tv/v0/characters/${id}/image?type=${type}`;
   const headers = new Headers({
-    "User-Agent":
-      "nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)",
+    'User-Agent':
+      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
   });
   try {
-    const response = await fetch(imageUrl, { headers })
+    const response = await fetch(imageUrl, { headers });
     if (!response.ok) {
-      throw new Error(`Failed to fetch image, ${response.status}.`)
+      throw new Error(`Failed to fetch image, ${response.status}.`);
     }
-    const blob = await response.blob()
-    const imgUrl = URL.createObjectURL(blob)
-    return imgUrl
+    const blob = await response.blob();
+    const imgUrl = URL.createObjectURL(blob);
+    return imgUrl;
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 

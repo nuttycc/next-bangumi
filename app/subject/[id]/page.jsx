@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { getSubject, getCharacters } from "@/app/lib/subject";
-import { getCharacterDetails as getDetails } from "@/app/lib/character";
+import Image from 'next/image';
+import { getSubject, getCharacters } from '@/app/lib/subject';
+import { getCharacterDetails as getDetails } from '@/app/lib/character';
 
 export default async function Page({ params }) {
   const id = params.id;
@@ -20,7 +20,7 @@ export default async function Page({ params }) {
   }
 
   const infobox = subject.infobox.map((x) => {
-    if (typeof x.value === "object") {
+    if (typeof x.value === 'object') {
       return null;
     }
     return (
@@ -30,7 +30,7 @@ export default async function Page({ params }) {
     );
   });
   const infobox_sm = subject.infobox.slice(0, 10).map((x) => {
-    if (typeof x.value === "object") {
+    if (typeof x.value === 'object') {
       return null;
     }
     return (
@@ -42,10 +42,7 @@ export default async function Page({ params }) {
 
   const tags = subject.tags.map((x) => {
     return (
-      <div
-        key={x.name}
-        className="tag-sm"
-      >
+      <div key={x.name} className="tag-sm">
         {x.name}
       </div>
     );
@@ -53,11 +50,11 @@ export default async function Page({ params }) {
 
   const charactersList = characters.slice(0, 10).map((x, i) => {
     let name_cn;
-    if (acdetails[i].status !== "fulfilled") {
+    if (acdetails[i].status !== 'fulfilled') {
       name_cn = x.name;
     } else {
       name_cn =
-        acdetails[i].value.infobox[0].key === "简体中文名"
+        acdetails[i].value.infobox[0].key === '简体中文名'
           ? acdetails[i].value.infobox[0].value
           : acdetails[i].value.name;
     }
@@ -67,7 +64,7 @@ export default async function Page({ params }) {
         <a
           href={`/person/${a.id}`}
           key={a.id}
-          className="flex items-center w-max hover:text-rose-400"
+          className="flex w-max items-center hover:text-rose-400"
         >
           <Image
             src={a.images.small}
@@ -89,16 +86,13 @@ export default async function Page({ params }) {
             alt={name_cn}
             fill
             sizes="36px"
-            className="border-black object-cover object-top border dark:border-gray-200"
+            className="border border-black object-cover object-top dark:border-gray-200"
           />
         </div>
         <div className="">
           <div className="mb-1">
             <span className="tag-sm mr-1">{x.relation}</span>
-            <a
-              href={`/character/${x.id}`}
-              className="text-link"
-            >
+            <a href={`/character/${x.id}`} className="text-link">
               {name_cn}
             </a>
           </div>
@@ -144,7 +138,9 @@ export default async function Page({ params }) {
               priority
               className="photo-frame mb-2"
             />
-            <p className="text-sm md:hidden">{subject.name_cn || subject.name}</p>
+            <p className="text-sm md:hidden">
+              {subject.name_cn || subject.name}
+            </p>
           </a>
 
           <div className="hidden space-y-1 md:block">{infobox}</div>

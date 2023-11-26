@@ -1,12 +1,12 @@
-import { getInfoByPath } from "./utils";
+import { getInfoByPath } from './utils';
 
 export async function getCalendar() {
   const headers = new Headers({
-    "User-Agent":
-      "nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)",
+    'User-Agent':
+      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
   });
   try {
-    const res = await fetch("https://api.bgm.tv/calendar");
+    const res = await fetch('https://api.bgm.tv/calendar');
 
     if (!res.ok) {
       const errorMessage = await res.text();
@@ -17,7 +17,7 @@ export async function getCalendar() {
 
     return res.json();
   } catch (error) {
-    console.error("Error in getCalendar: ", error);
+    console.error('Error in getCalendar: ', error);
     throw error;
   }
 }
@@ -47,33 +47,33 @@ export async function getRelated(id) {
 }
 
 // {small|grid|large|medium}
-export async function getSubjectImage(id, type = "grid") {
+export async function getSubjectImage(id, type = 'grid') {
   const imageUrl = `https://api.bgm.tv/v0/subjects/${id}/image?type=${type}`;
   const headers = new Headers({
-    "User-Agent":
-      "nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)",
+    'User-Agent':
+      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
   });
   try {
-    const response = await fetch(imageUrl, { headers })
+    const response = await fetch(imageUrl, { headers });
     if (!response.ok) {
-      throw new Error(`Failed to fetch image, ${response.status}.`)
+      throw new Error(`Failed to fetch image, ${response.status}.`);
     }
-    const blob = await response.blob()
-    const imgUrl = URL.createObjectURL(blob)
-    return imgUrl
+    const blob = await response.blob();
+    const imgUrl = URL.createObjectURL(blob);
+    return imgUrl;
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
 export async function searchSubjectsBy(
   limit,
   offset = 0,
-  { keyword = "", sort = "rank", filter },
+  { keyword = '', sort = 'rank', filter },
 ) {
   const headers = new Headers({
-    "User-Agent":
-      "nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)",
+    'User-Agent':
+      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
   });
 
   const {
@@ -92,7 +92,7 @@ export async function searchSubjectsBy(
   });
 
   const requestOptions = {
-    method: "POST",
+    method: 'POST',
     headers: headers,
     body: body,
   };
@@ -104,7 +104,7 @@ export async function searchSubjectsBy(
     );
 
     if (!res.ok) {
-      const errorMessage = await res.text(); 
+      const errorMessage = await res.text();
       throw new Error(
         `Failed to fetch: ${res.status}, ${res.statusText}. ${errorMessage}`,
       );
@@ -112,6 +112,6 @@ export async function searchSubjectsBy(
 
     return res.json();
   } catch (error) {
-    throw error
+    throw error;
   }
 }
