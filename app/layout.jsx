@@ -14,23 +14,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const code = `
-    try {
-      console.log('switch theme.')
-      if (
-        (typeof localStorage !== 'undefined' && localStorage.theme === 'dark') ||
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } catch (_) {}
-  `;
+
 
   return (
     <html lang="zh-CN" className={lxgw.className} suppressHydrationWarning>
-      <body className="dark:bg-black dark:text-white">
+      <body className="dark:bg-black dark:text-gray-300">
         <script
           id="switch-theme"
           dangerouslySetInnerHTML={{

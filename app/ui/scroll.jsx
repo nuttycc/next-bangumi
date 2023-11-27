@@ -31,31 +31,31 @@ export default function Scroll() {
   return (
     <div ref={arrow} className="">
       {showLeftArrow && (
-        <div
+        <button
           className="absolute left-0 top-1/2 h-16 w-6 -translate-y-1/2 rounded-lg border border-transparent bg-gray-800 text-white opacity-80"
           onClick={() => {
             const container = arrow.current.parentElement;
-            container.scrollLeft -= 250; // 向左滚动一定距离，可以根据需要自定义
+            container.scrollLeft -= 350; // 向左滚动一定距离，可以根据需要自定义
           }}
         >
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ">
             &laquo;
           </span>
-        </div>
+        </button>
       )}
 
       {showRightArrow && (
-        <div
+        <button
           className="absolute right-0 top-1/2  h-16 w-6 -translate-y-1/2 rounded-lg border border-transparent bg-gray-800 text-white opacity-80"
           onClick={() => {
             const container = arrow.current.parentElement;
-            container.scrollLeft += 250; // 向右滚动一定距离，可以根据需要自定义
+            container.scrollLeft += 350; // 向右滚动一定距离，可以根据需要自定义
           }}
         >
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             &raquo;
           </span>
-        </div>
+        </button>
       )}
     </div>
   );

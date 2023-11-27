@@ -1,54 +1,83 @@
-import { getCalendar } from './lib/subject';
+
+import { getCalendar, getSubject } from './lib/subject';
 import Image from 'next/image';
 import Scroll from './ui/scroll';
 
 const date = new Date();
 const today = date.getDay() === 0 ? 7 : date.getDay(); // 0 1 2 3...
+const random = Array(10).fill(0).map((x, i) => Math.floor(100000+i))
+
+const rPromise = await Promise.allSettled(random.map(x => {
+  return getSubject(x)
+}))
+
+const calendar = await getCalendar();
+
 export default async function Page() {
-  const calendar = await getCalendar();
   const todayList = calendar[today - 1].items.map((x) => {
     return (
       <div key={x.id}>
-        <div className="relative h-[150px] w-[30vw]">
+        <div className="w-[100px]">
           <Image
-            src={x.images.common}
+            src={x.images.large}
             alt={x.name}
-            fill
-            sizes="33vw"
-            className="border object-cover object-top"
+            width={100}
+            height={150}
+            className="w-[100px] h-[150px] border dark:border-gray-400 object-cover object-top"
           />
+          <a href={`/subject/${x.id}`} className="block text-center text-xs truncate">
+            {x.name_cn || x.name}
+          </a>
         </div>
-        <a href={`/subject/${x.id}`} className="block w-[30vw] truncate">
-          {x.name_cn || x.name}
-        </a>
 
-        {/* <div>{x.collection.doing}</div> */}
-        {/* <div>{x.rating.score}</div> */}
-        {/* <div>{x.rating.total}</div> */}
-        <div>{}</div>
-        <div>{}</div>
-        <div>{}</div>
+        {/* <div>{x.collection?.doing}</div> */}
+        {/* <div>{x.rating?.score}</div> */}
+        {/* <div>{x.rating?.total}</div> */}
       </div>
     );
   });
 
+  const randomList = rPromise.map((x, i) => {
+    if (x.status === 'rejected') return
+    const v = x.value
+    return (
+      <div key={i} className="flex gap-1">
+        <div className='shrink-0'>
+          <Image
+            src={v.images.grid}
+            alt={v.name}
+            width={70}
+            height={100}
+            className="h-[80px] w-[70px] object-cover object-top border"
+          />
+        </div>
+        <div>
+          <div>{x.value.name_cn || x.value.name}</div>
+          <div>{v.platform}</div>
+          <div>{v.date}</div>
+          <div>{}</div>
+        </div>
+      </div>
+    );
+  })
+
   return (
-    <div>
-      <p>Home Page</p>
-      <div className="relative">
-        今日放送
+    <div className="">
+      <h1 className="sr-only">Home Page</h1>
+      <div className="relative mb-2 md:w-max">
+        <h2 className="text-lg">今日放送</h2>
         <div
-          className="flex h-max overflow-x-auto scroll-smooth"
+          className="flex h-max overflow-hidden scroll-smooth md:w-[50vw]"
           style={{ scrollbarWidth: '1rem', scrollbarColor: '#ea580c' }}
         >
           {todayList}
           <Scroll />
         </div>
-        <div className="z-50"></div>
       </div>
-      <div>随机番剧</div>
-      <div>今日放送</div>
-      <div>今日放送</div>
+      <div>
+        <h2 className="text-lg">随机条目</h2>
+        <div className='md:grid grid-cols-2'>{randomList}</div>
+      </div>
     </div>
   );
 }
