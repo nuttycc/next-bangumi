@@ -4,7 +4,14 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import Pagination from '@/app/ui/subject/pagination';
 
+
 export default async function Rank({ searchParams }) {
+  // function delay(ms=6000) {
+  //   return new Promise((resolve) => {
+  //     return setTimeout(() => resolve(), ms);
+  //   });
+  // }
+  // await delay(3000)
   let pageValue = searchParams.page || 1;
   const air_date = [`>=${searchParams.from}-01`, `<${searchParams.to}-30`];
   const rank = Math.floor(Number(pageValue) / 101) * 1000 + 1;
@@ -16,11 +23,10 @@ export default async function Rank({ searchParams }) {
     rank: [`>=${rank}`],
     nsfw: false,
   };
-
   const offset = 10 * (pageValue - 1);
-
   const r = await searchSubjectsBy(10, offset, { filter });
   const lastPage = Math.floor(r.total / 10);
+
   const RankList = r.data.map((x) => {
     const tagsList = x.tags
       .sort((b, a) => {
