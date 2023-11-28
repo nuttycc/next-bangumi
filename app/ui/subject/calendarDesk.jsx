@@ -1,6 +1,9 @@
+export const revalidate = 60*30
+
 import clsx from 'clsx';
 import styles from './subject.module.css';
 import AniCard from './card';
+import DateComponent from './dateComponent';
 
 export default function AniCalenderOnDesk({ data }) {
   const date = new Date();
@@ -61,11 +64,7 @@ export default function AniCalenderOnDesk({ data }) {
       <div className="hidden md:block">
         <div>
           <span className="mr-2 text-[1.2rem]">每日放送</span>
-          <span className="text-[0.8rem] text-blue-500">
-            {date.toLocaleDateString()}
-            星期
-            <span className="">{week[date.getDay() - 1]}</span>
-          </span>
+          <DateComponent />
         </div>
         <hr className="mb-2"></hr>
         <div>{calendar}</div>

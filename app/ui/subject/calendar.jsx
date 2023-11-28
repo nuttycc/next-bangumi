@@ -1,16 +1,26 @@
 'use client';
+export const revalidate = 60 * 30;
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 
 export default function AniCalender({ data }) {
-  const date = new Date();
-
+  
   const [today, setToday] = useState(
-    date.getDay() === 0 ? 6 : date.getDay() - 1,
+    () => {
+      const date = new Date();
+      return date.getDay() === 0 ? 6 : date.getDay() - 1
+    }
   );
 
+  // useEffect(() => {
+  //   setToday(() => {
+  //     const date = new Date();
+  //     return date.getDay() === 0 ? 6 : date.getDay() - 1;
+  //   });
+  // }, [])
+  
   const CardList = data[today]?.items.map((item) => {
     return (
       <li
