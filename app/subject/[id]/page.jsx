@@ -125,13 +125,9 @@ export default async function Page({ params }) {
       <div className="flex flex-col dark:bg-gray-950 md:flex-row ">
         {/* 左侧番剧信息：图片，名，放送时间，制作组 */}
         <div className="md:mr-3 md:w-[33vw] md:text-[0.82rem]">
-          <a
-            href={subject.images.common}
-            target="_blank"
-            className="flex flex-col items-center justify-center"
-          >
+          <div className="flex flex-col items-center justify-center">
             <Image
-              src={subject.images.small}
+              src={subject.images.medium}
               alt="image"
               width={210}
               height={291}
@@ -141,7 +137,7 @@ export default async function Page({ params }) {
             <p className="text-sm md:hidden">
               {subject.name_cn || subject.name}
             </p>
-          </a>
+          </div>
 
           <div className="hidden space-y-1 md:block">{infobox}</div>
           <div className="md:hidden">{infobox_sm}</div>

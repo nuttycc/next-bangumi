@@ -72,20 +72,22 @@ export default async function Character({ params }) {
   });
   return (
     <div className="flex flex-col gap-4 md:flex-row">
-      <div className="w-[300px]">
-        <a href={details.images.grid} target="_blank" className="block">
+      <div className="">
+        <div className="flex justify-center items-center">
           <Image
-            src={details.images.grid}
+            src={details.images.medium}
             alt={details.name}
+            priority
             width={200}
             height={363}
+            className='object-cover object-top'
           />
-        </a>
+        </div>
         <div className="mt-2 text-[0.78rem] leading-5">{infobox}</div>
       </div>
 
-      <div className="space-y-2">
-        <div className="flex">
+      <div className="space-y-1">
+        <div className="hidden md:flex">
           <h1 className="mr-1 text-xl">{details.name}</h1>
           <div className="space-x-2 text-xs">
             <span>
@@ -146,7 +148,7 @@ export default async function Character({ params }) {
         <h2 className="text-lg">相关条目</h2>
         <a
           href={`/character${characterId}/subjects`}
-          className="text-xs text-blue-800"
+          className="text-xs text-blue-500"
         >
           查看全部
         </a>

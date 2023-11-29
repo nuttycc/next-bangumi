@@ -1,9 +1,9 @@
 'use client';
-export const revalidate = 60 * 30;
 
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
+export const revalidate = 1800;
 
 export default function AniCalender({ data }) {
   

@@ -1,9 +1,9 @@
-export const revalidate = 60*30
-
 import clsx from 'clsx';
 import styles from './subject.module.css';
 import AniCard from './card';
 import DateComponent from './dateComponent';
+
+export const revalidate = 1800;
 
 export default function AniCalenderOnDesk({ data }) {
   const date = new Date();

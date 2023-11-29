@@ -58,7 +58,7 @@ export default function Filter() {
 
   return (
     <div className="text-sm antialiased">
-      <div className="my-1 flex">
+      {/* <div className="my-1 flex">
         <span>类型：</span>
         <ul className="flex gap-2 ">
           <a href="#" className="bgmtv-btn">
@@ -80,7 +80,7 @@ export default function Filter() {
             <li>其它</li>
           </a>
         </ul>
-      </div>
+      </div> */}
       <div className="">
         {/* 快捷查询 */}
         <div className="mb-1 flex overflow-hidden">
