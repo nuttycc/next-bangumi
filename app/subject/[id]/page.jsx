@@ -80,13 +80,13 @@ export default async function Page({ params }) {
 
     return (
       <div key={x.id} className="mb-2 flex">
-        <div className="relative mr-1 h-[50px] w-[36px]">
+        <div className="mr-1">
           <Image
             src={x.images.grid}
             alt={name_cn}
-            fill
-            sizes="36px"
-            className="border border-black object-cover object-top dark:border-gray-200"
+            width={80}
+            height={70}
+            className="w-[60px] h-[70px] border border-black object-cover object-top dark:border-gray-200"
           />
         </div>
         <div className="">
@@ -97,7 +97,7 @@ export default async function Page({ params }) {
             </a>
           </div>
 
-          <div>{actorsList}</div>
+          <div className='flex'>{actorsList}</div>
         </div>
       </div>
     );
@@ -182,7 +182,7 @@ export default async function Page({ params }) {
                 </a>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4">
+            <div className="grid grid-cols-2 md:grid-cols-3">
               {charactersList}
             </div>
           </div>

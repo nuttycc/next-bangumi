@@ -8,10 +8,11 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import ChangeTheme from './theme';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
-
+  const pathname = usePathname()
   const aniMenu = [
     { title: '排行榜', link: '/subject/rank' },
     { title: '每日放送', link: '/subject/calendar' },
@@ -103,12 +104,22 @@ export default function TopNav() {
         {/* <DDMenu h1={"动画"} h2s={aniMenu} /> */}
         <ul className="flex gap-4 text-sm dark:text-gray-300">
           <li>
-            <Link href="/subject/rank" className="hover:text-rose-400">
+            <Link
+              href="/subject/rank"
+              className={clsx('hover:text-rose-400', {
+                'text-rose-400': pathname === '/subject/rank',
+              })}
+            >
               排行榜
             </Link>
           </li>
           <li>
-            <Link href="/subject/calendar" className="hover:text-rose-400">
+            <Link
+              href="/subject/calendar"
+              className={clsx('hover:text-rose-400', {
+                'text-rose-400': pathname === '/subject/calendar',
+              })}
+            >
               每日放送
             </Link>
           </li>

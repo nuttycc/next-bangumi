@@ -1,13 +1,14 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-
+import clsx from 'clsx';
 const date = new Date();
 const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, '-');
 
 export default function Filter() {
   const params = useSearchParams();
+  const pathname = usePathname()
   const from = params.get('from');
   const to = params.get('to');
 
@@ -19,7 +20,9 @@ export default function Filter() {
         <a
           href={`./rank?from=${toYear}-01&to=${toYear}-12`}
           key={i}
-          className="bgmtv-btn"
+          className={clsx('bgmtv-btn', {
+            '!text-rose-400 !border-rose-400': params.get('from') === `${toYear}-01` && params.get('to') === `${toYear}-12`
+          })}
         >
           {toYear}
         </a>
@@ -93,14 +96,14 @@ export default function Filter() {
               min={1000}
               max={9999}
               list="years"
-              className="w-[3em] appearance-none border border-gray-500 px-1 pl-1 outline-none dark:bg-black dark:caret-pink-600"
-              placeholder="2018"
+              className="w-[3em] appearance-none border border-gray-500 px-1 pl-1 outline-none dark:bg-black dark:caret-pink-600 focus:border-rose-400"
+              placeholder=""
               onChange={(e) => debounced(e)}
             />
             <label
               htmlFor="any"
-              className="ml-1 text-[0.8em] text-gray-600 dark:text-gray-400"
-            ></label>
+              className="ml-1 text-gray-600 dark:text-gray-400"
+            >年</label>
           </div>
         </div>
 
