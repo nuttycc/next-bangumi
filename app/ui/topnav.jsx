@@ -9,6 +9,7 @@ import { useState } from 'react';
 import ChangeTheme from './theme';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Search from './search';
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
@@ -126,24 +127,20 @@ export default function TopNav() {
         </ul>
 
         <span className="grow"></span>
+        <div className='mr-20'>
+          <Search />
+        </div>
 
         <ChangeTheme />
 
-        {/* 搜索框 */}
-        <input
-          type="search"
-          placeholder="search"
-          size={6}
-          className="rounded-sm border border-gray-700 dark:border-gray-400 mx-2 px-2 py-1 dark:text-white dark:bg-gray-800 text-sm"
-        />
-
+        {/* 
         <a href="#" className="w-9 hover:contrast-50">
           <Image
             src={avatar}
             alt="user avatar"
             className="rounded-full  border"
           />
-        </a>
+        </a> */}
       </nav>
     </>
   );

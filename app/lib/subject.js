@@ -115,3 +115,29 @@ export async function searchSubjectsBy(
     throw error;
   }
 }
+
+
+export async function searchByKeywords(keywords, type=2, resonseGroup='small', start=0, max_results=25) {
+  const encodedKeywords = encodeURIComponent(keywords)
+  const headers = new Headers({
+    'User-Agent':
+      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
+  });
+  try {
+    const res = await fetch(
+      `https://api.bgm.tv/search/subject/${encodedKeywords}?type=${type}&responseGroup=${resonseGroup}&start=${start}&max_results=${max_results}`,
+      {headers}
+    );
+
+    if (!res.ok) {
+      const errorMessage = await res.text();
+      throw new Error(
+        `Failed to fetch: ${res.status}, ${res.statusText}. ${errorMessage}`,
+      );
+    }
+
+    return res.json();
+  } catch (error) {
+    throw error;
+  }
+}
