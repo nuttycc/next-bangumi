@@ -36,12 +36,7 @@ export default function TopNav() {
 
           {/* 搜索框 */}
           <div className="flex items-center justify-center px-1">
-            <input
-              type="search"
-              placeholder=""
-              size={6}
-              className="rounded-md border border-black"
-            />
+          <Search />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.5em"
