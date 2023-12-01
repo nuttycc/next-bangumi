@@ -133,7 +133,8 @@ export default function TopNav() {
         <input
           type="search"
           placeholder="search"
-          className="rounded-sm border px-2 py-1 text-sm"
+          size={6}
+          className="rounded-sm border border-gray-700 dark:border-gray-400 mx-2 px-2 py-1 dark:text-white dark:bg-gray-800 text-sm"
         />
 
         <a href="#" className="w-9 hover:contrast-50">

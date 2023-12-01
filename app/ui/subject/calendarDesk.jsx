@@ -2,12 +2,12 @@ import clsx from 'clsx';
 import styles from './subject.module.css';
 import AniCard from './card';
 import DateComponent from './dateComponent';
+import Scroll from '../scroll';
 
-export const revalidate = 1800;
 
 export default function AniCalenderOnDesk({ data }) {
-  const date = new Date();
-  const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
+  // const date = new Date();
+  // const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 
   const calendar = data.map((obj) => {
     const CardList = obj.items.map((item) => {
@@ -27,7 +27,7 @@ export default function AniCalenderOnDesk({ data }) {
     return (
       <div
         key={obj.weekday.id}
-        className="mb-2 flex max-w-max border border-[#212121]	shadow-[2px_1px_4px_2px_rgb(94,102,103,0.6)]"
+        className="mb-2 flex w-max border border-[#212121]	shadow-[2px_1px_4px_2px_rgb(94,102,103,0.6)]"
       >
         <div
           style={{ writingMode: 'vertical-rl' }}
@@ -41,17 +41,20 @@ export default function AniCalenderOnDesk({ data }) {
               'bg-[#BF7C63]': weekdayId === 5,
               'bg-[#b5838d]': weekdayId === 6,
               'bg-[#fb8500]': weekdayId === 7,
-              " after:text-[#d90429] after:content-['_★'] ":
-                today === obj.weekday.id - 1,
+              // " after:text-[#d90429] after:content-['_★'] ":
+              //   today === obj.weekday.id - 1,
             },
           )}
         >
           {obj.weekday.cn}
         </div>
-        <div
-          className={`${styles.CardList} flex w-[80vw] flex-col md:flex-row md:overflow-x-scroll`}
-        >
-          {CardList}
+        <div className="relative w-max">
+          <div
+            className={`${styles.CardList} flex w-[80vw] flex-col scroll-smooth md:flex-row md:overflow-x-scroll`}
+          >
+            {CardList}
+            <Scroll />
+          </div>
         </div>
       </div>
     );

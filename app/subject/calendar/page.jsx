@@ -2,6 +2,8 @@ import { getCalendar } from '../../lib/subject';
 import AniCalender from '../../ui/subject/calendar';
 import AniCalenderOnDesk from '../../ui/subject/calendarDesk';
 
+export const revalidate = 1800
+
 export default async function Page() {
   const data = await getCalendar();
 

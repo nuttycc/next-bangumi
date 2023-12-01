@@ -45,6 +45,10 @@ export default function RootLayout({ children }) {
         <main className="relative top-14 md:mb-20 md:px-10 xl:px-60">
           {children}
         </main>
+
+        <footer className="relative flex justify-center p-20 pb-10">
+          <p>Powered by Next.JS</p>
+        </footer>
       </body>
     </html>
   );

@@ -64,13 +64,16 @@ export default function DDMenu({ h1, h2s }) {
 // 移动端，
 export function DPMenu({ h1, h2s }) {
   const [show, setShow] = useState(false);
-
+  const pathname = usePathname();
+  
   const h2list = h2s.map((h2) => {
     return (
       <a
         key={h2.title}
         href={h2.link}
-        className="leading-6 hover:text-[#E5808E]"
+        className={clsx('leading-6 hover:text-[#E5808E]', {
+          "!text-rose-400": pathname === h2.link
+        })}
       >
         {h2.title}
       </a>

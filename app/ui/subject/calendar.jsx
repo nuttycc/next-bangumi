@@ -3,23 +3,22 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
-export const revalidate = 1800;
 
 export default function AniCalender({ data }) {
   
   const [today, setToday] = useState(
-    () => {
-      const date = new Date();
-      return date.getDay() === 0 ? 6 : date.getDay() - 1
-    }
+    // () => {
+    //   const date = new Date();
+    //   return date.getDay() === 0 ? 6 : date.getDay() - 1
+    // }
   );
 
-  // useEffect(() => {
-  //   setToday(() => {
-  //     const date = new Date();
-  //     return date.getDay() === 0 ? 6 : date.getDay() - 1;
-  //   });
-  // }, [])
+  useEffect(() => {
+    setToday(() => {
+      const date = new Date();
+      return date.getDay() === 0 ? 6 : date.getDay() - 1;
+    });
+  }, [])
   
   const CardList = data[today]?.items.map((item) => {
     return (
@@ -28,7 +27,7 @@ export default function AniCalender({ data }) {
         style={{ counterIncrement: 'listCounter' }}
         className="my-1 before:inline-block before:w-5 before:bg-[#F465B1] before:text-center before:text-[0.85rem] before:content-[_counter(listCounter)] before:dark:invert"
       >
-        <a href={`/subject/${item.id}`} className="border-b">
+        <a href={`/subject/${item.id}`} className="border-b border-blue-700">
           {item['name_cn'] || item['name']}
         </a>
       </li>

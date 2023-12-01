@@ -16,9 +16,8 @@ export default function DateComponent() {
   return (
     <>
       <span className="text-[0.8rem] text-blue-500">
-        {time}
-        星期
-        <span className="">{day}</span>
+        {time || "----/--/--"}
+        <span className="mx-1">星期{day || "-"}</span>
       </span>
     </>
   );

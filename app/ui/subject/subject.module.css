@@ -1,13 +1,13 @@
 .CardList::-webkit-scrollbar {
   height: 0.5rem;
-  background-color: #a6a6a6;
+  background-color: #aaafba;
 }
 
 .CardList::-webkit-scrollbar-thumb {
-  background-color: #3e3e40;
+  background-color: #5e5852;
 }
 
 .CardList::-webkit-scrollbar-thumb:hover {
-  filter: opacity(0.5);
-  background-color: #737373;
+  filter: contrast(150);
+  background-color: #7b7474;
 }

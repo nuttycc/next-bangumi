@@ -2,6 +2,8 @@
 import { getCalendar, getSubject } from './lib/subject';
 import Image from 'next/image';
 import Scroll from './ui/scroll';
+import TodayAni from './ui/subject/todayAni';
+import RandomSubjects from './ui/subject/randomSubjects';
 
 const date = new Date();
 const today = date.getDay() === 0 ? 7 : date.getDay(); // 0 1 2 3...
@@ -13,7 +15,7 @@ const rPromise = await Promise.allSettled(random.map(x => {
 
 const calendar = await getCalendar();
 
-export default async function Page() {
+export default function Page() {
   const todayList = calendar[today - 1].items.map((x) => {
     return (
       <div key={x.id}>
@@ -68,15 +70,13 @@ export default async function Page() {
         <h2 className="text-lg">今日放送</h2>
         <div
           className="flex h-max overflow-hidden scroll-smooth md:w-[50vw]"
-          style={{ scrollbarWidth: '1rem', scrollbarColor: '#ea580c' }}
         >
-          {todayList}
+          <TodayAni calendar={calendar} />
           <Scroll />
         </div>
       </div>
       <div>
-        <h2 className="text-lg">随机条目</h2>
-        <div className='md:grid grid-cols-2'>{randomList}</div>
+        <RandomSubjects rPromise={rPromise} />
       </div>
     </div>
   );
