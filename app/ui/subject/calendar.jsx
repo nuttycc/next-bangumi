@@ -7,10 +7,10 @@ import clsx from 'clsx';
 export default function AniCalender({ data }) {
   
   const [today, setToday] = useState(
-    // () => {
-    //   const date = new Date();
-    //   return date.getDay() === 0 ? 6 : date.getDay() - 1
-    // }
+    () => {
+      const date = new Date();
+      return date.getDay() === 0 ? 6 : date.getDay() - 1
+    }
   );
 
   useEffect(() => {

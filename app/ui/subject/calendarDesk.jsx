@@ -6,8 +6,8 @@ import Scroll from '../scroll';
 
 
 export default function AniCalenderOnDesk({ data }) {
-  // const date = new Date();
-  // const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
+  const date = new Date();
+  const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 
   const calendar = data.map((obj) => {
     const CardList = obj.items.map((item) => {
@@ -41,8 +41,8 @@ export default function AniCalenderOnDesk({ data }) {
               'bg-[#BF7C63]': weekdayId === 5,
               'bg-[#b5838d]': weekdayId === 6,
               'bg-[#fb8500]': weekdayId === 7,
-              // " after:text-[#d90429] after:content-['_★'] ":
-              //   today === obj.weekday.id - 1,
+              " after:text-[#d90429] after:content-['_★'] ":
+                today === obj.weekday.id - 1,
             },
           )}
         >
