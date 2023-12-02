@@ -80,24 +80,21 @@ export default async function Page({ params }) {
 
     return (
       <div key={x.id} className="mb-2 flex">
-        <div className="mr-1">
-          <Image
-            src={x.images.grid}
-            alt={name_cn}
-            width={80}
-            height={70}
-            className="w-[60px] h-[70px] border border-black object-cover object-top dark:border-gray-200"
-          />
-        </div>
-        <div className="">
+        <Image
+          src={x.images.grid}
+          alt={name_cn}
+          width={80}
+          height={90}
+          className="w-[60px] h-[90px] mr-1 border border-black object-cover object-top dark:border-gray-200"
+        />
+        <div>
           <div className="mb-1">
             <span className="tag-sm mr-1">{x.relation}</span>
             <a href={`/character/${x.id}`} className="text-link">
               {name_cn}
             </a>
           </div>
-
-          <div className='flex'>{actorsList}</div>
+          <div className='text-sm'>{actorsList}</div>
         </div>
       </div>
     );

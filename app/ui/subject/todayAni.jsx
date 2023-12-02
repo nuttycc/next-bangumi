@@ -14,10 +14,10 @@ export default function TodayAni({ calendar }) {
   }, [])
 
 
-  const placeholder = Array(10).fill(0).map((x, i) => {
+  const placeholder = Array(20).fill(0).map((x, i) => {
     return (
       <div key={i}>
-        <div className="w-[100px]">
+        <div className="w-[90px]">
           <Image
             src="/info_only.png"
             alt="loading"
@@ -29,7 +29,6 @@ export default function TodayAni({ calendar }) {
             href={``}
             className="block truncate text-center text-xs"
           >
-            
           </a>
         </div>
 
@@ -49,8 +48,9 @@ export default function TodayAni({ calendar }) {
             alt={x.name}
             width={90}
             height={140}
-            className="w-[90px] h-[140px]  border object-cover object-top dark:border-gray-300"
+            className="h-[140px] w-[90px] border object-cover object-top dark:border-gray-300"
           />
+
           <a
             href={`/subject/${x.id}`}
             className="block truncate text-center text-xs"

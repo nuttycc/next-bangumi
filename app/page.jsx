@@ -64,18 +64,18 @@ export default function Page() {
   })
 
   return (
-    <div className="">
+    <div className="md:w-[66vw]">
       <h1 className="sr-only">Home Page</h1>
       <div className="relative mb-2 md:w-max">
         <h2 className="text-lg">今日放送</h2>
         <div
-          className="flex h-max overflow-hidden scroll-smooth md:w-[60vw]"
+          className="flex h-max overflow-hidden scroll-smooth md:w-[66vw]"
         >
           <TodayAni calendar={calendar} />
           <Scroll />
         </div>
       </div>
-      <div>
+      <div className=''>
         <RandomSubjects rPromise={rPromise} />
       </div>
     </div>

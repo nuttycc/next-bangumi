@@ -48,9 +48,9 @@ export default function AniCalenderOnDesk({ data }) {
         >
           {obj.weekday.cn}
         </div>
-        <div className="relative w-max">
+        <div className="relative ">
           <div
-            className={`${styles.CardList} flex w-[80vw] flex-col scroll-smooth md:flex-row md:overflow-x-scroll`}
+            className={`${styles.CardList} flex w-[66vw] flex-col scroll-smooth md:flex-row md:overflow-x-scroll`}
           >
             {CardList}
             <Scroll />
@@ -65,11 +65,11 @@ export default function AniCalenderOnDesk({ data }) {
     <>
       {/* 桌面端 */}
       <div className="hidden md:block">
-        <div>
-          <span className="mr-2 text-[1.2rem]">每日放送</span>
+        <div className='border-b mb-2 '>
+          <span className="mr-2 text-[1.2rem] ">每日放送</span>
           <DateComponent />
         </div>
-        <hr className="mb-2"></hr>
+
         <div>{calendar}</div>
       </div>
     </>
