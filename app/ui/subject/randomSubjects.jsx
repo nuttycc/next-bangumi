@@ -31,8 +31,10 @@ export default function RandomSubjects({ rPromise }) {
           <a href={`/subject/${v.id}`} className="text-link mb-1 block">
             {x.value.name_cn || x.value.name}
           </a>
-          <div>{v.platform || '--'}</div>
-          <div>{v.date || '--'}</div>
+          <div className="text-sm">
+            <div>{v.platform || '--'}</div>
+            <div>{v.date || '--'}</div>
+          </div>
         </div>
       </div>
     );

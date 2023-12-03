@@ -3,7 +3,8 @@
 ## 问题
 
 - [ ] dark mode: Warning: Prop `className` did not match?
-- [ ] `onChange` 改变值时立即触发， 而不是失去焦点时？
+- [x] `onChange` 改变值时立即触发， 而不是失去焦点时？
+      - react 合成事件，并不一定对应原生事件。
 - [x] Error: fetch failed ？
       - API 使用错误，默认 UA 会被禁止。
       - 一直没发现，因为错误处理机制没写好，太模糊。完善了下错误处理，立即就看见原因了。

@@ -5,6 +5,8 @@ import clsx from 'clsx';
 
 
 export default function AniCalender({ data }) {
+
+  console.log('🕑client inner ' + new Date().toLocaleString());
   
   const [today, setToday] = useState(
     () => {

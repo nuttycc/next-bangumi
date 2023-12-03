@@ -8,7 +8,7 @@ export default function DateComponent() {
   let time, day
   if (date) {
     time = date.toLocaleDateString()
-    day = week[date.getDay() - 1];
+    day = week[date.getDay() === 0 ? 6 : date.getDay() - 1];
   }
   useEffect(() => {
     setDate(new Date())

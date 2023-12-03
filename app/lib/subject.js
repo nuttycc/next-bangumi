@@ -5,19 +5,29 @@ export async function getCalendar() {
     'User-Agent':
       'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
   });
-  try {
-    const res = await fetch('https://api.bgm.tv/calendar');
 
-    if (!res.ok) {
-      const errorMessage = await res.text();
+  try {
+    const url = 'https://api.bgm.tv/calendar';
+    const options = {
+      headers,
+      // next: { revalidate: 60000000 },
+    };
+
+    console.log('🕑 获取日历数据开始:' + new Date().toLocaleString());
+
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
       throw new Error(
-        `Failed to fetch: ${res.status}, ${res.statusText}. ${errorMessage}`,
+        `❌ Failed to fetch: ${response.status}, ${response.statusText}. ${errorMessage}`,
       );
     }
 
-    return res.json();
+    console.log('🕛 获取日历数据结束:' + new Date().toLocaleString());
+    return response.json();
   } catch (error) {
-    console.error('Error in getCalendar: ', error);
+    console.error('❌ Failed to get calendar,', error);
     throw error;
   }
 }
@@ -26,6 +36,7 @@ export async function getSubject(id) {
   const path = `/subjects/${id}`;
   const data = await getInfoByPath(path);
   return data;
+
 }
 
 export async function getPersons(id) {

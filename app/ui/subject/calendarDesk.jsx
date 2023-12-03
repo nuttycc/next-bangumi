@@ -4,8 +4,10 @@ import AniCard from './card';
 import DateComponent from './dateComponent';
 import Scroll from '../scroll';
 
-
 export default function AniCalenderOnDesk({ data }) {
+
+  console.log('🕑server inner ' + new Date().toLocaleString());
+
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 

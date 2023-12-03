@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import loadingPic from 'public/info_only.png';
 export default function TodayAni({ calendar }) {
   const [today, setToday] = useState(-1)
 
@@ -19,7 +19,7 @@ export default function TodayAni({ calendar }) {
       <div key={i}>
         <div className="w-[90px]">
           <Image
-            src="/info_only.png"
+            src={loadingPic}
             alt="loading"
             width={90}
             height={140}
