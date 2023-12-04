@@ -8,7 +8,7 @@ const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, '-');
 
 export default function Filter() {
   const params = useSearchParams();
-  const pathname = usePathname()
+  const pathname = usePathname();
   const from = params.get('from');
   const to = params.get('to');
 
@@ -21,7 +21,9 @@ export default function Filter() {
           href={`./rank?from=${toYear}-01&to=${toYear}-12`}
           key={i}
           className={clsx('bgmtv-btn', {
-            '!text-rose-400 !border-rose-400': params.get('from') === `${toYear}-01` && params.get('to') === `${toYear}-12`
+            '!border-rose-400 !text-rose-400':
+              params.get('from') === `${toYear}-01` &&
+              params.get('to') === `${toYear}-12`,
           })}
         >
           {toYear}
@@ -96,14 +98,16 @@ export default function Filter() {
               min={1000}
               max={9999}
               list="years"
-              className="w-[3em] appearance-none border border-gray-500 px-1 pl-1 outline-none dark:bg-black dark:caret-pink-600 focus:border-rose-400"
+              className="w-[3em] appearance-none border border-gray-500 px-1 pl-1 outline-none focus:border-rose-400 dark:bg-black dark:caret-pink-600"
               placeholder=""
               onChange={(e) => debounced(e)}
             />
             <label
               htmlFor="any"
               className="ml-1 text-gray-600 dark:text-gray-400"
-            >年</label>
+            >
+              年
+            </label>
           </div>
         </div>
 

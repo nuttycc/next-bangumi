@@ -36,7 +36,6 @@ export async function getSubject(id) {
   const path = `/subjects/${id}`;
   const data = await getInfoByPath(path);
   return data;
-
 }
 
 export async function getPersons(id) {
@@ -127,9 +126,14 @@ export async function searchSubjectsBy(
   }
 }
 
-
-export async function searchByKeywords(keywords, type=2, resonseGroup='small', start=0, max_results=25) {
-  const encodedKeywords = encodeURIComponent(keywords)
+export async function searchByKeywords(
+  keywords,
+  type = 2,
+  resonseGroup = 'small',
+  start = 0,
+  max_results = 25,
+) {
+  const encodedKeywords = encodeURIComponent(keywords);
   const headers = new Headers({
     'User-Agent':
       'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
@@ -137,7 +141,7 @@ export async function searchByKeywords(keywords, type=2, resonseGroup='small', s
   try {
     const res = await fetch(
       `https://api.bgm.tv/search/subject/${encodedKeywords}?type=${type}&responseGroup=${resonseGroup}&start=${start}&max_results=${max_results}`,
-      {headers}
+      { headers },
     );
 
     if (!res.ok) {

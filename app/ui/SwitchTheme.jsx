@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
-
 export default function ChangeTheme() {
   const [show, setShow] = useState(false);
   const [theme, setTheme] = useState('system');
@@ -21,10 +20,12 @@ export default function ChangeTheme() {
   }, []);
 
   useEffect(() => {
-
     const handleClick = function (e) {
-      if (e.target.classList.contains('switch-theme') || e.target.parentElement.classList.contains('switch-theme')) {
-        return
+      if (
+        e.target.classList.contains('switch-theme') ||
+        e.target.parentElement.classList.contains('switch-theme')
+      ) {
+        return;
       }
       setShow(false);
     };

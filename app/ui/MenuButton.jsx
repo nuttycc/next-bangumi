@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 //桌面端，
-export default function DDMenu({ h1, h2s }) {
+export function DDMenu({ h1, h2s }) {
   const [show, setShow] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
   const h2list = h2s.map((h2) => {
     return (
       <Link
@@ -65,18 +65,18 @@ export default function DDMenu({ h1, h2s }) {
 export function DPMenu({ h1, h2s }) {
   const [show, setShow] = useState(false);
   const pathname = usePathname();
-  
+
   const h2list = h2s.map((h2) => {
     return (
-      <a
+      <Link
         key={h2.title}
         href={h2.link}
         className={clsx('leading-6 hover:text-[#E5808E]', {
-          "!text-rose-400": pathname === h2.link
+          '!text-rose-400': pathname === h2.link,
         })}
       >
         {h2.title}
-      </a>
+      </Link>
     );
   });
 
@@ -84,10 +84,7 @@ export function DPMenu({ h1, h2s }) {
     <div className="">
       {/* 标题 */}
       <button
-        className={clsx('flex w-[8rem] items-center justify-between border', {
-          '': show,
-          '': !show,
-        })}
+        className="flex w-[8rem] items-center justify-between border"
         onClick={() => setShow(!show)}
       >
         <span className="">{h1}</span>

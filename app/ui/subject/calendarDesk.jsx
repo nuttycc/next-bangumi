@@ -1,11 +1,10 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 import styles from './subject.module.css';
-import AniCard from './card';
 import DateComponent from './dateComponent';
-import Scroll from '../scroll';
-
+import ScrollButton from '../ScrollButton';
+import loadingPic from 'public/neutral-face-flatline.svg';
 export default function AniCalenderOnDesk({ data }) {
-
   console.log('🕑server inner ' + new Date().toLocaleString());
 
   const date = new Date();
@@ -55,7 +54,7 @@ export default function AniCalenderOnDesk({ data }) {
             className={`${styles.CardList} flex w-[66vw] flex-col scroll-smooth md:flex-row md:overflow-x-scroll`}
           >
             {CardList}
-            <Scroll />
+            <ScrollButton />
           </div>
         </div>
       </div>
@@ -67,13 +66,39 @@ export default function AniCalenderOnDesk({ data }) {
     <>
       {/* 桌面端 */}
       <div className="hidden md:block">
-        <div className='border-b mb-2 '>
+        <div className="mb-2 border-b ">
           <span className="mr-2 text-[1.2rem] ">每日放送</span>
           <DateComponent />
         </div>
 
         <div>{calendar}</div>
       </div>
+    </>
+  );
+}
+
+// 单张卡片
+export function AniCard({ title, src, id }) {
+  return (
+    <>
+      <a
+        href={`/subject/${id}`}
+        title={title}
+        className="relative mb-[1px] w-[100px] rounded-sm border md:block"
+      >
+        <div className="relative block p-2 md:h-[150px] md:w-[100px]">
+          <Image
+            className="hidden border border-gray-400 md:block"
+            src={src || loadingPic}
+            alt={title}
+            fill
+            sizes="10vw"
+          />
+          <div className="absolute bottom-0 left-0 overflow-hidden text-ellipsis whitespace-nowrap bg-[#2d2e2f] px-1  pt-1 text-[0.65rem] text-gray-300  md:w-full ">
+            {title}
+          </div>
+        </div>
+      </a>
     </>
   );
 }

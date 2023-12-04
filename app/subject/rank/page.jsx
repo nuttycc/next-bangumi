@@ -4,6 +4,9 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import Pagination from '@/app/ui/subject/pagination';
 
+export const metadata = {
+  title: 'Rank',
+};
 
 export default async function Rank({ searchParams }) {
   let pageValue = searchParams.page || 1;
@@ -57,7 +60,7 @@ export default async function Rank({ searchParams }) {
             </em>
             <a
               href={`/subject/${x.id}`}
-              className="text-[0.88rem] text-blue-500 font-semibold hover:border-b hover:border-b-indigo-700"
+              className="text-[0.88rem] font-semibold text-blue-500 hover:border-b hover:border-b-indigo-700"
             >
               {x.name_cn || x.name}
             </a>

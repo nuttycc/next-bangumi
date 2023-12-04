@@ -1,19 +1,18 @@
 'use client';
 
-import Image from 'next/image';
-import logo from '@/public/logo.png';
-import avatar from '@/public/avatar.jpeg';
-import DDMenu, { DPMenu } from './ddmenu';
-import clsx from 'clsx';
 import { useState } from 'react';
-import ChangeTheme from './theme';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Search from './search';
+import Link from 'next/link';
+import Image from 'next/image';
+import clsx from 'clsx';
+import logo from '@/public/logo.png';
+import { DPMenu } from './MenuButton';
+import SwitchTheme from './SwitchTheme';
+import SearchBox from './SearchBox';
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
   const aniMenu = [
     { title: '排行榜', link: '/subject/rank' },
     { title: '每日放送', link: '/subject/calendar' },
@@ -26,7 +25,7 @@ export default function TopNav() {
   return (
     <>
       {/* 移动端 */}
-      <nav className="fixed top-0 z-50 h-12 w-[100vw] border-b bg-white px-2 py-2  dark:bg-black md:hidden">
+      <nav className="fixed top-0 z-50 h-12 w-[100vw] border-b bg-white px-2 py-2 dark:bg-black md:hidden">
         <div className="flex">
           <a href="/">
             <Image src={logo} alt="logo" priority />
@@ -36,7 +35,7 @@ export default function TopNav() {
 
           {/* 搜索框 */}
           <div className="flex items-center justify-center px-1">
-          <Search />
+            <SearchBox />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.5em"
@@ -88,7 +87,7 @@ export default function TopNav() {
       >
         <DPMenu h1={'动画'} h2s={aniMenu} />
         <DPMenu h1={'关于'} h2s={about} />
-        <ChangeTheme />
+        <SwitchTheme />
       </div>
 
       {/* 桌面端 */}
@@ -97,7 +96,6 @@ export default function TopNav() {
           <Image src={logo} alt="logo" />
         </a>
 
-        {/* <DDMenu h1={"动画"} h2s={aniMenu} /> */}
         <ul className="flex gap-4 text-sm dark:text-gray-300">
           <li>
             <Link
@@ -122,11 +120,11 @@ export default function TopNav() {
         </ul>
 
         <span className="grow"></span>
-        <div className='mr-20'>
-          <Search />
+        <div className="mr-20">
+          <SearchBox />
         </div>
 
-        <ChangeTheme />
+        <SwitchTheme />
 
         {/* 
         <a href="#" className="w-9 hover:contrast-50">

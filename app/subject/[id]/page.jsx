@@ -85,7 +85,7 @@ export default async function Page({ params }) {
           alt={name_cn}
           width={80}
           height={90}
-          className="w-[60px] h-[90px] mr-1 border border-black object-cover object-top dark:border-gray-200"
+          className="mr-1 h-[90px] w-[60px] border border-black object-cover object-top dark:border-gray-200"
         />
         <div>
           <div className="mb-1">
@@ -94,7 +94,7 @@ export default async function Page({ params }) {
               {name_cn}
             </a>
           </div>
-          <div className='text-sm'>{actorsList}</div>
+          <div className="text-sm">{actorsList}</div>
         </div>
       </div>
     );

@@ -73,14 +73,14 @@ export default async function Character({ params }) {
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div className="">
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Image
             src={details.images.medium}
             alt={details.name}
             priority
             width={200}
             height={363}
-            className='object-cover object-top'
+            className="object-cover object-top"
           />
         </div>
         <div className="mt-2 text-[0.78rem] leading-5">{infobox}</div>

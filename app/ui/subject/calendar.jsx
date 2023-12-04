@@ -3,25 +3,21 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
-
 export default function AniCalender({ data }) {
-
   console.log('🕑client inner ' + new Date().toLocaleString());
-  
-  const [today, setToday] = useState(
-    () => {
-      const date = new Date();
-      return date.getDay() === 0 ? 6 : date.getDay() - 1
-    }
-  );
+
+  const [today, setToday] = useState(() => {
+    const date = new Date();
+    return date.getDay() === 0 ? 6 : date.getDay() - 1;
+  });
 
   useEffect(() => {
     setToday(() => {
       const date = new Date();
       return date.getDay() === 0 ? 6 : date.getDay() - 1;
     });
-  }, [])
-  
+  }, []);
+
   const CardList = data[today]?.items.map((item) => {
     return (
       <li

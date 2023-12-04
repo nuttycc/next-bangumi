@@ -1,19 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-'use client'
-import { getSubject } from "@/app/lib/subject";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+'use client';
 
+import { getSubject } from '@/app/lib/subject';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-export default function RandomSubjects({ rPromise }) {
+export default function RandomSubjects({ subjectPromises }) {
+  const [result, setResult] = useState(subjectPromises);
 
-  const [result, setResult] = useState(rPromise)
-
-  useEffect(() => {
-    flush()
-  }, [])
-  
-  const randomList =  result.map((x, i) => {
+  const randomList = result.map((x, i) => {
     if (x.status === 'rejected') return;
     const v = x.value;
     return (
@@ -39,30 +34,35 @@ export default function RandomSubjects({ rPromise }) {
       </div>
     );
   });
-  
-  
+
   async function flush() {
     const randomIds = Array(10)
       .fill(0)
       .map((x, i) => Math.floor(Math.random() * 10000));
 
-    Promise.allSettled(randomIds.map(id => {
-      return getSubject(id)
-    })).then((v) => {
-      setResult(v)
-    })
+    Promise.allSettled(
+      randomIds.map((id) => {
+        return getSubject(id);
+      }),
+    ).then((v) => {
+      setResult(v);
+    });
   }
-  
+
   return (
     <div>
-      <h2 className="text-lg mb-1">
+      <h2 className="mb-1 text-lg">
         随机条目
-        <button type="button" onClick={flush} className="ml-2 text-sm border px-1">
+        <button
+          type="button"
+          onClick={flush}
+          className="ml-2 border px-1 text-sm"
+        >
           刷新
         </button>
       </h2>
 
-      <div className="grid-cols-2 md:grid">{randomList}</div>
+      <div className="grid-cols-2 text-base md:grid">{randomList}</div>
     </div>
   );
 }
