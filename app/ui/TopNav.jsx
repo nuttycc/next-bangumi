@@ -10,6 +10,8 @@ import SwitchTheme from '../SwitchTheme';
 import SearchBox from '../SearchBox';
 
 export default function TopNav() {
+
+  
   const [show, setShow] = useState(false);
   const pathname = usePathname();
   const aniMenu = [

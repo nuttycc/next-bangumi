@@ -1,19 +1,20 @@
 import { getCalendar, getSubject } from './lib/subject';
 import Image from 'next/image';
 import ScrollButton from './ui/ScrollButton';
-import RandomSubjects from './ui/subject/RamSubjects';
+import RandomSubjects from './ui/subject/RandomSs';
 
-export const revalidate = 3600;
+// export const revalidate = 10;
 
 export const metadata = {
   title: 'Home | Next Bangumi',
 };
 
-console.log(`🚩 outside exec ${new Date().toLocaleString()}`)
+console.log(`🟦 home server outer ${new Date().toLocaleString()}`);
 
 export default async function Page() {
 
-  console.log(`🟦 server inner exec ${new Date().toLocaleString()}`);
+  console.log(`🟦 home server inner ${new Date().toLocaleString()}`);
+
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 

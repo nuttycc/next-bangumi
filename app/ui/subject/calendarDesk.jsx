@@ -5,7 +5,8 @@ import DateComponent from './dateComponent';
 import ScrollButton from '../ScrollButton';
 import loadingPic from 'public/neutral-face-flatline.svg';
 export default function AniCalenderOnDesk({ data }) {
-  console.log('🕑server inner ' + new Date().toLocaleString());
+  
+  // console.log('🕑server inner ' + new Date().toLocaleString());
 
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
