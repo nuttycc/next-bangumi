@@ -13,7 +13,6 @@ export default async function Page() {
 
   const data = await getCalendar();
 
-  console.log(`😒😒😒😒`);
   return (
     <>
       <AniCalender data={data} />

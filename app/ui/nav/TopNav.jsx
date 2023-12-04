@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
 import logo from '@/public/logo.png';
-import SwitchTheme from './SwitchTheme';
-import SearchBox from './SearchBox';
+import SwitchTheme from '../SwitchTheme';
+import SearchBox from '../SearchBox';
 
 export default function TopNav() {
   const [show, setShow] = useState(false);
@@ -137,7 +137,6 @@ export default function TopNav() {
     </>
   );
 }
-
 
 // 移动端，
 export function DPMenu({ h1, h2s }) {

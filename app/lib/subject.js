@@ -13,7 +13,7 @@ export async function getCalendar() {
       // next: { revalidate: 60000000 },
     };
 
-    console.log('🕑 获取日历数据开始:' + new Date().toLocaleString());
+    console.log('🔥🚩 获取日历数据开始:' + new Date().toLocaleString());
 
     const response = await fetch(url, options);
 
@@ -24,7 +24,7 @@ export async function getCalendar() {
       );
     }
 
-    console.log('🕛 获取日历数据结束:' + new Date().toLocaleString());
+    console.log('🔥☑️ 获取日历数据完成:' + new Date().toLocaleString());
     return response.json();
   } catch (error) {
     console.error('❌ Failed to get calendar,', error);

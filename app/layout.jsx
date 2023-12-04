@@ -1,5 +1,5 @@
 import './ui/globals.css';
-import TopNav from './ui/TopNav';
+import TopNav from './ui/nav/TopNav';
 import localFont from 'next/font/local';
 
 const lxgw = localFont({
