@@ -20,11 +20,12 @@ export async function getCalendar() {
     if (!response.ok) {
       const errorMessage = await response.text();
       throw new Error(
-        `❌ Failed to fetch: ${response.status}, ${response.statusText}. ${errorMessage}`,
+        `❌ Failed to get calendar: ${response.status}, ${response.statusText}. ${errorMessage}`,
       );
     }
 
     console.log('🔥☑️ 获取日历数据完成:' + new Date().toLocaleString());
+    
     return response.json();
   } catch (error) {
     console.error('❌ Failed to get calendar,', error);

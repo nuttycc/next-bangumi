@@ -2,8 +2,7 @@
 'use client';
 
 import { getSubject } from '@/app/lib/subject';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function RandomSubjects({ subjectPromises }) {
   const [result, setResult] = useState(subjectPromises);

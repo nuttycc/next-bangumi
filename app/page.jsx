@@ -1,7 +1,7 @@
 import { getCalendar, getSubject } from './lib/subject';
 import Image from 'next/image';
 import ScrollButton from './ui/ScrollButton';
-import RandomSubjects from './ui/subject/RandomSubjects';
+import RandomSubjects from './ui/subject/RamSubjects';
 
 export const revalidate = 3600;
 
