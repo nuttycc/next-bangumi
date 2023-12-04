@@ -9,6 +9,8 @@ export const metadata = {
   title: 'Home | Next Bangumi',
 };
 
+console.log(`😁 outside ${new Date().toLocaleString()}`)
+
 export default async function Page() {
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
