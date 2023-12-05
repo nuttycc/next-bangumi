@@ -10,7 +10,7 @@ export const metadata = {
 
 export default async function Page() {
 
-  console.log(`🟦 calendar server inner ${new Date().toLocaleString()}`);
+  // console.log(`🟦 calendar server inner ${new Date().toLocaleString()}`);
 
   const data = await getCalendar();
 

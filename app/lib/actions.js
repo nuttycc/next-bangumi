@@ -2,6 +2,7 @@
 
 import { revalidateTag } from "next/cache"
 
-export default async function check() {
+
+export default async function checkTime() {
   revalidateTag('calendar')
 }

@@ -1,16 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
 import logo from '@/public/logo.png';
-import SwitchTheme from '../SwitchTheme';
-import SearchBox from '../SearchBox';
+import SwitchTheme from './SwitchTheme';
+import SearchBox from './SearchBox';
+import checkTime from '../lib/actions';
+
+
 
 export default function TopNav() {
 
+  // useEffect(() => {
+  //   if (new Date().getHours() === 22) {
+  //     console.log(`🟨🟨 check time`)
+  //     checkTime()
+  //   }
+  // }, [])
   
   const [show, setShow] = useState(false);
   const pathname = usePathname();

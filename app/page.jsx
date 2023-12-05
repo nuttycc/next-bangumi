@@ -9,7 +9,7 @@ export const metadata = {
   title: 'Home | Next Bangumi',
 };
 
-console.log(`🟦 home server outer ${new Date().toLocaleString()}`);
+// console.log(`🟦 home server outer ${new Date().toLocaleString()}`);
 
 export default async function Page() {
 
