@@ -8,8 +8,6 @@ import clsx from 'clsx';
 import logo from '@/public/logo.png';
 import SwitchTheme from './SwitchTheme';
 import SearchBox from './SearchBox';
-import checkTime from '../lib/actions';
-
 
 
 export default function TopNav() {
@@ -59,19 +57,19 @@ export default function TopNav() {
           >
             <div
               className={clsx(
-                'h-[2px] w-1/2 bg-black transition dark:bg-gray-300',
+                'h-[2px] w-1/2 bg-slate-600 transition dark:bg-gray-300',
                 { 'absolute rotate-[405deg]': show },
               )}
             ></div>
             <div
               className={clsx(
-                'my-1 h-[2px] w-1/2 bg-black transition dark:bg-gray-300',
+                'my-1 h-[2px] w-1/2 bg-slate-600 transition dark:bg-gray-300',
                 { hidden: show },
               )}
             ></div>
             <div
               className={clsx(
-                'h-[2px] w-1/2 bg-black transition dark:bg-gray-300',
+                'h-[2px] w-1/2 bg-slate-600 transition dark:bg-gray-300',
                 { 'absolute -rotate-[405deg]': show },
               )}
             ></div>
@@ -87,9 +85,35 @@ export default function TopNav() {
             hidden: !show,
           },
         )}
+        onClick={(e) => {
+          if (e.target.classList.contains('h2-box')) {
+            setShow(false);
+          }
+        }}
       >
-        <DPMenu h1={'动画'} h2s={aniMenu} />
-        <DPMenu h1={'关于'} h2s={about} />
+        <DPMenu h1={'动画'} h2s={aniMenu} open={show} />
+        <DPMenu h1={'关于'} h2s={about} open={show} />
+        <a
+          href="https://github.com/nuttycc/next-bangumi"
+          target="_blank"
+          className="flex w-[8rem] items-center justify-between border"
+          onClick={() => setShow(false)}
+        >
+          <span className="px-1">github</span>
+          <span className="mr-[1px]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.02em"
+              height="1em"
+              viewBox="0 0 1024 1007"
+            >
+              <path
+                fill="currentColor"
+                d="M639 1007q0-1 .5-3.5t.5-4.5q0-85-19.5-171T566 701q130-11 198-76.5T832 455q0-91-64-140v-91q0-11-11-21.5T736 192q-12 0-119 70q-47-6-105-6q-57 0-105 6q-107-70-119-70q-10 0-21 11t-11 21q0 9-2 44t-3 51q-59 48-59 136q0 104 68 169.5T458 701q-5 7-14 20q-43 47-124 47q-16 0-32-13.5t-31.5-32T224 685t-42-32t-54-13q0 8 9.5 20t26.5 33t28 43q26 50 54 73t74 23q48 0 87-14q-23 88-23 181v4l1 4q-168-43-276.5-180.5T0 512q0-105 40.5-199.5t109-163T313 40.5T512 0t199 40.5t163.5 109t109 163T1024 512q0 177-108.5 314.5T639 1007z"
+              />
+            </svg>
+          </span>
+        </a>
         <SwitchTheme />
       </div>
 
@@ -128,6 +152,20 @@ export default function TopNav() {
         </div>
 
         <SwitchTheme />
+        
+        <a href="https://github.com/nuttycc/next-bangumi" title='github' className="mx-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.2rem"
+            height="1.2rem"
+            viewBox="0 0 1024 1007"
+          >
+            <path
+              fill="currentColor"
+              d="M639 1007q0-1 .5-3.5t.5-4.5q0-85-19.5-171T566 701q130-11 198-76.5T832 455q0-91-64-140v-91q0-11-11-21.5T736 192q-12 0-119 70q-47-6-105-6q-57 0-105 6q-107-70-119-70q-10 0-21 11t-11 21q0 9-2 44t-3 51q-59 48-59 136q0 104 68 169.5T458 701q-5 7-14 20q-43 47-124 47q-16 0-32-13.5t-31.5-32T224 685t-42-32t-54-13q0 8 9.5 20t26.5 33t28 43q26 50 54 73t74 23q48 0 87-14q-23 88-23 181v4l1 4q-168-43-276.5-180.5T0 512q0-105 40.5-199.5t109-163T313 40.5T512 0t199 40.5t163.5 109t109 163T1024 512q0 177-108.5 314.5T639 1007z"
+            />
+          </svg>
+        </a>
 
         {/* 
         <a href="#" className="w-9 hover:contrast-50">
@@ -143,16 +181,20 @@ export default function TopNav() {
 }
 
 // 移动端，
-export function DPMenu({ h1, h2s }) {
+export function DPMenu({ h1, h2s, open }) {
   const [show, setShow] = useState(false);
   const pathname = usePathname();
-
+  useEffect(() => {
+    if (!open) {
+      setShow(false)
+    }
+  }, [open])
   const h2list = h2s.map((h2) => {
     return (
       <Link
         key={h2.title}
         href={h2.link}
-        className={clsx('leading-6 hover:text-[#E5808E]', {
+        className={clsx('h2-box leading-6 hover:text-[#E5808E]', {
           '!text-rose-400': pathname === h2.link,
         })}
       >
@@ -165,7 +207,7 @@ export function DPMenu({ h1, h2s }) {
     <div className="">
       {/* 标题 */}
       <button
-        className="flex w-[8rem] items-center justify-between border"
+        className="flex w-[8rem] px-1 items-center justify-between border"
         onClick={() => setShow(!show)}
       >
         <span className="">{h1}</span>
@@ -181,14 +223,14 @@ export function DPMenu({ h1, h2s }) {
       </button>
 
       {/* 菜单项 */}
-      <div
+      <button
         className={clsx('flex flex-col px-2 py-2 ', {
           hidden: !show,
           block: show,
         })}
       >
         {h2list}
-      </div>
+      </button>
     </div>
   );
 }

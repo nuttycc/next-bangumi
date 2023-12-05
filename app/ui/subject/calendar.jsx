@@ -51,12 +51,13 @@ export default function AniCalender({ data }) {
   return (
     <>
       {/* 移动端 */}
-      <div className="shadow-[1px_2px_5px_1px_rgba(155,155,155, 0.5)] m-2 border border-sky-600 md:hidden">
-        <div className="flex">{weekdays}</div>
+      <div className="shadow-[1px_2px_5px_1px_rgba(155,155,155, 0.5)] m-2 p-1 border border-sky-600 md:hidden">
+        <div className="flex mb-2">{weekdays}</div>
         <ol className="" style={{ counterReset: 'listCounter' }}>
           {CardList}
         </ol>
       </div>
+
     </>
   );
 }

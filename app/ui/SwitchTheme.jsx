@@ -71,10 +71,11 @@ export default function ChangeTheme() {
       <div className="relative top-[4px]">
         <button
           type="button"
+          title='切换主题'
           className="switch-theme flex w-[8rem] justify-between border md:inline md:w-auto md:border-0"
           onClick={() => setShow(!show)}
         >
-          <span className="md:hidden">切换主题</span>
+          <span className="md:hidden px-1">切换主题</span>
           <span className={clsx({"hidden": theme !== 'light'})}>
             <svg
               viewBox="0 0 24 24"
