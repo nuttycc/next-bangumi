@@ -1,7 +1,7 @@
 import { getCalendar, getSubject } from './lib/subject';
 import Image from 'next/image';
 import ScrollButton from './ui/ScrollButton';
-import RandomSubjects from './ui/subject/RandomSs';
+import RandomSubjects from './ui/subject/RandomSubjects';
 
 // export const revalidate = 10;
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 export default async function Page() {
 
-  console.log(`🟦 home server inner ${new Date().toLocaleString()}`);
+  // console.log(`🟦 home server inner ${new Date().toLocaleString()}`);
 
   const date = new Date();
   const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
@@ -32,7 +32,7 @@ export default async function Page() {
 
   const todayList = calendar[today].items.map((x) => {
     return (
-      <div key={x.id} className="w-[90px]">
+      <div key={x.id} className="max-w-[90px]">
         <div className="relative h-[140px] w-[90px]">
           <Image
             src={x.images.common}

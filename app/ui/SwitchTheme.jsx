@@ -39,7 +39,7 @@ export default function ChangeTheme() {
     };
   }, [show]);
 
-  function handleSelect(e) {
+  function handleSwitch(e) {
     const x = e.target.id;
 
     if (localStorage.getItem('theme') === x) {
@@ -75,7 +75,7 @@ export default function ChangeTheme() {
           onClick={() => setShow(!show)}
         >
           <span className="md:hidden">切换主题</span>
-          <span className="dark:hidden">
+          <span className={clsx({"hidden": theme !== 'light'})}>
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -94,7 +94,7 @@ export default function ChangeTheme() {
               ></path>
             </svg>
           </span>
-          <span className="hidden dark:inline">
+          <span className={clsx({"hidden": theme !== 'dark'})}>
             <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
               <path
                 fillRule="evenodd"
@@ -114,13 +114,37 @@ export default function ChangeTheme() {
               ></path>
             </svg>
           </span>
+
+          <span className={clsx({"hidden": theme !== 'system'})}>
+            <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+              <path
+                d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"
+                strokeWidth="2"
+                strokeLinejoin="round"
+                className={clsx({
+                  'fill-slate-400 dark:fill-slate-500': theme !== 'system',
+                  'fill-sky-400/20 stroke-sky-500': theme === 'system',
+                })}
+              ></path>
+              <path
+                d="M14 15c0 3 2 5 2 5H8s2-2 2-5"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={clsx({
+                  'fill-slate-400 dark:fill-slate-500': theme !== 'system',
+                  'stroke-sky-500': theme === 'system',
+                })}
+              ></path>
+            </svg>
+          </span>
         </button>
         <ul
           className={clsx(
             '-right-2 w-[8rem] py-1 text-sm font-semibold md:absolute md:z-50 md:w-36 md:rounded-lg md:bg-white md:text-slate-700  md:dark:bg-slate-800 md:dark:text-slate-300 ',
             { hidden: !show, block: show },
           )}
-          onClick={(e) => handleSelect(e)}
+          onClick={(e) => handleSwitch(e)}
         >
           <li
             className={clsx(

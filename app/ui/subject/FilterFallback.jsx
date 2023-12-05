@@ -1,69 +1,23 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
-import { useDebouncedCallback } from 'use-debounce';
-import clsx from 'clsx';
 
 
-export default function Filter() {
+export default function FilterFallback() {
 
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const curYearMonth = `${year}-${month}`;
-
-  const params = useSearchParams();
-  const from = params.get('from');
-  const to = params.get('to');
-
+    const date = new Date();
+    const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, '-');
+    const from = null;
+    const to = null;
+  
   const YearList = Array(5)
     .fill(0)
     .map((x, i) => {
+      const date = new Date();
       let toYear = date.getFullYear() - i;
       return (
-        <a
-          href={`./rank?from=${toYear}-01&to=${toYear}-12`}
-          key={i}
-          className={clsx('bgmtv-btn', {
-            '!border-rose-400 !text-rose-400':
-              params.get('from') === `${toYear}-01` &&
-              params.get('to') === `${toYear}-12`,
-          })}
-        >
+        <a href="" key={i} className="bgmtv-btn">
           {toYear}
         </a>
       );
     });
-
-  function handleChange(e) {
-    const url = new URL(window.location);
-    const params = new URLSearchParams(url.search);
-    if (e.target.id === 'from') {
-      params.set('from', e.target.value);
-    } else {
-      params.set('to', e.target.value);
-    }
-    const newUrl = `${window.location.origin}${
-      window.location.pathname
-    }?${params.toString()}`;
-    location.assign(newUrl);
-  }
-
-  const debounced = useDebouncedCallback((e) => handleAnyVal(e), 500);
-
-  function handleAnyVal(e) {
-    if (e.target.value <= 1000 || e.target.value > 9999) {
-      return;
-    }
-    const url = new URL(window.location);
-    const params = new URLSearchParams(url.search);
-    params.set('from', e.target.value + '-01');
-    params.set('to', e.target.value + '-12');
-    const newUrl = `${window.location.origin}${
-      window.location.pathname
-    }?${params.toString()}`;
-    location.assign(newUrl);
-  }
 
   return (
     <div className="text-sm antialiased">
@@ -104,7 +58,6 @@ export default function Filter() {
               list="years"
               className="w-[3em] appearance-none border border-gray-500 px-1 pl-1 outline-none focus:border-rose-400 dark:bg-black dark:caret-pink-600"
               placeholder=""
-              onChange={(e) => debounced(e)}
             />
             <label
               htmlFor="any"
@@ -116,23 +69,23 @@ export default function Filter() {
         </div>
 
         {/* 高级搜索 */}
-        <div onChange={(e) => handleChange(e)} className="py-1">
+        <div  className="py-1">
           <label htmlFor="from">指定区间：</label>
           <input
             type="month"
             id="from"
             defaultValue={from || '1999-01'}
             min={'1990-01'}
-            max={curYearMonth}
+            max={today}
             className="dark:bg-gray-400 dark:text-blue-800"
           />
           <label htmlFor="to">--</label>
           <input
             type="month"
             id="to"
-            defaultValue={to || curYearMonth}
+            defaultValue={to || today}
             min={'1990-01'}
-            max={curYearMonth}
+            max={today}
             className="dark:bg-gray-400 dark:text-blue-800"
           />
         </div>

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Filter from '@/app/ui/subject/filter';
+import { Suspense } from 'react';
+import FilterFallback from '@/app/ui/subject/FilterFallback';
 
 export default function loading() {
   const rankList = Array(10)
@@ -38,7 +40,9 @@ export default function loading() {
       <div className="text-lg font-semibold antialiased">动画索引</div>
       <hr className="mb-2 opacity-30 grayscale"></hr>
       <div className="border-gray-400">
-        <Filter />
+        <Suspense fallback={<FilterFallback />}>
+          <Filter />
+        </Suspense>
       </div>
       <hr className="mb-2"></hr>
       <div className="space-y-1">{rankList}</div>

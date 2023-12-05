@@ -20,20 +20,20 @@ export default function RootLayout({ children }) {
     <html lang="zh-CN" className={lxgw.className} suppressHydrationWarning>
       <body className="dark:bg-black dark:text-gray-300">
         <script
-          id="switch-theme"
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                if (typeof window !== 'undefined') {
-                  console.log('Switch theme.');
-                  if (
-                    (typeof localStorage !== 'undefined' && localStorage.theme === 'dark') ||
-                    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-                  ) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
+                console.log('Switch theme.');
+                if (
+                  (localStorage.theme === 'dark') ||
+                  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                ) {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.style.colorScheme = 'dark';
+
+                } else {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.style.colorScheme = 'light';
                 }
               } catch (error) {
                 console.error('Error switching theme:', error);

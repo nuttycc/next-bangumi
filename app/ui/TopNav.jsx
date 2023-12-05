@@ -13,13 +13,6 @@ import checkTime from '../lib/actions';
 
 
 export default function TopNav() {
-
-  // useEffect(() => {
-  //   if (new Date().getHours() === 22) {
-  //     console.log(`🟨🟨 check time`)
-  //     checkTime()
-  //   }
-  // }, [])
   
   const [show, setShow] = useState(false);
   const pathname = usePathname();
