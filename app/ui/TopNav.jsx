@@ -153,7 +153,7 @@ export default function TopNav() {
 
         <SwitchTheme />
         
-        <a href="https://github.com/nuttycc/next-bangumi" title='github' className="mx-1">
+        <a href="https://github.com/nuttycc/next-bangumi" target='_blank' title='github' className="mx-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
