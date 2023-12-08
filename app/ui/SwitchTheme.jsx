@@ -8,15 +8,25 @@ export default function ChangeTheme() {
   const [theme, setTheme] = useState('system');
 
   useEffect(() => {
+    try {
+      console.log('useEffect Switch theme.');
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)')
+            .matches)
+      ) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.style.colorScheme = 'light';
+      }
+    } catch (error) {
+      console.error('Error switching theme:', error);
+    }
     const localTheme = localStorage.getItem('theme') || 'system';
     setTheme(localTheme);
-    // if (
-    //   localTheme === 'dark' ||
-    //   (!localTheme && window.matchMedia('(prefers-color-scheme:dark)').matches)
-    // ) {
-    //   document.documentElement.classList.add('dark');
-    //   document.documentElement.style.colorScheme = 'dark';
-    // }
   }, []);
 
   useEffect(() => {

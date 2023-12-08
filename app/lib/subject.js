@@ -10,8 +10,8 @@ export async function getCalendar() {
     const url = 'https://api.bgm.tv/calendar';
     const options = {
       headers,
-      next: {revalidate: 3600}
     };
+
 
     console.log('🔥 fetch start: ' + new Date().toLocaleString());
 
@@ -25,7 +25,7 @@ export async function getCalendar() {
     }
 
     console.log('🎉 fetch end: ' + new Date().toLocaleString());
-    
+
     return response.json();
   } catch (error) {
     console.error('❌ (get calendar) ', error);

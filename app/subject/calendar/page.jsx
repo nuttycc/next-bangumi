@@ -2,7 +2,7 @@ import { getCalendar } from '../../lib/subject';
 import AniCalender from '../../ui/subject/calendar';
 import AniCalenderOnDesk from '../../ui/subject/calendarDesk';
 
-// export const revalidate = 30;
+export const revalidate = 3600;
 
 export const metadata = {
   title: 'Calendar',
