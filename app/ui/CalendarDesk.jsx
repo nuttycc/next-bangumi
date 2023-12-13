@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import styles from './subject.module.css';
-import DateComponent from './DateComponent';
-import ScrollButton from '../ScrollButton';
+import DateComponent from './subject/DateWidget';
+import ScrollButton from './ScrollButton';
 import loadingPic from 'public/neutral-face-flatline.svg';
-
 
 export default function AniCalenderOnDesk({ data }) {
   // const date = new Date();

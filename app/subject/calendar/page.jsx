@@ -1,6 +1,6 @@
 import { getCalendar } from '../../lib/subject';
 import AniCalender from '../../ui/subject/CalendarMob';
-import AniCalenderOnDesk from '../../ui/subject/CalendarDesk';
+import AniCalenderOnDesk from '../../ui/CalendarDesk';
 
 export const revalidate = 3600;
 
@@ -9,7 +9,6 @@ export const metadata = {
 };
 
 export default async function Page() {
-
   // console.log(`🟦 calendar server inner ${new Date().toLocaleString()}`);
 
   const data = await getCalendar();
