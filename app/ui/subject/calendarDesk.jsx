@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import styles from './subject.module.css';
-import DateComponent from './dateComponent';
+import DateComponent from './DateComponent';
 import ScrollButton from '../ScrollButton';
 import loadingPic from 'public/neutral-face-flatline.svg';
 

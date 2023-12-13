@@ -1,15 +1,14 @@
 import { searchSubjectsBy } from '@/app/lib/subject';
-import Filter from '@/app/ui/subject/filter';
+import Filter from '@/app/ui/subject/DefaultFilter';
 import Image from 'next/image';
 import clsx from 'clsx';
-import Pagination from '@/app/ui/subject/pagination';
+import Pagination from '@/app/ui/subject/DefaultPagination';
 import { Suspense } from 'react';
 import FilterFallback from '@/app/ui/subject/FilterFallback';
 
 export const metadata = {
   title: 'Rank',
 };
-
 
 export default async function Rank({ searchParams }) {
   let pageValue = searchParams.page || 1;
@@ -116,7 +115,7 @@ export default async function Rank({ searchParams }) {
       <div className="text-lg font-semibold antialiased">动画索引</div>
       <hr className="mb-2 opacity-30 grayscale"></hr>
       <div className="border-gray-400">
-        <Suspense fallback={<FilterFallback />} >
+        <Suspense fallback={<FilterFallback />}>
           <Filter />
         </Suspense>
       </div>

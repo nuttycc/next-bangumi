@@ -1,6 +1,6 @@
 import { getCalendar } from '../../lib/subject';
-import AniCalender from '../../ui/subject/calendar';
-import AniCalenderOnDesk from '../../ui/subject/calendarDesk';
+import AniCalender from '../../ui/subject/CalendarMob';
+import AniCalenderOnDesk from '../../ui/subject/CalendarDesk';
 
 export const revalidate = 3600;
 

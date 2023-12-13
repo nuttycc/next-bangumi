@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Filter from '@/app/ui/subject/filter';
+import Filter from '@/app/ui/subject/DefaultFilter';
 import { Suspense } from 'react';
 import FilterFallback from '@/app/ui/subject/FilterFallback';
 
