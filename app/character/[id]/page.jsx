@@ -70,16 +70,17 @@ export default async function Character({ params }) {
       </div>
     );
   });
+
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div className="">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center relative w-[200px] h-[300px] justify-center">
           <Image
             src={details.images.medium}
             alt={details.name}
             priority
-            width={200}
-            height={363}
+            fill
+            sizes="200px"
             className="object-cover object-top"
           />
         </div>
