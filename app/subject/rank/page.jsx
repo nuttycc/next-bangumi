@@ -23,7 +23,16 @@ export default async function Rank({ searchParams }) {
     nsfw: false,
   };
   const offset = 10 * (pageValue - 1);
-  const r = await searchSubjectsBy(10, offset, { filter });
+  let r;
+
+
+  r = await searchSubjectsBy(10, offset, { filter });
+
+  if(r === null) {
+    return <div>加载失败</div>
+  }
+
+
   const lastPage = Math.floor(r.total / 10);
 
   const RankList = r.data.map((x) => {
