@@ -10,7 +10,7 @@ export const metadata = {
 
 export default async function Page() {
 
-  const data = await getCalendar();
+  const data = await getCalendar() || [];
 
   return (
     <>
