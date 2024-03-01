@@ -4,6 +4,7 @@ import { getCharacterDetails as getDetails } from '@/app/lib/character';
 
 export default async function Page({ params }) {
   const id = params.id;
+  
   const [subject, characters] = await Promise.all([
     getSubject(id),
     getCharacters(id),
