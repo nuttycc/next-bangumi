@@ -128,7 +128,7 @@ export async function searchSubjectsBy(
       `https://api.bgm.tv/v0/search/subjects?limit=${limit}&offset=${offset}`,
       requestOptions,
     );
-
+      console.log(`🔵 response:`, res.status)
     if (!res.ok) {
       const errorMessage = await res.text();
       throw new Error(
