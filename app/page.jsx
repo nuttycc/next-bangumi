@@ -39,7 +39,7 @@ export default async function Page() {
       </div>
     );
   } catch (error) {
-    console.error(error);
+    console.error(`Error fetching data: ${error}`);
     // 在这里你可以选择如何处理错误，例如返回一个错误页面
     return <div>Something went wrong</div>;
   }
