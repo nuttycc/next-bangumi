@@ -6,16 +6,16 @@ import ScrollButton from '../ScrollButton';
 import loadingPic from 'public/neutral-face-flatline.svg';
 
 export default function AniCalenderOnDesk({ data }) {
-  // const date = new Date();
-  // const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 
   const calendar = data.map((obj) => {
     const CardList = obj.items.map((item) => {
+      const imgObj = item?.images || {}
+      const imgUrl = imgObj?.common || imgObj?.medium
       return (
         <div key={item.id}>
           <AniCard
             title={item['name_cn'] || item['name']}
-            src={item.images.common}
+            src={imgUrl}
             id={item.id}
           />
         </div>
