@@ -17,7 +17,7 @@ export async function getCalendar() {
     if (!response.ok) {
       const errorMessage = await response.text();
       throw new Error(
-        `❌ (response): ${response.status}, ${response.statusText}. ${errorMessage}`,
+        `❌ ~(response)~: ${response.status}, ${response.statusText}. ${errorMessage}`,
       );
     }
     return response.json();

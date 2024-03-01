@@ -13,6 +13,6 @@ export async function getInfoByPath(path) {
     }
     return res.json();
   } catch (error) {
-    throw error;
+    console.error(`❌ ~[getInfoByPath]~`, error);
   }
 }
