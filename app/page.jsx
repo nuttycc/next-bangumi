@@ -19,7 +19,7 @@ export default async function Page() {
     random.map((x) => {
       return getSubject(x);
     }),
-  );
+  ) || null;
 
   const calendar = await getCalendar() || [];
 
