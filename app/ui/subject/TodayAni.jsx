@@ -13,7 +13,7 @@ export default function TodayAni({ calendar }) {
     const date = new Date();
     const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
 
-    const t = calendar[today].items.map((x) => {
+    const t = calendar[today]?.items.map((x) => {
       return (
         <div key={x.id} className="max-w-[90px]">
           <div className="relative h-[140px] w-[90px]">
