@@ -12,49 +12,63 @@ export async function getCalendar() {
       headers,
     };
 
-
-    console.log('🔥 fetch start: ' + new Date().toLocaleString());
-
     const response = await fetch(url, options);
 
     if (!response.ok) {
       const errorMessage = await response.text();
       throw new Error(
-        `❌ (response): ${response.status}, ${response.statusText}. ${errorMessage}`,
+        `❌ Error (response): ${response.status}, ${response.statusText}. ${errorMessage}`,
       );
     }
-
-    console.log('🎉 fetch end: ' + new Date().toLocaleString());
-
     return response.json();
   } catch (error) {
-    console.error('❌ (get calendar) ', error);
+    console.error('❌ Error [get calendar] ', error);
     throw error;
   }
 }
 
 export async function getSubject(id) {
   const path = `/subjects/${id}`;
-  const data = await getInfoByPath(path);
-  return data;
+  try {
+    const data = await getInfoByPath(path);
+    return data;
+  } catch (error) {
+    console.error(`❌ Error [getSubject] `, error);
+    throw error;
+  }
 }
 
 export async function getPersons(id) {
   const path = `/subjects/${id}/persons`;
-  const data = await getInfoByPath(path);
-  return data;
+  try {
+    const data = await getInfoByPath(path);
+    return data;
+  } catch (error) {
+    console.error(`❌ Error [getPersons] `, error);
+    throw error;
+  }
 }
 
 export async function getCharacters(id) {
   const path = `/subjects/${id}/characters`;
-  const data = await getInfoByPath(path);
-  return data;
+  try {
+    const data = await getInfoByPath(path);
+    return data;
+  } catch (error) {
+    console.error(`❌ Error [getCharacters] `, error);
+    throw error;
+  }
 }
 
 export async function getRelated(id) {
   const path = `/subjects/${id}/subjects`;
-  const data = await getInfoByPath(path);
-  return data;
+  try {
+    const data = await getInfoByPath(path);
+    return data;
+  } catch (error) {
+    console.error(`❌ Error [getRelated] `, error);
+    throw error;
+  }
 }
 
 // {small|grid|large|medium}
@@ -123,6 +137,7 @@ export async function searchSubjectsBy(
 
     return res.json();
   } catch (error) {
+    console.error('❌ Error [searchSubjectsBy] ', error);
     throw error;
   }
 }
@@ -151,9 +166,9 @@ export async function searchByKeywords(
         `Failed to fetch: ${res.status}, ${res.statusText}. ${errorMessage}`,
       );
     }
-
     return res.json();
   } catch (error) {
+    console.error('❌ Error [searchByKeywords] ', error);
     throw error;
   }
 }
