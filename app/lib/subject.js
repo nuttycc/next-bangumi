@@ -100,6 +100,8 @@ export async function searchSubjectsBy(
   const headers = new Headers({
     'User-Agent':
       'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
+    'Content-Type': 'application/json',
+    
   });
 
   const {
