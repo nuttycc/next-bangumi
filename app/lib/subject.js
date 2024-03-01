@@ -101,7 +101,7 @@ export async function searchSubjectsBy(
     'User-Agent':
       'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
     'Content-Type': 'application/json',
-    
+
   });
 
   const {
@@ -141,7 +141,7 @@ export async function searchSubjectsBy(
     return res.json();
   } catch (error) {
     console.error('❌ Error [searchSubjectsBy] ', error);
-    return null;
+    throw new Error('🔴Failed to fetch');
   }
 }
 

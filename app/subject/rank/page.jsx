@@ -26,11 +26,14 @@ export default async function Rank({ searchParams }) {
   let r;
 
 
-  r = await searchSubjectsBy(10, offset, { filter });
-  console.log(`🔵 r:`, r)
-  if(r === null) {
-    return <div>加载失败</div>
+  try {
+    r = await searchSubjectsBy(10, offset, { filter });
+    console.log(`🔵 r:`,typeof r)
+  } catch (error) {
+    console.error(`❌ Error [searchSubjectsBy] `, error);
+    return <p>加载失败！</p>
   }
+
 
 
   const lastPage = Math.floor(r.total / 10);
