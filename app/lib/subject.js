@@ -23,6 +23,7 @@ export async function getCalendar() {
     return response.json();
   } catch (error) {
     console.error('❌ ~[get calendar]~ ', error);
+    return [];
   }
 }
 
@@ -33,6 +34,7 @@ export async function getSubject(id) {
     return data;
   } catch (error) {
     console.error(`❌ ~[getSubject]~`, error);
+    return {}
   }
 }
 
@@ -43,6 +45,7 @@ export async function getPersons(id) {
     return data;
   } catch (error) {
     console.error(`❌ Error [getPersons] `, error);
+    return [];
   }
 }
 
@@ -53,6 +56,7 @@ export async function getCharacters(id) {
     return data;
   } catch (error) {
     console.error(`❌ Error [getCharacters] `, error);
+    return [];
   }
 }
 
@@ -63,6 +67,7 @@ export async function getRelated(id) {
     return data;
   } catch (error) {
     console.error(`❌ Error [getRelated] `, error);
+    return [];
   }
 }
 
@@ -83,6 +88,7 @@ export async function getSubjectImage(id, type = 'grid') {
     return imgUrl;
   } catch (error) {
     console.log('❌ Error ~[getSubjectImage]~ ', error);
+    return null;
   }
 }
 
@@ -133,6 +139,7 @@ export async function searchSubjectsBy(
     return res.json();
   } catch (error) {
     console.error('❌ Error [searchSubjectsBy] ', error);
+    return null;
   }
 }
 
@@ -163,5 +170,6 @@ export async function searchByKeywords(
     return res.json();
   } catch (error) {
     console.error('❌ Error ~[searchByKeywords]~ ', error);
+    return null;
   }
 }

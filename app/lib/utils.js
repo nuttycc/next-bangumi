@@ -14,5 +14,6 @@ export async function getInfoByPath(path) {
     return res.json();
   } catch (error) {
     console.error(`❌ ~[getInfoByPath]~`, error);
+    return null;
   }
 }
