@@ -17,13 +17,12 @@ export async function getCalendar() {
     if (!response.ok) {
       const errorMessage = await response.text();
       throw new Error(
-        `❌ Error (response): ${response.status}, ${response.statusText}. ${errorMessage}`,
+        `❌ (response): ${response.status}, ${response.statusText}. ${errorMessage}`,
       );
     }
     return response.json();
   } catch (error) {
-    console.error('❌ Error [get calendar] ', error);
-    throw error;
+    console.error('❌ ~[get calendar]~ ', error);
   }
 }
 
@@ -33,8 +32,7 @@ export async function getSubject(id) {
     const data = await getInfoByPath(path);
     return data;
   } catch (error) {
-    console.error(`❌ Error [getSubject] `, error);
-    throw error;
+    console.error(`❌ ~[getSubject]~`, error);
   }
 }
 
@@ -45,7 +43,6 @@ export async function getPersons(id) {
     return data;
   } catch (error) {
     console.error(`❌ Error [getPersons] `, error);
-    throw error;
   }
 }
 
@@ -56,7 +53,6 @@ export async function getCharacters(id) {
     return data;
   } catch (error) {
     console.error(`❌ Error [getCharacters] `, error);
-    throw error;
   }
 }
 
@@ -67,7 +63,6 @@ export async function getRelated(id) {
     return data;
   } catch (error) {
     console.error(`❌ Error [getRelated] `, error);
-    throw error;
   }
 }
 
@@ -87,7 +82,7 @@ export async function getSubjectImage(id, type = 'grid') {
     const imgUrl = URL.createObjectURL(blob);
     return imgUrl;
   } catch (error) {
-    throw error;
+    console.log('❌ Error ~[getSubjectImage]~ ', error);
   }
 }
 
@@ -138,7 +133,6 @@ export async function searchSubjectsBy(
     return res.json();
   } catch (error) {
     console.error('❌ Error [searchSubjectsBy] ', error);
-    throw error;
   }
 }
 
@@ -168,7 +162,6 @@ export async function searchByKeywords(
     }
     return res.json();
   } catch (error) {
-    console.error('❌ Error [searchByKeywords] ', error);
-    throw error;
+    console.error('❌ Error ~[searchByKeywords]~ ', error);
   }
 }
