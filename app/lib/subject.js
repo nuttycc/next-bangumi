@@ -1,12 +1,11 @@
 import { getInfoByPath } from './utils';
 
 export async function getCalendar() {
-  const headers = new Headers({
-    'User-Agent':
-      'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
-  });
-
   try {
+    const headers = new Headers({
+      'User-Agent':
+        'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
+    });
     const url = 'https://api.bgm.tv/calendar';
     const options = {
       headers,
@@ -17,23 +16,24 @@ export async function getCalendar() {
     if (!response.ok) {
       const errorMessage = await response.text();
       throw new Error(
-        `❌ ~(response)~: ${response.status}, ${response.statusText}. ${errorMessage}`,
+        `🔴 ~response~: ${response.status}, ${response.statusText}. ${errorMessage}`,
       );
     }
     return response.json();
+
   } catch (error) {
-    console.error('❌ ~[get calendar]~ ', error);
+    console.error('🔴 ~getCalendar~', error);
     return [];
   }
 }
 
 export async function getSubject(id) {
-  const path = `/subjects/${id}`;
   try {
+    const path = `/subjects/${id}`;
     const data = await getInfoByPath(path);
     return data;
   } catch (error) {
-    console.error(`❌ ~[getSubject]~`, error);
+    console.error(`🔴 ~getSubject~`, error);
     return {}
   }
 }
