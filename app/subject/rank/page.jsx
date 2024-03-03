@@ -28,7 +28,6 @@ export default async function Rank({ searchParams }) {
 
 
   r = await searchSubjectsBy(10, offset, { filter });
-  console.log(`🔵 r:`,typeof r)
 
   if (!r) {
     return <p>加载失败！</p>

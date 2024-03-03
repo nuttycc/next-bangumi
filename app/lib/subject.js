@@ -138,6 +138,7 @@ export async function searchSubjectsBy(
 
     return res.json();
   } catch (error) {
+    console.log('🔴 ~[searchSubjectsBy]~ ', error);
     return null;
   }
 }

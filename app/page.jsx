@@ -28,12 +28,12 @@ export default async function Page() {
       <div className="relative mb-2 md:w-max">
         <h2 className="text-lg">今日放送</h2>
         <div className="flex h-max overflow-hidden scroll-smooth md:w-[66vw]">
-          {/* <TodayAni calendar={calendar} /> */}
+          <TodayAni calendar={calendar} />
           <ScrollButton />
         </div>
       </div>
       <div>
-        {/* <RandomSubjects subjectPromises={subjectPromises} /> */}
+        <RandomSubjects subjectPromises={subjectPromises} />
       </div>
     </div>
   );
