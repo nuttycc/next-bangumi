@@ -9,6 +9,7 @@ export async function getCalendar() {
     const url = 'https://api.bgm.tv/calendar';
     const options = {
       headers,
+      next: { revalidate: 3600}
     };
 
     const response = await fetch(url, options);

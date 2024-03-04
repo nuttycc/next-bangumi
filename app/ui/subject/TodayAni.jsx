@@ -3,6 +3,7 @@ import { getCalendar } from "@/app/lib/subject";
 import loadingPic from 'public/neutral-face-flatline.svg';
 
 
+
 export default async function TodayAni() {
   const calendar = await getCalendar();
 

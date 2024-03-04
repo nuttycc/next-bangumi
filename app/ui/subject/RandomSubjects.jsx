@@ -2,10 +2,11 @@
 'use client';
 
 import { getSubject } from '@/app/lib/subject';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function RandomSubjects({ subjectPromises }) {
   const [result, setResult] = useState(subjectPromises);
+  const flushBtn = useRef(null)
 
   const randomList = result.map((x, i) => {
     if (x.status === 'rejected') return;
@@ -14,7 +15,7 @@ export default function RandomSubjects({ subjectPromises }) {
       <div key={i} className="mb-1 flex gap-2 border">
         <div className="shrink-0">
           <img
-            src={v.images.small}
+            src={v.images?.small}
             alt={v.name}
             width={70}
             height={90}
@@ -23,7 +24,7 @@ export default function RandomSubjects({ subjectPromises }) {
         </div>
         <div className="">
           <a href={`/subject/${v.id}`} className="text-link mb-1 block">
-            {x.value.name_cn || x.value.name}
+            {x.value?.name_cn || x.value.name}
           </a>
           <div className="text-sm">
             <div>{v.platform || '--'}</div>
@@ -35,6 +36,8 @@ export default function RandomSubjects({ subjectPromises }) {
   });
 
   async function flush() {
+    flushBtn.current.disabled = true;
+  
     const randomIds = Array(10)
       .fill(0)
       .map((x, i) => Math.floor(Math.random() * 10000));
@@ -45,6 +48,7 @@ export default function RandomSubjects({ subjectPromises }) {
       }),
     ).then((v) => {
       setResult(v);
+      flushBtn.current.disabled = false
     });
   }
 
@@ -53,9 +57,10 @@ export default function RandomSubjects({ subjectPromises }) {
       <h2 className="mb-1 text-lg">
         随机条目
         <button
+          ref={flushBtn}
           type="button"
           onClick={flush}
-          className="ml-2 border px-1 text-sm"
+          className="ml-2 border px-1 text-sm disabled:text-gray-500"
         >
           刷新
         </button>
