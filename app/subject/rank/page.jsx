@@ -9,11 +9,14 @@ import FilterFallback from '@/app/ui/subject/FilterFallback';
 export const metadata = {
   title: 'Rank',
 };
-
+// 每页 10 个，单次获取最大数 100 个
 export default async function Rank({ searchParams }) {
-  let pageValue = searchParams.page || 1;
+  let pageNum = Number(searchParams.page) || 1;
+
   const air_date = [`>=${searchParams.from}-01`, `<${searchParams.to}-30`];
-  const rank = Math.floor(Number(pageValue) / 101) * 1000 + 1;
+  const rank = Math.floor(pageNum / 101) * 1000 + 1;
+  const offset = 10 * (pageNum - 1) % 1000;
+
   const filter = {
     type: [2],
     tag: [],
@@ -22,20 +25,12 @@ export default async function Rank({ searchParams }) {
     rank: [`>=${rank}`],
     nsfw: false,
   };
-  const offset = 10 * (pageValue - 1);
-  let r;
 
+  const searchRes = await searchSubjectsBy(10, offset, { filter });
+  const dataArray = searchRes?.data || [];
+  const lastPage = Math.floor(searchRes.total / 10) + pageNum;
 
-
-  r = await searchSubjectsBy(10, offset, { filter });
-
-  if (!r) {
-    return <p>加载失败！</p>
-  }
-
-  const lastPage = Math.floor(r.total / 10);
-
-  const RankList = r.data.map((x) => {
+  const RankList = dataArray.map((x) => {
     const tagsList = x.tags
       .sort((b, a) => {
         a.count - b.count;
@@ -100,8 +95,8 @@ export default async function Rank({ searchParams }) {
 
   const PageList = Array(10)
     .fill(0)
-    .map((x, i) => {
-      const p = i + 1 + Math.floor(pageValue / 10) * 10;
+    .map((_, i) => {
+      const p = i+ 1 + Math.floor(pageNum / 10) * 10;
       return (
         <a
           href={`./rank?&page=${p}`}
@@ -109,7 +104,7 @@ export default async function Rank({ searchParams }) {
           className={clsx(
             'my-2 inline-block border px-1 text-center hover:bg-rose-400',
             {
-              'bg-rose-500': p === Number(pageValue),
+              'bg-rose-500': p === Number(pageNum),
             },
           )}
         >
@@ -135,7 +130,7 @@ export default async function Rank({ searchParams }) {
       {/* 翻页 */}
       <div className="flex flex-wrap items-center gap-1">
         <a
-          href={`./rank?&page=${Number(pageValue) - 1}`}
+          href={`./rank?&page=${Number(pageNum) - 1}`}
           className={clsx('border px-1 text-center hover:bg-rose-400', {})}
         >
           &lt;
@@ -143,22 +138,24 @@ export default async function Rank({ searchParams }) {
         <a
           href={`./rank?&page=1`}
           className={clsx('border px-2 text-center hover:bg-rose-400', {
-            hidden: pageValue < 10,
+            hidden: pageNum < 10,
           })}
         >
           1
         </a>
         <a
-          href={`./rank?&page=${Math.floor(Number(pageValue) / 2)}`}
+          href={`./rank?&page=${Math.floor(pageNum / 2)}`}
           className={clsx('w-6 border text-center hover:bg-rose-400', {
-            hidden: pageValue < 10,
+            hidden: pageNum < 10,
           })}
         >
           ...
         </a>
+
         {PageList}
+
         <a
-          href={`./rank?&page=${Math.floor((Number(pageValue) + 336) / 2)}`}
+          href={`./rank?&page=${Math.floor((Number(pageNum) + 336) / 2)}`}
           className={clsx('w-6 border text-center hover:bg-rose-400', {})}
         >
           ...
@@ -166,13 +163,13 @@ export default async function Rank({ searchParams }) {
         <a
           href={`./rank?&page=${lastPage}`}
           className={clsx('border text-center hover:bg-rose-400', {
-            'bg-rose-500': Number(pageValue) === 336,
+            'bg-rose-500': Number(pageNum) === 336,
           })}
         >
-          336
+          {lastPage}
         </a>
         <a
-          href={`./rank?&page=${Number(pageValue) + 1}`}
+          href={`./rank?&page=${Number(pageNum) + 1}`}
           className={clsx('border px-1 text-center hover:bg-rose-400', {})}
         >
           &gt;

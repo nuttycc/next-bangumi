@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 
 export default function Filter() {
@@ -19,9 +20,21 @@ export default function Filter() {
   const YearList = Array(5)
     .fill(0)
     .map((x, i) => {
-      let toYear = date.getFullYear() - i;
+      let toYear = date.getFullYear() - i + 1;
+      if(i === 0) {
+        return (
+          <a key={i} href={`/subject/rank`}
+            className={clsx('bgmtv-btn', {
+              '!border-rose-400 !text-rose-400':
+                params.get('from') === null &&
+                params.get('to') === null,
+            })}>
+            全部
+          </a>
+        )
+      }
       return (
-        <a
+        <Link
           href={`./rank?from=${toYear}-01&to=${toYear}-12`}
           key={i}
           className={clsx('bgmtv-btn', {
@@ -31,7 +44,7 @@ export default function Filter() {
           })}
         >
           {toYear}
-        </a>
+        </Link>
       );
     });
 
@@ -67,29 +80,6 @@ export default function Filter() {
 
   return (
     <div className="text-sm antialiased">
-      {/* <div className="my-1 flex">
-        <span>类型：</span>
-        <ul className="flex gap-2 ">
-          <a href="#" className="bgmtv-btn">
-            <li>全部</li>
-          </a>
-          <a href="#" className="bgmtv-btn">
-            <li>TV</li>
-          </a>
-          <a href="" className="bgmtv-btn">
-            <li>WEB</li>
-          </a>
-          <a href="" className="bgmtv-btn">
-            <li>OVA</li>
-          </a>
-          <a href="" className="bgmtv-btn">
-            <li>剧场版</li>
-          </a>
-          <a href="" className="bgmtv-btn">
-            <li>其它</li>
-          </a>
-        </ul>
-      </div> */}
       <div className="">
         {/* 快捷查询 */}
         <div className="mb-1 flex overflow-hidden">

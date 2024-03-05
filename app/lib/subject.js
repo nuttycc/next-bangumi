@@ -98,6 +98,7 @@ export async function searchSubjectsBy(
   offset = 0,
   { keyword = '', sort = 'rank', filter },
 ) {
+  
   const headers = new Headers({
     'User-Agent':
       'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
@@ -140,7 +141,7 @@ export async function searchSubjectsBy(
     return res.json();
   } catch (error) {
     console.log('🔴 ~[searchSubjectsBy]~ ', error);
-    return null;
+    return {};
   }
 }
 
