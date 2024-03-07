@@ -17,7 +17,7 @@ export default function TopNav() {
   const aniMenu = [
     { title: '排行榜', link: '/subject/rank' },
     { title: '每日放送', link: '/subject/calendar' },
-    { title: '番剧索引', link: '#' },
+    // { title: '番剧索引', link: '#' },
   ];
   const about = [
     { title: '项目地址', link: 'https://github.com/nuttycc/next-bangumi' },
@@ -93,6 +93,7 @@ export default function TopNav() {
       >
         <DPMenu h1={'动画'} h2s={aniMenu} open={show} />
         <DPMenu h1={'关于'} h2s={about} open={show} />
+
         <a
           href="https://github.com/nuttycc/next-bangumi"
           target="_blank"
@@ -184,11 +185,13 @@ export default function TopNav() {
 export function DPMenu({ h1, h2s, open }) {
   const [show, setShow] = useState(false);
   const pathname = usePathname();
+
   useEffect(() => {
     if (!open) {
       setShow(false)
     }
   }, [open])
+
   const h2list = h2s.map((h2) => {
     return (
       <Link
