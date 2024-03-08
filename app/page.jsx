@@ -27,7 +27,7 @@ export default async function Page() {
       <h1 className="sr-only">Home Page</h1>
       <div className="relative mb-2 md:w-max">
         <h2 className="text-lg">今日放送</h2>
-        <div className="flex h-max overflow-hidden scroll-smooth md:w-[66vw]">
+        <div className="flex h-max scroll-smooth overflow-x-scroll scrollbar-thin md:w-[66vw]">
           <TodayAni calendar={calendar} />
           <ScrollButton />
         </div>

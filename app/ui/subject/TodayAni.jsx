@@ -12,7 +12,7 @@ export default async function TodayAni() {
 
   const todayList = calendar[today]?.items.map((x) => {
     return (
-      <div key={x.id} className="max-w-[90px]">
+      <a href={`/subject/${x.id}`} key={x.id} className="block max-w-[90px]">
         <div className="relative h-[140px] w-[90px]">
           <Image
             src={x.images.common}
@@ -22,13 +22,13 @@ export default async function TodayAni() {
             className="border object-cover object-top dark:border-gray-500"
           />
         </div>
-        <a
+        <div
           href={`/subject/${x.id}`}
           className="block truncate text-center text-xs"
         >
           {x.name_cn || x.name}
-        </a>
-      </div>
+        </div>
+      </a>
     );
   });
 
