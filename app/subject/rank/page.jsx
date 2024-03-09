@@ -105,7 +105,7 @@ export default async function Rank({ searchParams }) {
             'my-2 inline-block border px-1 text-center hover:bg-rose-400',
             {
               'bg-rose-500': p === Number(pageNum),
-            },
+            }
           )}
         >
           {p}

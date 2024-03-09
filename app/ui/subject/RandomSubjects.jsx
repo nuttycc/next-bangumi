@@ -45,7 +45,7 @@ export default function RandomSubjects({ subjectPromises }) {
     Promise.allSettled(
       randomIds.map((id) => {
         return getSubject(id)
-      }),
+      })
     ).then((v) => {
       setResult(v)
       flushBtn.current.disabled = false

@@ -42,7 +42,7 @@ export default function AniCalenderOnDesk({ data }) {
               'bg-[#fb8500]': weekdayId === 7,
               // " after:text-[#d90429] after:content-['_★'] ":
               //   today === obj.weekday.id - 1,
-            },
+            }
           )}
         >
           {obj.weekday.cn}

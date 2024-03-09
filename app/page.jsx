@@ -17,7 +17,7 @@ export default async function Page() {
   const subjectPromises = await Promise.allSettled(
     random.map((x) => {
       return getSubject(x)
-    }),
+    })
   )
 
   const calendar = (await getCalendar()) || []

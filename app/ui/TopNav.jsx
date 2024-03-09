@@ -56,19 +56,19 @@ export default function TopNav() {
             <div
               className={clsx(
                 'h-[2px] w-1/2 bg-slate-600 transition dark:bg-gray-300',
-                { 'absolute rotate-[405deg]': show },
+                { 'absolute rotate-[405deg]': show }
               )}
             ></div>
             <div
               className={clsx(
                 'my-1 h-[2px] w-1/2 bg-slate-600 transition dark:bg-gray-300',
-                { hidden: show },
+                { hidden: show }
               )}
             ></div>
             <div
               className={clsx(
                 'h-[2px] w-1/2 bg-slate-600 transition dark:bg-gray-300',
-                { 'absolute -rotate-[405deg]': show },
+                { 'absolute -rotate-[405deg]': show }
               )}
             ></div>
           </button>
@@ -81,7 +81,7 @@ export default function TopNav() {
           'fixed top-12 z-50 flex w-screen flex-col items-center gap-1 bg-gray-100 py-2 pb-4  dark:bg-gray-700',
           {
             hidden: !show,
-          },
+          }
         )}
         onClick={(e) => {
           if (e.target.classList.contains('h2-box')) {

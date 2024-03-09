@@ -4,7 +4,7 @@ export async function getEpisodes(
   subject_id,
   limit = 100,
   offset = 0,
-  type = 0,
+  type = 0
 ) {
   try {
     const path = `/episodes?subject_id=${subject_id}&limit=${limit}&offset=${offset}&type=${type}`

@@ -14,7 +14,7 @@ export default function Scroll() {
 
       // 当滚动到最右边时隐藏右箭头
       setShowRightArrow(
-        container.scrollLeft < container.scrollWidth - container.clientWidth,
+        container.scrollLeft < container.scrollWidth - container.clientWidth
       )
     }
 

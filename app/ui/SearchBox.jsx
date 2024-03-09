@@ -58,7 +58,7 @@ export default function Search() {
           'absolute z-50 h-[14rem] w-[10rem] overflow-y-auto rounded-sm border bg-slate-200 p-1 text-sm dark:bg-slate-700',
           {
             hidden: !resultList,
-          },
+          }
         )}
       >
         {resultList}

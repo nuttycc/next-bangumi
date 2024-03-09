@@ -152,14 +152,14 @@ export default function ChangeTheme() {
         <ul
           className={clsx(
             '-right-2 w-[8rem] py-1 text-sm font-semibold md:absolute md:z-50 md:w-36 md:rounded-lg md:bg-white md:text-slate-700  md:dark:bg-slate-800 md:dark:text-slate-300 ',
-            { hidden: !show, block: show },
+            { hidden: !show, block: show }
           )}
           onClick={(e) => handleSwitch(e)}
         >
           <li
             className={clsx(
               'flex cursor-pointer items-center justify-between px-2 py-1',
-              { 'text-sky-500': theme === 'light' },
+              { 'text-sky-500': theme === 'light' }
             )}
             id="light"
           >
@@ -191,7 +191,7 @@ export default function ChangeTheme() {
           <li
             className={clsx(
               'flex cursor-pointer items-center justify-between px-2 py-1',
-              { 'text-sky-500': theme === 'dark' },
+              { 'text-sky-500': theme === 'dark' }
             )}
             id="dark"
           >
@@ -224,7 +224,7 @@ export default function ChangeTheme() {
           <li
             className={clsx(
               'flex cursor-pointer items-center justify-between px-2 py-1',
-              { 'text-sky-500': theme === 'system' },
+              { 'text-sky-500': theme === 'system' }
             )}
             id="system"
           >
