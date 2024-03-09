@@ -1,9 +1,9 @@
-import { getCharacterRelatedSubjects } from '@/app/lib/character';
-import Image from 'next/image';
+import { getCharacterRelatedSubjects } from '@/app/lib/character'
+import Image from 'next/image'
 
 export default async function Subjects({ params }) {
-  const characterId = params.id;
-  const subjects = await getCharacterRelatedSubjects(characterId);
+  const characterId = params.id
+  const subjects = await getCharacterRelatedSubjects(characterId)
   const subjectsList = subjects.map((x) => {
     return (
       <div key={x.id} className="flex gap-2 border p-2 dark:border-gray-400">
@@ -26,8 +26,8 @@ export default async function Subjects({ params }) {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
-  return <div>{subjectsList}</div>;
+  return <div>{subjectsList}</div>
 }

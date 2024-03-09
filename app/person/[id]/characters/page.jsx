@@ -1,9 +1,9 @@
-import { getPersonRelatedCharacters } from '@/app/lib/person';
-import Image from 'next/image';
+import { getPersonRelatedCharacters } from '@/app/lib/person'
+import Image from 'next/image'
 
 export default async function Characters({ params }) {
-  const personId = params.id;
-  const characters = await getPersonRelatedCharacters(personId);
+  const personId = params.id
+  const characters = await getPersonRelatedCharacters(personId)
   const characterList = characters.map((x) => {
     return (
       <div key={x.subject_id} className="flex gap-2 border">
@@ -27,8 +27,8 @@ export default async function Characters({ params }) {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
-  return <div>{characterList}</div>;
+  return <div>{characterList}</div>
 }

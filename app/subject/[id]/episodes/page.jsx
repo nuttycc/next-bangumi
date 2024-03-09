@@ -1,7 +1,7 @@
-import { getEpisodes } from '@/app/lib/episode';
+import { getEpisodes } from '@/app/lib/episode'
 
 export default async function Episodes({ params }) {
-  const r = await getEpisodes(params.id);
+  const r = await getEpisodes(params.id)
 
   const epList = r.data.map((x) => {
     return (
@@ -45,12 +45,12 @@ export default async function Episodes({ params }) {
         <div>{}</div>
         <div></div>
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <>
       <div className="">{epList}</div>
     </>
-  );
+  )
 }

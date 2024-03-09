@@ -1,21 +1,20 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import clsx from 'clsx';
+import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 export default function AniCalender({ data }) {
-
   const [today, setToday] = useState(() => {
-    const date = new Date();
-    return date.getDay() === 0 ? 6 : date.getDay() - 1;
-  });
+    const date = new Date()
+    return date.getDay() === 0 ? 6 : date.getDay() - 1
+  })
 
   useEffect(() => {
     setToday(() => {
-      const date = new Date();
-      return date.getDay() === 0 ? 6 : date.getDay() - 1;
-    });
-  }, []);
+      const date = new Date()
+      return date.getDay() === 0 ? 6 : date.getDay() - 1
+    })
+  }, [])
 
   const CardList = data[today]?.items.map((item) => {
     return (
@@ -28,11 +27,11 @@ export default function AniCalender({ data }) {
           {item['name_cn'] || item['name']}
         </a>
       </li>
-    );
-  });
+    )
+  })
 
   // 周
-  const week = ['一', '二', '三', '四', '五', '六', '日'];
+  const week = ['一', '二', '三', '四', '五', '六', '日']
   const weekdays = week.map((x, i) => {
     return (
       <button
@@ -44,19 +43,18 @@ export default function AniCalender({ data }) {
       >
         {x}
       </button>
-    );
-  });
+    )
+  })
 
   return (
     <>
       {/* 移动端 */}
-      <div className="shadow-[1px_2px_5px_1px_rgba(155,155,155, 0.5)] m-2 p-1 border border-sky-600 md:hidden">
-        <div className="flex mb-2">{weekdays}</div>
+      <div className="shadow-[1px_2px_5px_1px_rgba(155,155,155, 0.5)] m-2 border border-sky-600 p-1 md:hidden">
+        <div className="mb-2 flex">{weekdays}</div>
         <ol className="" style={{ counterReset: 'listCounter' }}>
           {CardList}
         </ol>
       </div>
-
     </>
-  );
+  )
 }

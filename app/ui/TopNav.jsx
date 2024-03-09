@@ -1,27 +1,25 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
-import clsx from 'clsx';
-import logo from '@/public/logo.png';
-import SwitchTheme from './SwitchTheme';
-import SearchBox from './SearchBox';
-
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import clsx from 'clsx'
+import logo from '@/public/logo.png'
+import SwitchTheme from './SwitchTheme'
+import SearchBox from './SearchBox'
 
 export default function TopNav() {
-  
-  const [show, setShow] = useState(false);
-  const pathname = usePathname();
+  const [show, setShow] = useState(false)
+  const pathname = usePathname()
   const aniMenu = [
     { title: '排行榜', link: '/subject/rank' },
     { title: '每日放送', link: '/subject/calendar' },
     // { title: '番剧索引', link: '#' },
-  ];
+  ]
   const about = [
     { title: '项目地址', link: 'https://github.com/nuttycc/next-bangumi' },
-  ];
+  ]
 
   return (
     <>
@@ -87,7 +85,7 @@ export default function TopNav() {
         )}
         onClick={(e) => {
           if (e.target.classList.contains('h2-box')) {
-            setShow(false);
+            setShow(false)
           }
         }}
       >
@@ -153,8 +151,13 @@ export default function TopNav() {
         </div>
 
         <SwitchTheme />
-        
-        <a href="https://github.com/nuttycc/next-bangumi" target='_blank' title='github' className="mx-1">
+
+        <a
+          href="https://github.com/nuttycc/next-bangumi"
+          target="_blank"
+          title="github"
+          className="mx-1"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2rem"
@@ -178,13 +181,13 @@ export default function TopNav() {
         </a> */}
       </nav>
     </>
-  );
+  )
 }
 
 // 移动端，
 export function DPMenu({ h1, h2s, open }) {
-  const [show, setShow] = useState(false);
-  const pathname = usePathname();
+  const [show, setShow] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     if (!open) {
@@ -203,14 +206,14 @@ export function DPMenu({ h1, h2s, open }) {
       >
         {h2.title}
       </Link>
-    );
-  });
+    )
+  })
 
   return (
     <div className="">
       {/* 标题 */}
       <button
-        className="flex w-[8rem] px-1 items-center justify-between border"
+        className="flex w-[8rem] items-center justify-between border px-1"
         onClick={() => setShow(!show)}
       >
         <span className="">{h1}</span>
@@ -235,5 +238,5 @@ export function DPMenu({ h1, h2s, open }) {
         {h2list}
       </button>
     </div>
-  );
+  )
 }

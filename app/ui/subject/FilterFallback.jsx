@@ -1,23 +1,20 @@
-
-
 export default function FilterFallback() {
+  const date = new Date()
+  const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, '-')
+  const from = null
+  const to = null
 
-    const date = new Date();
-    const today = date.toLocaleDateString().slice(0, -3).replace(/\//g, '-');
-    const from = null;
-    const to = null;
-  
   const YearList = Array(5)
     .fill(0)
     .map((x, i) => {
-      const date = new Date();
-      let toYear = date.getFullYear() - i;
+      const date = new Date()
+      let toYear = date.getFullYear() - i
       return (
         <a href="" key={i} className="bgmtv-btn">
           {toYear}
         </a>
-      );
-    });
+      )
+    })
 
   return (
     <div className="text-sm antialiased">
@@ -69,7 +66,7 @@ export default function FilterFallback() {
         </div>
 
         {/* 高级搜索 */}
-        <div  className="py-1">
+        <div className="py-1">
           <label htmlFor="from">指定区间：</label>
           <input
             type="month"
@@ -91,5 +88,5 @@ export default function FilterFallback() {
         </div>
       </div>
     </div>
-  );
+  )
 }

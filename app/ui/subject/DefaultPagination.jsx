@@ -1,13 +1,12 @@
-'use client';
+'use client'
 
 export default function Pagination() {
-  
   function handleJumpTo(e) {
-    const p = e.target.value;
-    const params = new URLSearchParams(window.location.search);
-    params.set('page', p);
-    const newUrl = `${window.location.origin}${window.location.pathname}?${params}`;
-    location.assign(newUrl);
+    const p = e.target.value
+    const params = new URLSearchParams(window.location.search)
+    params.set('page', p)
+    const newUrl = `${window.location.origin}${window.location.pathname}?${params}`
+    location.assign(newUrl)
   }
 
   return (
@@ -20,5 +19,5 @@ export default function Pagination() {
       ></input>
       页
     </div>
-  );
+  )
 }

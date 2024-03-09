@@ -1,14 +1,12 @@
-import Image from "next/image";
-import { getCalendar } from "@/app/lib/subject";
-import loadingPic from 'public/neutral-face-flatline.svg';
-
-
+import Image from 'next/image'
+import { getCalendar } from '@/app/lib/subject'
+import loadingPic from 'public/neutral-face-flatline.svg'
 
 export default async function TodayAni() {
-  const calendar = await getCalendar();
+  const calendar = await getCalendar()
 
-  const date = new Date();
-  const today = date.getDay() === 0 ? 6 : date.getDay() - 1;
+  const date = new Date()
+  const today = date.getDay() === 0 ? 6 : date.getDay() - 1
 
   const todayList = calendar[today]?.items.map((x) => {
     return (
@@ -29,11 +27,12 @@ export default async function TodayAni() {
           {x.name_cn || x.name}
         </div>
       </a>
-    );
-  });
+    )
+  })
 
-
-  const placeholder = Array(10).fill(0).map((x, i) => {
+  const placeholder = Array(10)
+    .fill(0)
+    .map((x, i) => {
       return (
         <div key={i} className="max-w-[90px]">
           <div className="relative h-[140px] w-[90px]">
@@ -41,22 +40,16 @@ export default async function TodayAni() {
               src={loadingPic}
               alt="image"
               fill
-              className="object-cover border dark:border-gray-500"
+              className="border object-cover dark:border-gray-500"
             />
           </div>
           <a
             href={``}
-            className="block w-16 h-4 truncate text-center text-xs"
-          >
-            
-          </a>
+            className="block h-4 w-16 truncate text-center text-xs"
+          ></a>
         </div>
-      );
-  })
+      )
+    })
 
-  return (
-    <>
-      {todayList ? todayList : placeholder}
-    </>
-  )
+  return <>{todayList ? todayList : placeholder}</>
 }

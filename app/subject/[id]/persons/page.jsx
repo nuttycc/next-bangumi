@@ -1,9 +1,9 @@
-import { getPersons } from '@/app/lib/subject';
-import Image from 'next/image';
+import { getPersons } from '@/app/lib/subject'
+import Image from 'next/image'
 
 export default async function Persons({ params }) {
-  const subject_id = params.id;
-  const r = await getPersons(subject_id);
+  const subject_id = params.id
+  const r = await getPersons(subject_id)
 
   const pList = r.map((x, i) => {
     return (
@@ -24,12 +24,12 @@ export default async function Persons({ params }) {
           <div className="tag-sm mt-1">{x.relation || '-'}</div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <>
       <div className="grid-cols-3 gap-2 md:grid">{pList}</div>
     </>
-  );
+  )
 }

@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { useSearchParams } from 'next/navigation';
-import { useDebouncedCallback } from 'use-debounce';
-import clsx from 'clsx';
-import Link from 'next/link';
-
+import { useSearchParams } from 'next/navigation'
+import { useDebouncedCallback } from 'use-debounce'
+import clsx from 'clsx'
+import Link from 'next/link'
 
 export default function Filter() {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const curYearMonth = `${year}-${month}`
 
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const curYearMonth = `${year}-${month}`;
-
-  const params = useSearchParams();
-  const from = params.get('from');
-  const to = params.get('to');
+  const params = useSearchParams()
+  const from = params.get('from')
+  const to = params.get('to')
 
   const YearList = Array(5)
     .fill(0)
     .map((x, i) => {
-      let toYear = date.getFullYear() - i + 1;
-      if(i === 0) {
+      let toYear = date.getFullYear() - i + 1
+      if (i === 0) {
         return (
-          <a key={i} href={`/subject/rank`}
+          <a
+            key={i}
+            href={`/subject/rank`}
             className={clsx('bgmtv-btn', {
               '!border-rose-400 !text-rose-400':
-                params.get('from') === null &&
-                params.get('to') === null,
-            })}>
+                params.get('from') === null && params.get('to') === null,
+            })}
+          >
             全部
           </a>
         )
@@ -45,37 +45,37 @@ export default function Filter() {
         >
           {toYear}
         </Link>
-      );
-    });
+      )
+    })
 
   function handleChange(e) {
-    const url = new URL(window.location);
-    const params = new URLSearchParams(url.search);
+    const url = new URL(window.location)
+    const params = new URLSearchParams(url.search)
     if (e.target.id === 'from') {
-      params.set('from', e.target.value);
+      params.set('from', e.target.value)
     } else {
-      params.set('to', e.target.value);
+      params.set('to', e.target.value)
     }
     const newUrl = `${window.location.origin}${
       window.location.pathname
-    }?${params.toString()}`;
-    location.assign(newUrl);
+    }?${params.toString()}`
+    location.assign(newUrl)
   }
 
-  const debounced = useDebouncedCallback((e) => handleAnyVal(e), 500);
+  const debounced = useDebouncedCallback((e) => handleAnyVal(e), 500)
 
   function handleAnyVal(e) {
     if (e.target.value <= 1000 || e.target.value > 9999) {
-      return;
+      return
     }
-    const url = new URL(window.location);
-    const params = new URLSearchParams(url.search);
-    params.set('from', e.target.value + '-01');
-    params.set('to', e.target.value + '-12');
+    const url = new URL(window.location)
+    const params = new URLSearchParams(url.search)
+    params.set('from', e.target.value + '-01')
+    params.set('to', e.target.value + '-12')
     const newUrl = `${window.location.origin}${
       window.location.pathname
-    }?${params.toString()}`;
-    location.assign(newUrl);
+    }?${params.toString()}`
+    location.assign(newUrl)
   }
 
   return (
@@ -128,5 +128,5 @@ export default function Filter() {
         </div>
       </div>
     </div>
-  );
+  )
 }

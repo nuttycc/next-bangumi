@@ -1,39 +1,39 @@
-import { getInfoByPath } from './utils';
+import { getInfoByPath } from './utils'
 
 export async function getPersonDetails(id) {
-  const path = `/persons/${id}`;
-  const data = await getInfoByPath(path);
-  return data;
+  const path = `/persons/${id}`
+  const data = await getInfoByPath(path)
+  return data
 }
 
 export async function getPersonRelatedCharacters(id) {
-  const path = `/persons/${id}/characters`;
-  const data = await getInfoByPath(path);
-  return data;
+  const path = `/persons/${id}/characters`
+  const data = await getInfoByPath(path)
+  return data
 }
 
 export async function getPersonRelatedSubjects(id) {
-  const path = `/persons/${id}/subjects`;
-  const data = await getInfoByPath(path);
-  return data;
+  const path = `/persons/${id}/subjects`
+  const data = await getInfoByPath(path)
+  return data
 }
 
 // {small|grid|large|medium}
 export async function getPersonImage(id, type = 'grid') {
-  const imageUrl = `https://api.bgm.tv/v0/personss/${id}/image?type=${type}`;
+  const imageUrl = `https://api.bgm.tv/v0/personss/${id}/image?type=${type}`
   const headers = new Headers({
     'User-Agent':
       'nuttycc/next-bangumi/1.0 (https://github.com/nuttycc/next-bangumi)',
-  });
+  })
   try {
-    const response = await fetch(imageUrl, { headers });
+    const response = await fetch(imageUrl, { headers })
     if (!response.ok) {
-      throw new Error(`Failed to fetch image, ${response.status}.`);
+      throw new Error(`Failed to fetch image, ${response.status}.`)
     }
-    const blob = await response.blob(id);
-    const imgUrl = URL.createObjectURL(blob);
-    return imgUrl;
+    const blob = await response.blob(id)
+    const imgUrl = URL.createObjectURL(blob)
+    return imgUrl
   } catch (error) {
-    throw error;
+    throw error
   }
 }

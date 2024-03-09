@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import { getCharacters } from '@/app/lib/subject';
+import Image from 'next/image'
+import { getCharacters } from '@/app/lib/subject'
 
 export default async function Characters({ params }) {
-  const characters = await getCharacters(params.id);
+  const characters = await getCharacters(params.id)
   const charactersList = characters.map((x) => {
     const actorsList = x.actors.map((a) => {
       return (
@@ -16,8 +16,8 @@ export default async function Characters({ params }) {
           />
           {a.name}
         </a>
-      );
-    });
+      )
+    })
 
     return (
       <div key={x.id} className="flex">
@@ -41,8 +41,8 @@ export default async function Characters({ params }) {
           <div></div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
-  return <div className="grid-cols-2 gap-2 md:grid">{charactersList}</div>;
+  return <div className="grid-cols-2 gap-2 md:grid">{charactersList}</div>
 }

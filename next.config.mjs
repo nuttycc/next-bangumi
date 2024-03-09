@@ -1,5 +1,3 @@
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,10 +8,9 @@ const nextConfig = {
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
 
 // module.exports = nextConfig;
 // export default withPlaiceholder(nextConfig);
-

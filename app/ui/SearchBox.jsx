@@ -1,26 +1,26 @@
-'use client';
+'use client'
 
-import { useState, useRef, useEffect } from 'react';
-import { searchByKeywords } from '../lib/subject';
-import { useDebouncedCallback } from 'use-debounce';
-import clsx from 'clsx';
+import { useState, useRef, useEffect } from 'react'
+import { searchByKeywords } from '../lib/subject'
+import { useDebouncedCallback } from 'use-debounce'
+import clsx from 'clsx'
 
 export default function Search() {
-  const displayResult = useRef(null);
-  const [resultList, setResultList] = useState();
+  const displayResult = useRef(null)
+  const [resultList, setResultList] = useState()
 
-  const debounced = useDebouncedCallback(search, 1000);
+  const debounced = useDebouncedCallback(search, 1000)
 
   async function search(value) {
-    const keywords = value;
+    const keywords = value
 
-    console.log('🚀🚀 ~ search ~ keywords: ', keywords);
+    console.log('🚀🚀 ~ search ~ keywords: ', keywords)
     if (!keywords) {
-      setResultList(null);
-      return;
+      setResultList(null)
+      return
     }
 
-    const result = await searchByKeywords(keywords);
+    const result = await searchByKeywords(keywords)
     const list = result.list.map((item) => {
       return (
         <div key={item.id}>
@@ -35,9 +35,9 @@ export default function Search() {
           <p>{}</p>
           <p>{}</p>
         </div>
-      );
-    });
-    setResultList(list);
+      )
+    })
+    setResultList(list)
   }
 
   return (
@@ -64,5 +64,5 @@ export default function Search() {
         {resultList}
       </ul>
     </div>
-  );
+  )
 }

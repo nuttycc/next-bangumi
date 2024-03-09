@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import Filter from '@/app/ui/subject/DefaultFilter';
-import { Suspense } from 'react';
-import FilterFallback from '@/app/ui/subject/FilterFallback';
+import Image from 'next/image'
+import Filter from '@/app/ui/subject/DefaultFilter'
+import { Suspense } from 'react'
+import FilterFallback from '@/app/ui/subject/FilterFallback'
 
 export default function loading() {
   const rankList = Array(10)
@@ -30,8 +30,8 @@ export default function loading() {
             </div>
           </div>
         </div>
-      );
-    });
+      )
+    })
 
   return (
     <div>
@@ -47,5 +47,5 @@ export default function loading() {
       <hr className="mb-2"></hr>
       <div className="space-y-1">{rankList}</div>
     </div>
-  );
+  )
 }

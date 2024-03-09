@@ -1,21 +1,21 @@
-import { searchSubjectsBy } from '@/app/lib/subject';
-import Filter from '@/app/ui/subject/DefaultFilter';
-import Image from 'next/image';
-import clsx from 'clsx';
-import Pagination from '@/app/ui/subject/DefaultPagination';
-import { Suspense } from 'react';
-import FilterFallback from '@/app/ui/subject/FilterFallback';
+import { searchSubjectsBy } from '@/app/lib/subject'
+import Filter from '@/app/ui/subject/DefaultFilter'
+import Image from 'next/image'
+import clsx from 'clsx'
+import Pagination from '@/app/ui/subject/DefaultPagination'
+import { Suspense } from 'react'
+import FilterFallback from '@/app/ui/subject/FilterFallback'
 
 export const metadata = {
   title: 'Rank',
-};
+}
 // 每页 10 个，单次获取最大数 100 个
 export default async function Rank({ searchParams }) {
-  let pageNum = Number(searchParams.page) || 1;
+  let pageNum = Number(searchParams.page) || 1
 
-  const air_date = [`>=${searchParams.from}-01`, `<${searchParams.to}-30`];
-  const rank = Math.floor(pageNum / 101) * 1000 + 1;
-  const offset = 10 * (pageNum - 1) % 1000;
+  const air_date = [`>=${searchParams.from}-01`, `<${searchParams.to}-30`]
+  const rank = Math.floor(pageNum / 101) * 1000 + 1
+  const offset = (10 * (pageNum - 1)) % 1000
 
   const filter = {
     type: [2],
@@ -24,16 +24,16 @@ export default async function Rank({ searchParams }) {
     rating: [],
     rank: [`>=${rank}`],
     nsfw: false,
-  };
+  }
 
-  const searchRes = await searchSubjectsBy(10, offset, { filter });
-  const dataArray = searchRes?.data || [];
-  const lastPage = Math.floor(searchRes.total / 10) + pageNum;
+  const searchRes = await searchSubjectsBy(10, offset, { filter })
+  const dataArray = searchRes?.data || []
+  const lastPage = Math.floor(searchRes.total / 10) + pageNum
 
   const RankList = dataArray.map((x) => {
     const tagsList = x.tags
       .sort((b, a) => {
-        a.count - b.count;
+        a.count - b.count
       })
       .slice(0, 4)
       .map((x) => {
@@ -41,8 +41,8 @@ export default async function Rank({ searchParams }) {
           <div key={x.name} className="bg-rose-200 px-1 dark:bg-[#023047]">
             {x.name}
           </div>
-        );
-      });
+        )
+      })
 
     return (
       <div key={x.id} className="flex">
@@ -90,13 +90,13 @@ export default async function Rank({ searchParams }) {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
   const PageList = Array(10)
     .fill(0)
     .map((_, i) => {
-      const p = i+ 1 + Math.floor(pageNum / 10) * 10;
+      const p = i + 1 + Math.floor(pageNum / 10) * 10
       return (
         <a
           href={`./rank?&page=${p}`}
@@ -110,8 +110,8 @@ export default async function Rank({ searchParams }) {
         >
           {p}
         </a>
-      );
-    });
+      )
+    })
 
   return (
     <div className="">
@@ -177,5 +177,5 @@ export default async function Rank({ searchParams }) {
         <Pagination />
       </div>
     </div>
-  );
+  )
 }

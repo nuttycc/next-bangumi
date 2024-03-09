@@ -1,33 +1,32 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import clsx from 'clsx';
+import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 export default function ChangeTheme() {
-  const [show, setShow] = useState(false);
-  const [theme, setTheme] = useState('system');
+  const [show, setShow] = useState(false)
+  const [theme, setTheme] = useState('system')
 
   useEffect(() => {
     try {
-      console.log('useEffect Switch theme.');
+      console.log('useEffect Switch theme.')
       if (
         localStorage.theme === 'dark' ||
         (!('theme' in localStorage) &&
-          window.matchMedia('(prefers-color-scheme: dark)')
-            .matches)
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.style.colorScheme = 'dark';
+        document.documentElement.classList.add('dark')
+        document.documentElement.style.colorScheme = 'dark'
       } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.style.colorScheme = 'light';
+        document.documentElement.classList.remove('dark')
+        document.documentElement.style.colorScheme = 'light'
       }
     } catch (error) {
-      console.error('Error switching theme:', error);
+      console.error('Error switching theme:', error)
     }
-    const localTheme = localStorage.getItem('theme') || 'system';
-    setTheme(localTheme);
-  }, []);
+    const localTheme = localStorage.getItem('theme') || 'system'
+    setTheme(localTheme)
+  }, [])
 
   useEffect(() => {
     const handleClick = function (e) {
@@ -35,44 +34,44 @@ export default function ChangeTheme() {
         e.target.classList.contains('switch-theme') ||
         e.target.parentElement.classList.contains('switch-theme')
       ) {
-        return;
+        return
       }
-      setShow(false);
-    };
+      setShow(false)
+    }
 
     if (show) {
-      document.documentElement.addEventListener('click', handleClick);
+      document.documentElement.addEventListener('click', handleClick)
     }
 
     return () => {
-      document.documentElement.removeEventListener('click', handleClick);
-    };
-  }, [show]);
+      document.documentElement.removeEventListener('click', handleClick)
+    }
+  }, [show])
 
   function handleSwitch(e) {
-    const x = e.target.id;
+    const x = e.target.id
 
     if (localStorage.getItem('theme') === x) {
-      return;
+      return
     }
 
-    setTheme(x);
+    setTheme(x)
 
     if (x === 'system') {
-      localStorage.removeItem('theme');
+      localStorage.removeItem('theme')
     } else {
-      localStorage.setItem('theme', x);
+      localStorage.setItem('theme', x)
     }
     if (
       x === 'dark' ||
       (x === 'system' &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.style.colorScheme = 'dark';
+      document.documentElement.classList.add('dark')
+      document.documentElement.style.colorScheme = 'dark'
     } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.style.colorScheme = 'light';
+      document.documentElement.classList.remove('dark')
+      document.documentElement.style.colorScheme = 'light'
     }
   }
 
@@ -81,12 +80,12 @@ export default function ChangeTheme() {
       <div className="relative top-[4px]">
         <button
           type="button"
-          title='切换主题'
+          title="切换主题"
           className="switch-theme flex w-[8rem] justify-between border md:inline md:w-auto md:border-0"
           onClick={() => setShow(!show)}
         >
-          <span className="md:hidden px-1">切换主题</span>
-          <span className={clsx({"hidden": theme !== 'light'})}>
+          <span className="px-1 md:hidden">切换主题</span>
+          <span className={clsx({ hidden: theme !== 'light' })}>
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -105,7 +104,7 @@ export default function ChangeTheme() {
               ></path>
             </svg>
           </span>
-          <span className={clsx({"hidden": theme !== 'dark'})}>
+          <span className={clsx({ hidden: theme !== 'dark' })}>
             <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
               <path
                 fillRule="evenodd"
@@ -126,7 +125,7 @@ export default function ChangeTheme() {
             </svg>
           </span>
 
-          <span className={clsx({"hidden": theme !== 'system'})}>
+          <span className={clsx({ hidden: theme !== 'system' })}>
             <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
               <path
                 d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"
@@ -255,5 +254,5 @@ export default function ChangeTheme() {
         </ul>
       </div>
     </>
-  );
+  )
 }

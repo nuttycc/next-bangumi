@@ -2,29 +2,29 @@ import {
   getPersonDetails,
   getPersonRelatedCharacters,
   getPersonRelatedSubjects,
-} from '@/app/lib/person';
-import Image from 'next/image';
+} from '@/app/lib/person'
+import Image from 'next/image'
 
 export default async function Person({ params }) {
-  const personId = params.id;
+  const personId = params.id
   const [details, characters, subjects] = await Promise.all([
     getPersonDetails(personId),
     getPersonRelatedCharacters(personId),
     getPersonRelatedSubjects(personId),
-  ]);
+  ])
 
   const infobox = details.infobox.map((x) => {
-    let v = x.value;
+    let v = x.value
     if (typeof x.value === 'object') {
       v = x.value.map((y) => {
-        if (!y.value) return '-';
+        if (!y.value) return '-'
         return (
           <div key={y.key}>
             <span>{y.key}：</span>
             <span>{y.value}</span>
           </div>
-        );
-      });
+        )
+      })
     }
 
     return (
@@ -32,8 +32,8 @@ export default async function Person({ params }) {
         <span>{x.key}：</span>
         <span>{v || '待补充'}</span>
       </div>
-    );
-  });
+    )
+  })
   const subjectsList = subjects.map((x) => {
     return (
       <div key={x.id} className="flex gap-2 border p-2 dark:border-gray-400">
@@ -56,8 +56,8 @@ export default async function Person({ params }) {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
   const characterList = characters.map((x) => {
     return (
       <div key={x.subject_id} className="border">
@@ -69,8 +69,8 @@ export default async function Person({ params }) {
         <div>{x.subject_id}</div>
         <div>{x.type}</div>
       </div>
-    );
-  });
+    )
+  })
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div className="w-[300px]">
@@ -149,5 +149,5 @@ export default async function Person({ params }) {
         {/* <div>{personsList}</div> */}
       </div>
     </div>
-  );
+  )
 }

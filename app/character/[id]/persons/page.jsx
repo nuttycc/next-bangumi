@@ -1,8 +1,8 @@
-import { getCharacterRelatedPersons } from '@/app/lib/character';
+import { getCharacterRelatedPersons } from '@/app/lib/character'
 
 export default async function Persons({ params }) {
-  const characterId = params.id;
-  const persons = await getCharacterRelatedPersons(characterId);
+  const characterId = params.id
+  const persons = await getCharacterRelatedPersons(characterId)
 
   const personsList = persons.map((x) => {
     return (
@@ -15,8 +15,8 @@ export default async function Persons({ params }) {
         {/* <div>{x.subject_id}</div> */}
         {/* <div>{x.type}</div> */}
       </div>
-    );
-  });
+    )
+  })
 
-  return <div>{personsList}</div>;
+  return <div>{personsList}</div>
 }

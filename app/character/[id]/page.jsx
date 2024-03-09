@@ -2,37 +2,37 @@ import {
   getCharacterDetails,
   getCharacterRelatedSubjects,
   getCharacterRelatedPersons,
-} from '@/app/lib/character';
+} from '@/app/lib/character'
 
-import Image from 'next/image';
+import Image from 'next/image'
 export default async function Character({ params }) {
-  const characterId = params.id;
+  const characterId = params.id
   const [details, persons, subjects] = await Promise.all([
     getCharacterDetails(characterId),
     getCharacterRelatedPersons(characterId),
     getCharacterRelatedSubjects(characterId),
-  ]);
+  ])
 
   const infobox = details.infobox.map((x) => {
-    let v = x.value;
+    let v = x.value
     if (typeof x.value === 'object') {
       v = x.value.map((y) => {
-        if (!y.value) return '-';
+        if (!y.value) return '-'
         return (
           <div key={y.key}>
             <span>{y.key}：</span>
             <span>{y.value}</span>
           </div>
-        );
-      });
+        )
+      })
     }
     return (
       <div key={x.key}>
         <span>{x.key}：</span>
         <span>{v || '待补充'}</span>
       </div>
-    );
-  });
+    )
+  })
   const subjectsList = subjects.slice(0, 6).map((x) => {
     return (
       <div key={x.id} className="flex gap-2 border p-2 dark:border-gray-400">
@@ -55,8 +55,8 @@ export default async function Character({ params }) {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
   const personsList = persons.map((x) => {
     return (
       <div key={x.subject_id} className="border">
@@ -68,13 +68,13 @@ export default async function Character({ params }) {
         <div>{x.subject_id}</div>
         <div>{x.type}</div>
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div className="">
-        <div className="flex items-center relative w-[200px] h-[300px] justify-center">
+        <div className="relative flex h-[300px] w-[200px] items-center justify-center">
           <Image
             src={details.images.medium}
             alt={details.name}
@@ -157,5 +157,5 @@ export default async function Character({ params }) {
         {/* <div>{personsList}</div> */}
       </div>
     </div>
-  );
+  )
 }

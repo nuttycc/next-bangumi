@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
-import Link from 'next/link';
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
+import Link from 'next/link'
 
 export default function Layout({ children, params }) {
-  const id = params.id;
-  const pathname = usePathname();
+  const id = params.id
+  const pathname = usePathname()
 
   return (
     <div>
@@ -55,5 +55,5 @@ export default function Layout({ children, params }) {
       </ul>
       <div className="mt-8">{children}</div>
     </div>
-  );
+  )
 }

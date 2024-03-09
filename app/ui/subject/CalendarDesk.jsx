@@ -1,12 +1,11 @@
-import clsx from 'clsx';
-import Image from 'next/image';
-import styles from './subject.module.css';
-import DateComponent from './DateWidget';
-import ScrollButton from '../ScrollButton';
-import loadingPic from 'public/neutral-face-flatline.svg';
+import clsx from 'clsx'
+import Image from 'next/image'
+import styles from './subject.module.css'
+import DateComponent from './DateWidget'
+import ScrollButton from '../ScrollButton'
+import loadingPic from 'public/neutral-face-flatline.svg'
 
 export default function AniCalenderOnDesk({ data }) {
-
   const calendar = data.map((obj) => {
     const CardList = obj.items.map((item) => {
       const imgObj = item?.images || {}
@@ -19,10 +18,10 @@ export default function AniCalenderOnDesk({ data }) {
             id={item.id}
           />
         </div>
-      );
-    });
+      )
+    })
 
-    const weekdayId = obj.weekday.id;
+    const weekdayId = obj.weekday.id
     // 每日番剧
     return (
       <div
@@ -57,9 +56,9 @@ export default function AniCalenderOnDesk({ data }) {
           </div>
         </div>
       </div>
-    );
-  });
-  const week = ['一', '二', '三', '四', '五', '六', '日'];
+    )
+  })
+  const week = ['一', '二', '三', '四', '五', '六', '日']
 
   return (
     <>
@@ -73,7 +72,7 @@ export default function AniCalenderOnDesk({ data }) {
         <div>{calendar}</div>
       </div>
     </>
-  );
+  )
 }
 
 // 单张卡片
@@ -99,5 +98,5 @@ export function AniCard({ title, src, id }) {
         </div>
       </a>
     </>
-  );
+  )
 }
